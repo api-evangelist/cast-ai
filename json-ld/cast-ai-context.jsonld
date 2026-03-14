@@ -1,0 +1,87 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "castai": "https://docs.cast.ai/docs/",
+    "Cluster": {
+      "@id": "castai:api",
+      "@context": {
+        "id": "https://schema.org/identifier",
+        "name": "https://schema.org/name",
+        "status": "https://schema.org/status",
+        "provider": "https://schema.org/provider",
+        "region": "https://schema.org/location",
+        "clusterToken": "https://schema.org/accessCode",
+        "agentStatus": "https://schema.org/status",
+        "kubernetesVersion": "https://schema.org/softwareVersion",
+        "nodeCount": "https://schema.org/quantity",
+        "createdAt": "https://schema.org/dateCreated"
+      }
+    },
+    "Node": {
+      "@id": "castai:api",
+      "@context": {
+        "id": "https://schema.org/identifier",
+        "name": "https://schema.org/name",
+        "instanceType": "https://schema.org/category",
+        "state": "https://schema.org/status",
+        "createdAt": "https://schema.org/dateCreated",
+        "labels": "https://schema.org/keywords"
+      }
+    },
+    "NodeTemplate": {
+      "@id": "castai:api",
+      "@context": {
+        "id": "https://schema.org/identifier",
+        "name": "https://schema.org/name",
+        "configurationId": {
+          "@id": "castai:api",
+          "@type": "@id"
+        },
+        "constraints": "https://schema.org/valueReference",
+        "createdAt": "https://schema.org/dateCreated",
+        "updatedAt": "https://schema.org/dateModified"
+      }
+    },
+    "Workload": {
+      "@id": "castai:api",
+      "@context": {
+        "id": "https://schema.org/identifier",
+        "clusterId": {
+          "@id": "castai:api",
+          "@type": "@id"
+        },
+        "namespace": "https://schema.org/category",
+        "name": "https://schema.org/name",
+        "type": "https://schema.org/additionalType",
+        "containers": "https://schema.org/hasPart"
+      }
+    },
+    "RebalancingSchedule": {
+      "@id": "castai:api",
+      "@context": {
+        "id": "https://schema.org/identifier",
+        "clusterId": {
+          "@id": "castai:api",
+          "@type": "@id"
+        },
+        "schedule": "https://schema.org/repeatFrequency",
+        "enabled": "https://schema.org/actionStatus",
+        "createdAt": "https://schema.org/dateCreated"
+      }
+    },
+    "CostReport": {
+      "@id": "castai:api",
+      "@context": {
+        "clusterId": {
+          "@id": "castai:api",
+          "@type": "@id"
+        },
+        "cpuEfficiency": "https://schema.org/value",
+        "memoryEfficiency": "https://schema.org/value",
+        "totalMonthlyCost": "https://schema.org/price",
+        "optimizedMonthlyCost": "https://schema.org/price",
+        "savingsPercentage": "https://schema.org/discount"
+      }
+    }
+  }
+}

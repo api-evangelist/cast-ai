@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/api-evangelist/cast-ai/blob/main/json-schema/node-template.json",
+  "title": "CAST AI Node Template",
+  "description": "A Node Template defines instance type constraints and configuration for nodes provisioned by the CAST AI autoscaler.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique identifier for the node template."
+    },
+    "name": {
+      "type": "string",
+      "description": "Name of the node template."
+    },
+    "configurationId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "ID of the associated node configuration."
+    },
+    "constraints": {
+      "type": "object",
+      "description": "Resource constraints for node selection.",
+      "properties": {
+        "minCpu": {
+          "type": "integer",
+          "description": "Minimum number of CPUs for the node."
+        },
+        "maxCpu": {
+          "type": "integer",
+          "description": "Maximum number of CPUs for the node."
+        },
+        "minMemory": {
+          "type": "integer",
+          "description": "Minimum memory in MiB for the node."
+        },
+        "maxMemory": {
+          "type": "integer",
+          "description": "Maximum memory in MiB for the node."
+        },
+        "useSpotInstances": {
+          "type": "boolean",
+          "description": "Whether to use spot or preemptible instances."
+        },
+        "architectures": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Allowed CPU architectures (e.g., amd64, arm64)."
+        }
+      }
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the node template was created."
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the node template was last updated."
+    }
+  }
+}

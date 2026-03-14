@@ -1,36 +1,9 @@
-name: CAST AI
-description: >-
-  CAST AI is a Kubernetes cost optimization and automation platform that
-  provides APIs for managing clusters, autoscaling, node configuration,
-  workload optimization, cost reporting, security insights, and more. The
-  platform continuously monitors Kubernetes clusters and optimizes them for
-  cost efficiency using autoscaling, spot instance automation, bin packing,
-  and other techniques. Everything available in the console UI is also
-  accessible via the REST API.
-image: >-
-  https://kinlane-productions2.s3.amazonaws.com/apis-json-icons/swagger-ui-n0PWZL5D.png
-url: https://example.com/apis/cast-ai.yml
-created: 2024/7/2
-modified: 2026-03-14
-specificationVersion: '0.18'
-tags:
-  - Kubernetes
-  - Cost Optimization
-  - Autoscaling
-  - Cloud Infrastructure
-  - DevOps
+aid: cast-ai
+url: >-
+  https://raw.githubusercontent.com/api-evangelist/cast-ai/refs/heads/main/apis.yml
 apis:
-  - name: CAST AI Kubernetes Cost Optimization API
-    description: >-
-      The CAST AI REST API provides comprehensive access to the Kubernetes
-      cost optimization platform, including cluster management, autoscaling
-      policies, node configuration and templates, workload optimization,
-      scheduled rebalancing, cost reporting, security insights, hibernation
-      schedules, and AI enabler functionality. The API uses API key
-      authentication and is available at api.cast.ai.
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
-    humanURL: https://docs.cast.ai/docs/api
-    baseURL: https://api.cast.ai/v1
+  - aid: cast-ai:kubernetes-cost-optimization-api
+    name: CAST AI Kubernetes Cost Optimization API
     tags:
       - Kubernetes
       - Clusters
@@ -46,15 +19,73 @@ apis:
       - Security
       - Hibernation
       - LLM
+    humanURL: https://docs.cast.ai/docs/api
     properties:
-      - type: Documentation
-        url: https://docs.cast.ai/docs/api
-      - type: OpenAPI
-        url: openapi/cast-ai-kubernetes-cost-optimization-openapi.yml
-      - type: Swagger
-        url: https://api.cast.ai/v1/spec/
-      - type: Authentication
-        url: https://docs.cast.ai/docs/authentication
+      - url: https://docs.cast.ai/docs/api
+        type: Documentation
+      - url: openapi/cast-ai-kubernetes-cost-optimization-openapi.yml
+        type: OpenAPI
+      - url: https://api.cast.ai/v1/spec/
+        type: Swagger
+      - url: https://docs.cast.ai/docs/authentication
+        type: Authentication
+      - url: json-schema/cluster.json
+        type: JSONSchema
+      - url: json-schema/node.json
+        type: JSONSchema
+      - url: json-schema/node-template.json
+        type: JSONSchema
+      - url: json-schema/workload.json
+        type: JSONSchema
+      - url: json-schema/rebalancing-schedule.json
+        type: JSONSchema
+      - url: json-schema/cost-report.json
+        type: JSONSchema
+      - url: json-ld/cast-ai-context.jsonld
+        type: JSONLD
+    description: >-
+      The CAST AI REST API provides comprehensive access to the Kubernetes
+      cost optimization platform, including cluster management, autoscaling
+      policies, node configuration and templates, workload optimization,
+      scheduled rebalancing, cost reporting, security insights, hibernation
+      schedules, and AI enabler functionality. The API uses API key
+      authentication and is available at api.cast.ai.
+name: CAST AI
+tags:
+  - Kubernetes
+  - Cost Optimization
+  - Autoscaling
+  - Cloud Infrastructure
+  - DevOps
+type: Index
+image: >-
+  https://kinlane-productions2.s3.amazonaws.com/apis-json-icons/swagger-ui-n0PWZL5D.png
+access: 3rd-Party
+common:
+  - url: https://docs.cast.ai/docs/
+    name: CAST AI Documentation
+    type: Documentation
+    description: 'null'
+  - url: https://cast.ai/blog/
+    name: CAST AI Blog
+    type: Blog
+    description: 'null'
+  - url: https://cast.ai/
+    name: CAST AI Website
+    type: Website
+    description: 'null'
+created: '2024-07-02'
+modified: '2026-03-14'
+position: Consumer
+description: >-
+  CAST AI is a Kubernetes cost optimization and automation platform that
+  provides APIs for managing clusters, autoscaling, node configuration,
+  workload optimization, cost reporting, security insights, and more. The
+  platform continuously monitors Kubernetes clusters and optimizes them for
+  cost efficiency using autoscaling, spot instance automation, bin packing,
+  and other techniques. Everything available in the console UI is also
+  accessible via the REST API.
 maintainers:
-  - FN: API Evangelist
+  - FN: Kin Lane
     email: info@apievangelist.com
+specificationVersion: '0.19'

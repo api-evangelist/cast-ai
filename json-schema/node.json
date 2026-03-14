@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/api-evangelist/cast-ai/blob/main/json-schema/node.json",
+  "title": "CAST AI Node",
+  "description": "A Node represents a Kubernetes node within a cluster managed by CAST AI, including its instance type, state, and labels.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique identifier for the node."
+    },
+    "name": {
+      "type": "string",
+      "description": "Name of the node."
+    },
+    "instanceType": {
+      "type": "string",
+      "description": "Cloud provider instance type of the node."
+    },
+    "state": {
+      "type": "string",
+      "enum": [
+        "ready",
+        "not_ready",
+        "draining",
+        "deleting"
+      ],
+      "description": "Current state of the node."
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the node was created."
+    },
+    "labels": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      },
+      "description": "Key-value labels assigned to the node."
+    }
+  }
+}

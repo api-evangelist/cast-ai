@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/api-evangelist/cast-ai/blob/main/json-schema/cluster.json",
+  "title": "CAST AI Cluster",
+  "description": "A Cluster represents a Kubernetes cluster connected to and managed by the CAST AI platform for cost optimization and autoscaling.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique identifier for the cluster."
+    },
+    "name": {
+      "type": "string",
+      "description": "Human-readable name of the cluster."
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "ready",
+        "connecting",
+        "disconnected",
+        "warning",
+        "deleting"
+      ],
+      "description": "Current status of the cluster."
+    },
+    "provider": {
+      "type": "string",
+      "enum": [
+        "aws",
+        "gcp",
+        "azure"
+      ],
+      "description": "Cloud provider hosting the cluster."
+    },
+    "region": {
+      "type": "string",
+      "description": "Cloud provider region where the cluster is deployed."
+    },
+    "clusterToken": {
+      "type": "string",
+      "description": "Token used by the CAST AI agent to authenticate with the platform."
+    },
+    "agentStatus": {
+      "type": "string",
+      "enum": [
+        "online",
+        "offline"
+      ],
+      "description": "Status of the CAST AI agent running in the cluster."
+    },
+    "kubernetesVersion": {
+      "type": "string",
+      "description": "Version of Kubernetes running on the cluster."
+    },
+    "nodeCount": {
+      "type": "integer",
+      "description": "Total number of nodes in the cluster."
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the cluster was registered with CAST AI."
+    }
+  }
+}

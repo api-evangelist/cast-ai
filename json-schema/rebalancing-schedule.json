@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/api-evangelist/cast-ai/blob/main/json-schema/rebalancing-schedule.json",
+  "title": "CAST AI Rebalancing Schedule",
+  "description": "A Rebalancing Schedule defines a recurring job that periodically optimizes cluster node allocation for cost efficiency.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique identifier for the rebalancing schedule."
+    },
+    "clusterId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "ID of the cluster this schedule applies to."
+    },
+    "schedule": {
+      "type": "string",
+      "description": "Cron expression defining when rebalancing runs."
+    },
+    "enabled": {
+      "type": "boolean",
+      "description": "Whether the rebalancing schedule is active."
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the schedule was created."
+    }
+  }
+}

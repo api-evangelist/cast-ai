@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/api-evangelist/cast-ai/blob/main/json-schema/workload.json",
+  "title": "CAST AI Workload",
+  "description": "A Workload represents a Kubernetes workload monitored by CAST AI for optimization, including resource requests and recommendations.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique identifier for the workload."
+    },
+    "clusterId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "ID of the cluster the workload belongs to."
+    },
+    "namespace": {
+      "type": "string",
+      "description": "Kubernetes namespace of the workload."
+    },
+    "name": {
+      "type": "string",
+      "description": "Name of the workload."
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "Deployment",
+        "StatefulSet",
+        "DaemonSet",
+        "Job",
+        "CronJob"
+      ],
+      "description": "Kubernetes workload type."
+    },
+    "containers": {
+      "type": "array",
+      "description": "Containers within the workload.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the container."
+          },
+          "requests": {
+            "type": "object",
+            "description": "Current resource requests for the container.",
+            "properties": {
+              "cpu": {
+                "type": "string",
+                "description": "CPU resource request (e.g., 100m, 1)."
+              },
+              "memory": {
+                "type": "string",
+                "description": "Memory resource request (e.g., 128Mi, 1Gi)."
+              }
+            }
+          },
+          "recommendations": {
+            "type": "object",
+            "description": "CAST AI recommended resource values for the container.",
+            "properties": {
+              "cpu": {
+                "type": "string",
+                "description": "Recommended CPU resource request."
+              },
+              "memory": {
+                "type": "string",
+                "description": "Recommended memory resource request."
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

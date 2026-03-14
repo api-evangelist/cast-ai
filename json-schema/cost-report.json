@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/api-evangelist/cast-ai/blob/main/json-schema/cost-report.json",
+  "title": "CAST AI Cost Report",
+  "description": "A Cost Report provides efficiency metrics and cost data for a cluster, including CPU and memory utilization and potential savings.",
+  "type": "object",
+  "properties": {
+    "clusterId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "ID of the cluster this report covers."
+    },
+    "cpuEfficiency": {
+      "type": "number",
+      "description": "CPU efficiency percentage (0-100)."
+    },
+    "memoryEfficiency": {
+      "type": "number",
+      "description": "Memory efficiency percentage (0-100)."
+    },
+    "totalMonthlyCost": {
+      "type": "number",
+      "description": "Total monthly cost in USD before optimization."
+    },
+    "optimizedMonthlyCost": {
+      "type": "number",
+      "description": "Projected monthly cost in USD after optimization."
+    },
+    "savingsPercentage": {
+      "type": "number",
+      "description": "Percentage of costs saved through optimization."
+    }
+  }
+}
