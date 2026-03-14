@@ -1,0 +1,1360 @@
+openapi: 3.1.0
+info:
+  title: CAST AI Kubernetes Cost Optimization API
+  description: >-
+    CAST AI is a Kubernetes cost optimization platform that provides APIs for
+    managing clusters, autoscaling, node configuration, workload optimization,
+    cost reporting, security insights, and more. The platform continuously
+    monitors clusters and optimizes them for cost efficiency using autoscaling,
+    spot instance automation, bin packing, and other techniques.
+  version: 1.0.0
+  contact:
+    name: CAST AI
+    url: https://cast.ai
+  termsOfService: https://cast.ai/terms-of-service
+externalDocs:
+  description: CAST AI API Documentation
+  url: https://docs.cast.ai/docs/api
+servers:
+  - url: https://api.cast.ai/v1
+    description: CAST AI Production API
+security:
+  - ApiKeyAuth: []
+tags:
+  - name: External Clusters
+    description: >-
+      Manage external Kubernetes clusters connected to CAST AI, including
+      listing nodes, draining nodes, and cluster operations.
+  - name: Autoscaler
+    description: >-
+      Autoscaler operations including triggering rebalancing plans and managing
+      cluster scaling behavior.
+  - name: Policies
+    description: >-
+      Manage autoscaler policies configuration for clusters, including
+      unscheduled pods, node downscaler, and spot instance policies.
+  - name: Node Configuration
+    description: >-
+      Manage node configurations for clusters, which define how nodes are
+      provisioned and configured.
+  - name: Node Templates
+    description: >-
+      Manage node templates that define instance types, constraints, and
+      configuration for autoscaled nodes.
+  - name: Workload Optimization
+    description: >-
+      Manage workload optimization settings, view workload recommendations,
+      and configure workload autoscaling.
+  - name: Scheduled Rebalancing
+    description: >-
+      Create and manage scheduled rebalancing jobs that periodically optimize
+      cluster node allocation.
+  - name: Operations
+    description: >-
+      Track and manage long-running operations within CAST AI.
+  - name: Inventory
+    description: >-
+      Manage inventory resources and blacklists for instance types and
+      regions.
+  - name: Cluster Actions
+    description: >-
+      Manage cluster controller actions including acknowledging completed
+      actions and ingesting logs.
+  - name: Pricing
+    description: >-
+      Access pricing information for cloud provider instances and sync
+      billing data.
+  - name: Cost Reports
+    description: >-
+      Access cost reporting and efficiency data at the cluster, namespace,
+      and workload levels.
+  - name: Allocation Groups
+    description: >-
+      Manage allocation groups and view efficiency metrics for grouped
+      workloads.
+  - name: Insights
+    description: >-
+      Access security insights, best practices reports, and container image
+      scanning information.
+  - name: Hibernation Schedules
+    description: >-
+      Create and manage hibernation schedules for clusters to reduce costs
+      during off-peak hours.
+  - name: Settings
+    description: >-
+      Manage API key settings and organization-level configuration.
+  - name: AI Enabler
+    description: >-
+      Manage LLM provider integrations and AI enabler functionality for
+      intelligent optimization.
+paths:
+  /kubernetes/external-clusters/{clusterId}/nodes:
+    get:
+      operationId: ExternalClusterAPI_ListNodes
+      summary: List cluster nodes
+      description: Lists the nodes for a cluster.
+      tags:
+        - External Clusters
+      parameters:
+        - $ref: '#/components/parameters/ClusterId'
+      responses:
+        '200':
+          description: Successful response with list of nodes.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListNodesResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /kubernetes/external-clusters/{clusterId}/nodes/{nodeId}/drain:
+    post:
+      operationId: ExternalClusterAPI_DrainNode
+      summary: Drain cluster node
+      description: Drains the specified cluster node.
+      tags:
+        - External Clusters
+      parameters:
+        - $ref: '#/components/parameters/ClusterId'
+        - $ref: '#/components/parameters/NodeId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DrainNodeRequest'
+      responses:
+        '200':
+          description: Node drain initiated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DrainNodeResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /kubernetes/external-clusters/{clusterId}/nodes/{nodeId}:
+    delete:
+      operationId: ExternalClusterAPI_DeleteNode
+      summary: Delete cluster node
+      description: Deletes the specified cluster node.
+      tags:
+        - External Clusters
+      parameters:
+        - $ref: '#/components/parameters/ClusterId'
+        - $ref: '#/components/parameters/NodeId'
+      responses:
+        '200':
+          description: Node deleted successfully.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /kubernetes/clusters/{clusterId}/policies:
+    get:
+      operationId: PoliciesAPI_GetClusterPolicies
+      summary: Get cluster policies
+      description: Gets policies configuration for the target cluster.
+      tags:
+        - Policies
+      parameters:
+        - $ref: '#/components/parameters/ClusterId'
+      responses:
+        '200':
+          description: Successful response with cluster policies.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClusterPolicies'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: PoliciesAPI_UpsertClusterPolicies
+      summary: Upsert cluster policies
+      description: Upsert cluster's policies configuration.
+      tags:
+        - Policies
+      parameters:
+        - $ref: '#/components/parameters/ClusterId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClusterPolicies'
+      responses:
+        '200':
+          description: Policies updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClusterPolicies'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /kubernetes/clusters/{clusterId}/node-templates:
+    get:
+      operationId: NodeTemplatesAPI_ListNodeTemplates
+      summary: List node templates
+      description: Lists node templates for the specified cluster.
+      tags:
+        - Node Templates
+      parameters:
+        - $ref: '#/components/parameters/ClusterId'
+      responses:
+        '200':
+          description: Successful response with list of node templates.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListNodeTemplatesResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: NodeTemplatesAPI_CreateNodeTemplate
+      summary: Create node template
+      description: Creates a new node template for the specified cluster.
+      tags:
+        - Node Templates
+      parameters:
+        - $ref: '#/components/parameters/ClusterId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NodeTemplate'
+      responses:
+        '200':
+          description: Node template created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NodeTemplate'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /kubernetes/clusters/{clusterId}/node-templates/{nodeTemplateId}:
+    get:
+      operationId: NodeTemplatesAPI_GetNodeTemplate
+      summary: Get node template
+      description: Gets a specific node template by ID.
+      tags:
+        - Node Templates
+      parameters:
+        - $ref: '#/components/parameters/ClusterId'
+        - $ref: '#/components/parameters/NodeTemplateId'
+      responses:
+        '200':
+          description: Successful response with node template.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NodeTemplate'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: NodeTemplatesAPI_UpdateNodeTemplate
+      summary: Update node template
+      description: Updates an existing node template.
+      tags:
+        - Node Templates
+      parameters:
+        - $ref: '#/components/parameters/ClusterId'
+        - $ref: '#/components/parameters/NodeTemplateId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NodeTemplate'
+      responses:
+        '200':
+          description: Node template updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NodeTemplate'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: NodeTemplatesAPI_DeleteNodeTemplate
+      summary: Delete node template
+      description: Deletes the specified node template.
+      tags:
+        - Node Templates
+      parameters:
+        - $ref: '#/components/parameters/ClusterId'
+        - $ref: '#/components/parameters/NodeTemplateId'
+      responses:
+        '200':
+          description: Node template deleted successfully.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /kubernetes/clusters/{clusterId}/node-configurations:
+    get:
+      operationId: NodeConfigurationAPI_ListConfigurations
+      summary: List node configurations
+      description: Lists node configurations for the specified cluster.
+      tags:
+        - Node Configuration
+      parameters:
+        - $ref: '#/components/parameters/ClusterId'
+      responses:
+        '200':
+          description: Successful response with list of node configurations.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListNodeConfigurationsResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: NodeConfigurationAPI_CreateConfiguration
+      summary: Create node configuration
+      description: Creates a new node configuration for the specified cluster.
+      tags:
+        - Node Configuration
+      parameters:
+        - $ref: '#/components/parameters/ClusterId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NodeConfiguration'
+      responses:
+        '200':
+          description: Node configuration created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NodeConfiguration'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /kubernetes/clusters/{clusterId}/node-configurations/{configurationId}:
+    delete:
+      operationId: NodeConfigurationAPI_DeleteConfiguration
+      summary: Delete node configuration
+      description: Deletes node configuration of a specific cluster.
+      tags:
+        - Node Configuration
+      parameters:
+        - $ref: '#/components/parameters/ClusterId'
+        - name: configurationId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Node configuration deleted successfully.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /kubernetes/clusters/{clusterId}/rebalancing-plans/{rebalancingPlanId}/execute:
+    post:
+      operationId: AutoscalerAPI_ExecuteRebalancingPlan
+      summary: Trigger rebalancing plan
+      description: Triggers and executes a rebalancing plan for the cluster.
+      tags:
+        - Autoscaler
+      parameters:
+        - $ref: '#/components/parameters/ClusterId'
+        - name: rebalancingPlanId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Rebalancing plan execution triggered successfully.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /kubernetes/clusters/{clusterId}/actions/{actionId}/ack:
+    post:
+      operationId: ClusterActionsAPI_AckClusterAction
+      summary: Acknowledge cluster action
+      description: Ack completed cluster action.
+      tags:
+        - Cluster Actions
+      parameters:
+        - $ref: '#/components/parameters/ClusterId'
+        - name: actionId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Action acknowledged successfully.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /kubernetes/clusters/{clusterId}/actions/logs:
+    post:
+      operationId: ClusterActionsAPI_IngestLogs
+      summary: Ingest cluster controller logs
+      description: Ingest cluster controller logs.
+      tags:
+        - Cluster Actions
+      parameters:
+        - $ref: '#/components/parameters/ClusterId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IngestLogsRequest'
+      responses:
+        '200':
+          description: Logs ingested successfully.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /workload-autoscaling/clusters/{clusterId}/workloads:
+    get:
+      operationId: WorkloadOptimizationAPI_ListWorkloads
+      summary: List workloads
+      description: Returns a list of workloads for the given cluster.
+      tags:
+        - Workload Optimization
+      parameters:
+        - $ref: '#/components/parameters/ClusterId'
+      responses:
+        '200':
+          description: Successful response with list of workloads.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListWorkloadsResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /workload-autoscaling/clusters/{clusterId}/workloads/{workloadId}:
+    get:
+      operationId: WorkloadOptimizationAPI_GetWorkload
+      summary: Get workload
+      description: Returns workload details and optimization recommendations.
+      tags:
+        - Workload Optimization
+      parameters:
+        - $ref: '#/components/parameters/ClusterId'
+        - name: workloadId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response with workload details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Workload'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /workload-autoscaling/agent-statuses:
+    get:
+      operationId: WorkloadOptimizationAPI_GetOrganizationAgentStatuses
+      summary: Get agent statuses
+      description: >-
+        Returns status of workload-autoscaler agents for all clusters in
+        an organization.
+      tags:
+        - Workload Optimization
+      responses:
+        '200':
+          description: Successful response with agent statuses.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentStatusesResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /scheduled-rebalancing/schedules:
+    post:
+      operationId: ScheduledRebalancingAPI_CreateRebalancingSchedule
+      summary: Create rebalancing schedule
+      description: Creates a new scheduled rebalancing job.
+      tags:
+        - Scheduled Rebalancing
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RebalancingSchedule'
+      responses:
+        '200':
+          description: Schedule created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RebalancingSchedule'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /scheduled-rebalancing/schedules/{scheduleId}:
+    get:
+      operationId: ScheduledRebalancingAPI_GetRebalancingSchedule
+      summary: Get rebalancing schedule
+      description: Gets a specific rebalancing schedule by ID.
+      tags:
+        - Scheduled Rebalancing
+      parameters:
+        - name: scheduleId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response with schedule details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RebalancingSchedule'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: ScheduledRebalancingAPI_DeleteRebalancingSchedule
+      summary: Delete rebalancing schedule
+      description: Deletes the specified rebalancing schedule.
+      tags:
+        - Scheduled Rebalancing
+      parameters:
+        - name: scheduleId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Schedule deleted successfully.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /operations/{operationId}:
+    get:
+      operationId: OperationsAPI_GetOperation
+      summary: Get operation
+      description: GetOperation returns the operation object by ID.
+      tags:
+        - Operations
+      parameters:
+        - name: operationId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response with operation details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Operation'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /inventory/blacklist/add:
+    post:
+      operationId: InventoryBlacklistAPI_AddBlacklist
+      summary: Add to blacklist
+      description: Adds instance types or regions to the inventory blacklist.
+      tags:
+        - Inventory
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BlacklistRequest'
+      responses:
+        '200':
+          description: Added to blacklist successfully.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /pricing/clusters/{clusterId}/nodes/{nodeId}:
+    get:
+      operationId: PricingAPI_GetNodePricing
+      summary: Get node pricing
+      description: Returns pricing data for a specific node in a cluster.
+      tags:
+        - Pricing
+      parameters:
+        - $ref: '#/components/parameters/ClusterId'
+        - $ref: '#/components/parameters/NodeId'
+      responses:
+        '200':
+          description: Successful response with pricing data.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NodePricing'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /pricing/sync-gcp-billing:
+    post:
+      operationId: PricingAPI_SyncGCPBillingAPIData
+      summary: Sync GCP billing data
+      description: Sync GCP billing pricing API data.
+      tags:
+        - Pricing
+      responses:
+        '200':
+          description: GCP billing data synced successfully.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /cost-reports/clusters/{clusterId}/efficiency:
+    get:
+      operationId: CostReportsAPI_GetClusterEfficiency
+      summary: Get cluster efficiency
+      description: Returns efficiency report data for the specified cluster.
+      tags:
+        - Cost Reports
+      parameters:
+        - $ref: '#/components/parameters/ClusterId'
+      responses:
+        '200':
+          description: Successful response with efficiency data.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClusterEfficiency'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /allocation-groups/{allocationGroupId}/workloads/efficiency:
+    get:
+      operationId: AllocationGroupAPI_GetAllocationGroupWorkloadsEfficiency
+      summary: Get allocation group workloads efficiency
+      description: Gets allocation group efficiency workloads.
+      tags:
+        - Allocation Groups
+      parameters:
+        - name: allocationGroupId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response with allocation group efficiency data.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AllocationGroupEfficiency'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /security/insights/best-practices/filters:
+    get:
+      operationId: InsightsAPI_GetBestPracticesReportFilters
+      summary: Get best practices report filters
+      description: >-
+        Retrieve a list of possible filters for best practices report.
+      tags:
+        - Insights
+      responses:
+        '200':
+          description: Successful response with available filters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BestPracticesFilters'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /security/insights/images/{tagId}/digests:
+    get:
+      operationId: InsightsAPI_GetContainerImageDigests
+      summary: Get container image digests
+      description: Get container image digests for organization by tag ID.
+      tags:
+        - Insights
+      parameters:
+        - name: tagId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response with image digests.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContainerImageDigests'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /hibernation/schedules:
+    post:
+      operationId: HibernationSchedulesAPI_CreateHibernationSchedule
+      summary: Create hibernation schedule
+      description: Create a hibernation schedule.
+      tags:
+        - Hibernation Schedules
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HibernationSchedule'
+      responses:
+        '200':
+          description: Hibernation schedule created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HibernationSchedule'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /settings/api-keys/{apiKeyId}:
+    put:
+      operationId: SettingsAPI_UpsertAPIKeySettings
+      summary: Create or update API key settings
+      description: Create or update settings for an API key.
+      tags:
+        - Settings
+      parameters:
+        - name: apiKeyId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/APIKeySettings'
+      responses:
+        '200':
+          description: API key settings updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIKeySettings'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /llm/providers:
+    get:
+      operationId: AIEnablerProvidersAPI_GetProviders
+      summary: Get LLM providers
+      description: Gets the list of registered LLM providers.
+      tags:
+        - AI Enabler
+      responses:
+        '200':
+          description: Successful response with list of providers.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LLMProvidersResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: AIEnablerProvidersAPI_RegisterProviders
+      summary: Register LLM providers
+      description: Registers LLM providers.
+      tags:
+        - AI Enabler
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterProvidersRequest'
+      responses:
+        '200':
+          description: Providers registered successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LLMProvidersResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /metrics/prom:
+    get:
+      operationId: MetricsAPI_GetClusterMetrics
+      summary: Get cluster metrics
+      description: Returns Prometheus-compatible cluster metrics.
+      tags:
+        - Cost Reports
+      responses:
+        '200':
+          description: Successful response with cluster metrics.
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /metrics/nodes:
+    get:
+      operationId: MetricsAPI_GetNodeMetrics
+      summary: Get node metrics
+      description: Returns node-level metrics data.
+      tags:
+        - Cost Reports
+      responses:
+        '200':
+          description: Successful response with node metrics.
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /metrics/workloads:
+    get:
+      operationId: MetricsAPI_GetWorkloadMetrics
+      summary: Get workload metrics
+      description: >-
+        Returns workload-level metrics including cluster_id, namespace,
+        workload_name, and workload_type.
+      tags:
+        - Cost Reports
+      responses:
+        '200':
+          description: Successful response with workload metrics.
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /metrics/allocation-groups:
+    get:
+      operationId: MetricsAPI_GetAllocationGroupMetrics
+      summary: Get allocation group metrics
+      description: Returns allocation group-level metrics data.
+      tags:
+        - Cost Reports
+      responses:
+        '200':
+          description: Successful response with allocation group metrics.
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: >-
+        API key for authentication. Create access keys from the CAST AI
+        console under API > API access keys.
+  parameters:
+    ClusterId:
+      name: clusterId
+      in: path
+      required: true
+      description: The unique identifier of the cluster.
+      schema:
+        type: string
+        format: uuid
+    NodeId:
+      name: nodeId
+      in: path
+      required: true
+      description: The unique identifier of the node.
+      schema:
+        type: string
+        format: uuid
+    NodeTemplateId:
+      name: nodeTemplateId
+      in: path
+      required: true
+      description: The unique identifier of the node template.
+      schema:
+        type: string
+        format: uuid
+  responses:
+    Unauthorized:
+      description: Authentication failed. Invalid or missing API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        code:
+          type: integer
+          description: Error code.
+    ListNodesResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Node'
+    Node:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        instanceType:
+          type: string
+        state:
+          type: string
+          enum:
+            - ready
+            - not_ready
+            - draining
+            - deleting
+        createdAt:
+          type: string
+          format: date-time
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+    DrainNodeRequest:
+      type: object
+      properties:
+        force:
+          type: boolean
+          description: Whether to force drain the node.
+        timeout:
+          type: integer
+          description: Drain timeout in seconds.
+    DrainNodeResponse:
+      type: object
+      properties:
+        nodeId:
+          type: string
+          format: uuid
+        status:
+          type: string
+    ClusterPolicies:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+          description: Whether autoscaler policies are enabled.
+        unschedulablePods:
+          type: object
+          properties:
+            enabled:
+              type: boolean
+        nodeDownscaler:
+          type: object
+          properties:
+            enabled:
+              type: boolean
+            emptyNodes:
+              type: object
+              properties:
+                enabled:
+                  type: boolean
+                delaySeconds:
+                  type: integer
+        spotInstances:
+          type: object
+          properties:
+            enabled:
+              type: boolean
+            maxReclaimRate:
+              type: number
+    ListNodeTemplatesResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/NodeTemplate'
+    NodeTemplate:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        configurationId:
+          type: string
+          format: uuid
+        constraints:
+          type: object
+          properties:
+            minCpu:
+              type: integer
+            maxCpu:
+              type: integer
+            minMemory:
+              type: integer
+            maxMemory:
+              type: integer
+            useSpotInstances:
+              type: boolean
+            architectures:
+              type: array
+              items:
+                type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    ListNodeConfigurationsResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/NodeConfiguration'
+    NodeConfiguration:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        diskCpuRatio:
+          type: integer
+        minDiskSize:
+          type: integer
+        subnets:
+          type: array
+          items:
+            type: string
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+        createdAt:
+          type: string
+          format: date-time
+    IngestLogsRequest:
+      type: object
+      properties:
+        logs:
+          type: array
+          items:
+            type: object
+            properties:
+              level:
+                type: string
+              message:
+                type: string
+              timestamp:
+                type: string
+                format: date-time
+    ListWorkloadsResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Workload'
+    Workload:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        clusterId:
+          type: string
+          format: uuid
+        namespace:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+          enum:
+            - Deployment
+            - StatefulSet
+            - DaemonSet
+            - Job
+            - CronJob
+        containers:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              requests:
+                type: object
+                properties:
+                  cpu:
+                    type: string
+                  memory:
+                    type: string
+              recommendations:
+                type: object
+                properties:
+                  cpu:
+                    type: string
+                  memory:
+                    type: string
+    AgentStatusesResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              clusterId:
+                type: string
+                format: uuid
+              status:
+                type: string
+              lastSeenAt:
+                type: string
+                format: date-time
+    RebalancingSchedule:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        clusterId:
+          type: string
+          format: uuid
+        schedule:
+          type: string
+          description: Cron expression for the rebalancing schedule.
+        enabled:
+          type: boolean
+        createdAt:
+          type: string
+          format: date-time
+    Operation:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        type:
+          type: string
+        status:
+          type: string
+          enum:
+            - pending
+            - running
+            - completed
+            - failed
+        createdAt:
+          type: string
+          format: date-time
+        completedAt:
+          type: string
+          format: date-time
+    BlacklistRequest:
+      type: object
+      properties:
+        instanceTypes:
+          type: array
+          items:
+            type: string
+        regions:
+          type: array
+          items:
+            type: string
+    NodePricing:
+      type: object
+      properties:
+        nodeId:
+          type: string
+        instanceType:
+          type: string
+        onDemandPrice:
+          type: number
+        spotPrice:
+          type: number
+        currency:
+          type: string
+    ClusterEfficiency:
+      type: object
+      properties:
+        clusterId:
+          type: string
+          format: uuid
+        cpuEfficiency:
+          type: number
+          description: CPU efficiency percentage.
+        memoryEfficiency:
+          type: number
+          description: Memory efficiency percentage.
+        totalMonthlyCost:
+          type: number
+        optimizedMonthlyCost:
+          type: number
+        savingsPercentage:
+          type: number
+    AllocationGroupEfficiency:
+      type: object
+      properties:
+        allocationGroupId:
+          type: string
+        workloads:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              namespace:
+                type: string
+              cpuEfficiency:
+                type: number
+              memoryEfficiency:
+                type: number
+    BestPracticesFilters:
+      type: object
+      properties:
+        filters:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              values:
+                type: array
+                items:
+                  type: string
+    ContainerImageDigests:
+      type: object
+      properties:
+        digests:
+          type: array
+          items:
+            type: object
+            properties:
+              digest:
+                type: string
+              createdAt:
+                type: string
+                format: date-time
+    HibernationSchedule:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        clusterId:
+          type: string
+          format: uuid
+        name:
+          type: string
+        pauseCron:
+          type: string
+          description: Cron expression for when to pause the cluster.
+        resumeCron:
+          type: string
+          description: Cron expression for when to resume the cluster.
+        enabled:
+          type: boolean
+        createdAt:
+          type: string
+          format: date-time
+    APIKeySettings:
+      type: object
+      properties:
+        apiKeyId:
+          type: string
+        name:
+          type: string
+        permissions:
+          type: array
+          items:
+            type: string
+        createdAt:
+          type: string
+          format: date-time
+    LLMProvidersResponse:
+      type: object
+      properties:
+        providers:
+          type: array
+          items:
+            $ref: '#/components/schemas/LLMProvider'
+    LLMProvider:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+        status:
+          type: string
+    RegisterProvidersRequest:
+      type: object
+      properties:
+        providers:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              type:
+                type: string
+              apiKey:
+                type: string
+              endpoint:
+                type: string

@@ -1,18 +1,60 @@
-name: Swagger UI
-description: '  https://api.cast.ai/v1/spec/'
+name: CAST AI
+description: >-
+  CAST AI is a Kubernetes cost optimization and automation platform that
+  provides APIs for managing clusters, autoscaling, node configuration,
+  workload optimization, cost reporting, security insights, and more. The
+  platform continuously monitors Kubernetes clusters and optimizes them for
+  cost efficiency using autoscaling, spot instance automation, bin packing,
+  and other techniques. Everything available in the console UI is also
+  accessible via the REST API.
 image: >-
   https://kinlane-productions2.s3.amazonaws.com/apis-json-icons/swagger-ui-n0PWZL5D.png
-url: https://example.com/apis/swagger-ui-n0PWZL5D.yml
+url: https://example.com/apis/cast-ai.yml
 created: 2024/7/2
-modified: 2024/7/2
-specificationVersion: '0.16'
+modified: 2026-03-14
+specificationVersion: '0.18'
 tags:
-  - Bookmark
+  - Kubernetes
+  - Cost Optimization
+  - Autoscaling
+  - Cloud Infrastructure
+  - DevOps
 apis:
-  - name: Swagger UI
-    description: '  https://api.cast.ai/v1/spec/'
+  - name: CAST AI Kubernetes Cost Optimization API
+    description: >-
+      The CAST AI REST API provides comprehensive access to the Kubernetes
+      cost optimization platform, including cluster management, autoscaling
+      policies, node configuration and templates, workload optimization,
+      scheduled rebalancing, cost reporting, security insights, hibernation
+      schedules, and AI enabler functionality. The API uses API key
+      authentication and is available at api.cast.ai.
     image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
-    humanURL: https://api.cast.ai/v1/spec/
+    humanURL: https://docs.cast.ai/docs/api
+    baseURL: https://api.cast.ai/v1
+    tags:
+      - Kubernetes
+      - Clusters
+      - Autoscaling
+      - Cost Optimization
+      - Nodes
+      - Workloads
+      - Node Templates
+      - Policies
+      - Rebalancing
+      - Pricing
+      - Metrics
+      - Security
+      - Hibernation
+      - LLM
+    properties:
+      - type: Documentation
+        url: https://docs.cast.ai/docs/api
+      - type: OpenAPI
+        url: openapi/cast-ai-kubernetes-cost-optimization-openapi.yml
+      - type: Swagger
+        url: https://api.cast.ai/v1/spec/
+      - type: Authentication
+        url: https://docs.cast.ai/docs/authentication
 maintainers:
   - FN: API Evangelist
     email: info@apievangelist.com
