@@ -91,7 +91,7 @@ paths:
   /kubernetes/external-clusters/{clusterId}/nodes:
     get:
       operationId: ExternalClusterAPI_ListNodes
-      summary: List cluster nodes
+      summary: CAST AI List cluster nodes
       description: Lists the nodes for a cluster.
       tags:
         - External Clusters
@@ -111,7 +111,7 @@ paths:
   /kubernetes/external-clusters/{clusterId}/nodes/{nodeId}/drain:
     post:
       operationId: ExternalClusterAPI_DrainNode
-      summary: Drain cluster node
+      summary: CAST AI Drain cluster node
       description: Drains the specified cluster node.
       tags:
         - External Clusters
@@ -137,7 +137,7 @@ paths:
   /kubernetes/external-clusters/{clusterId}/nodes/{nodeId}:
     delete:
       operationId: ExternalClusterAPI_DeleteNode
-      summary: Delete cluster node
+      summary: CAST AI Delete cluster node
       description: Deletes the specified cluster node.
       tags:
         - External Clusters
@@ -154,7 +154,7 @@ paths:
   /kubernetes/clusters/{clusterId}/policies:
     get:
       operationId: PoliciesAPI_GetClusterPolicies
-      summary: Get cluster policies
+      summary: CAST AI Get cluster policies
       description: Gets policies configuration for the target cluster.
       tags:
         - Policies
@@ -173,7 +173,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     put:
       operationId: PoliciesAPI_UpsertClusterPolicies
-      summary: Upsert cluster policies
+      summary: CAST AI Upsert cluster policies
       description: Upsert cluster's policies configuration.
       tags:
         - Policies
@@ -199,7 +199,7 @@ paths:
   /kubernetes/clusters/{clusterId}/node-templates:
     get:
       operationId: NodeTemplatesAPI_ListNodeTemplates
-      summary: List node templates
+      summary: CAST AI List node templates
       description: Lists node templates for the specified cluster.
       tags:
         - Node Templates
@@ -218,7 +218,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     post:
       operationId: NodeTemplatesAPI_CreateNodeTemplate
-      summary: Create node template
+      summary: CAST AI Create node template
       description: Creates a new node template for the specified cluster.
       tags:
         - Node Templates
@@ -244,7 +244,7 @@ paths:
   /kubernetes/clusters/{clusterId}/node-templates/{nodeTemplateId}:
     get:
       operationId: NodeTemplatesAPI_GetNodeTemplate
-      summary: Get node template
+      summary: CAST AI Get node template
       description: Gets a specific node template by ID.
       tags:
         - Node Templates
@@ -264,7 +264,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     put:
       operationId: NodeTemplatesAPI_UpdateNodeTemplate
-      summary: Update node template
+      summary: CAST AI Update node template
       description: Updates an existing node template.
       tags:
         - Node Templates
@@ -290,7 +290,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     delete:
       operationId: NodeTemplatesAPI_DeleteNodeTemplate
-      summary: Delete node template
+      summary: CAST AI Delete node template
       description: Deletes the specified node template.
       tags:
         - Node Templates
@@ -307,7 +307,7 @@ paths:
   /kubernetes/clusters/{clusterId}/node-configurations:
     get:
       operationId: NodeConfigurationAPI_ListConfigurations
-      summary: List node configurations
+      summary: CAST AI List node configurations
       description: Lists node configurations for the specified cluster.
       tags:
         - Node Configuration
@@ -326,7 +326,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     post:
       operationId: NodeConfigurationAPI_CreateConfiguration
-      summary: Create node configuration
+      summary: CAST AI Create node configuration
       description: Creates a new node configuration for the specified cluster.
       tags:
         - Node Configuration
@@ -352,7 +352,7 @@ paths:
   /kubernetes/clusters/{clusterId}/node-configurations/{configurationId}:
     delete:
       operationId: NodeConfigurationAPI_DeleteConfiguration
-      summary: Delete node configuration
+      summary: CAST AI Delete node configuration
       description: Deletes node configuration of a specific cluster.
       tags:
         - Node Configuration
@@ -373,7 +373,7 @@ paths:
   /kubernetes/clusters/{clusterId}/rebalancing-plans/{rebalancingPlanId}/execute:
     post:
       operationId: AutoscalerAPI_ExecuteRebalancingPlan
-      summary: Trigger rebalancing plan
+      summary: CAST AI Trigger rebalancing plan
       description: Triggers and executes a rebalancing plan for the cluster.
       tags:
         - Autoscaler
@@ -394,7 +394,7 @@ paths:
   /kubernetes/clusters/{clusterId}/actions/{actionId}/ack:
     post:
       operationId: ClusterActionsAPI_AckClusterAction
-      summary: Acknowledge cluster action
+      summary: CAST AI Acknowledge cluster action
       description: Ack completed cluster action.
       tags:
         - Cluster Actions
@@ -415,7 +415,7 @@ paths:
   /kubernetes/clusters/{clusterId}/actions/logs:
     post:
       operationId: ClusterActionsAPI_IngestLogs
-      summary: Ingest cluster controller logs
+      summary: CAST AI Ingest cluster controller logs
       description: Ingest cluster controller logs.
       tags:
         - Cluster Actions
@@ -437,7 +437,7 @@ paths:
   /workload-autoscaling/clusters/{clusterId}/workloads:
     get:
       operationId: WorkloadOptimizationAPI_ListWorkloads
-      summary: List workloads
+      summary: CAST AI List workloads
       description: Returns a list of workloads for the given cluster.
       tags:
         - Workload Optimization
@@ -457,7 +457,7 @@ paths:
   /workload-autoscaling/clusters/{clusterId}/workloads/{workloadId}:
     get:
       operationId: WorkloadOptimizationAPI_GetWorkload
-      summary: Get workload
+      summary: CAST AI Get workload
       description: Returns workload details and optimization recommendations.
       tags:
         - Workload Optimization
@@ -482,7 +482,7 @@ paths:
   /workload-autoscaling/agent-statuses:
     get:
       operationId: WorkloadOptimizationAPI_GetOrganizationAgentStatuses
-      summary: Get agent statuses
+      summary: CAST AI Get agent statuses
       description: >-
         Returns status of workload-autoscaler agents for all clusters in
         an organization.
@@ -500,7 +500,7 @@ paths:
   /scheduled-rebalancing/schedules:
     post:
       operationId: ScheduledRebalancingAPI_CreateRebalancingSchedule
-      summary: Create rebalancing schedule
+      summary: CAST AI Create rebalancing schedule
       description: Creates a new scheduled rebalancing job.
       tags:
         - Scheduled Rebalancing
@@ -522,7 +522,7 @@ paths:
   /scheduled-rebalancing/schedules/{scheduleId}:
     get:
       operationId: ScheduledRebalancingAPI_GetRebalancingSchedule
-      summary: Get rebalancing schedule
+      summary: CAST AI Get rebalancing schedule
       description: Gets a specific rebalancing schedule by ID.
       tags:
         - Scheduled Rebalancing
@@ -545,7 +545,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     delete:
       operationId: ScheduledRebalancingAPI_DeleteRebalancingSchedule
-      summary: Delete rebalancing schedule
+      summary: CAST AI Delete rebalancing schedule
       description: Deletes the specified rebalancing schedule.
       tags:
         - Scheduled Rebalancing
@@ -565,7 +565,7 @@ paths:
   /operations/{operationId}:
     get:
       operationId: OperationsAPI_GetOperation
-      summary: Get operation
+      summary: CAST AI Get operation
       description: GetOperation returns the operation object by ID.
       tags:
         - Operations
@@ -589,7 +589,7 @@ paths:
   /inventory/blacklist/add:
     post:
       operationId: InventoryBlacklistAPI_AddBlacklist
-      summary: Add to blacklist
+      summary: CAST AI Add to blacklist
       description: Adds instance types or regions to the inventory blacklist.
       tags:
         - Inventory
@@ -607,7 +607,7 @@ paths:
   /pricing/clusters/{clusterId}/nodes/{nodeId}:
     get:
       operationId: PricingAPI_GetNodePricing
-      summary: Get node pricing
+      summary: CAST AI Get node pricing
       description: Returns pricing data for a specific node in a cluster.
       tags:
         - Pricing
@@ -628,7 +628,7 @@ paths:
   /pricing/sync-gcp-billing:
     post:
       operationId: PricingAPI_SyncGCPBillingAPIData
-      summary: Sync GCP billing data
+      summary: CAST AI Sync GCP billing data
       description: Sync GCP billing pricing API data.
       tags:
         - Pricing
@@ -640,7 +640,7 @@ paths:
   /cost-reports/clusters/{clusterId}/efficiency:
     get:
       operationId: CostReportsAPI_GetClusterEfficiency
-      summary: Get cluster efficiency
+      summary: CAST AI Get cluster efficiency
       description: Returns efficiency report data for the specified cluster.
       tags:
         - Cost Reports
@@ -660,7 +660,7 @@ paths:
   /allocation-groups/{allocationGroupId}/workloads/efficiency:
     get:
       operationId: AllocationGroupAPI_GetAllocationGroupWorkloadsEfficiency
-      summary: Get allocation group workloads efficiency
+      summary: CAST AI Get allocation group workloads efficiency
       description: Gets allocation group efficiency workloads.
       tags:
         - Allocation Groups
@@ -684,7 +684,7 @@ paths:
   /security/insights/best-practices/filters:
     get:
       operationId: InsightsAPI_GetBestPracticesReportFilters
-      summary: Get best practices report filters
+      summary: CAST AI Get best practices report filters
       description: >-
         Retrieve a list of possible filters for best practices report.
       tags:
@@ -701,7 +701,7 @@ paths:
   /security/insights/images/{tagId}/digests:
     get:
       operationId: InsightsAPI_GetContainerImageDigests
-      summary: Get container image digests
+      summary: CAST AI Get container image digests
       description: Get container image digests for organization by tag ID.
       tags:
         - Insights
@@ -725,7 +725,7 @@ paths:
   /hibernation/schedules:
     post:
       operationId: HibernationSchedulesAPI_CreateHibernationSchedule
-      summary: Create hibernation schedule
+      summary: CAST AI Create hibernation schedule
       description: Create a hibernation schedule.
       tags:
         - Hibernation Schedules
@@ -747,7 +747,7 @@ paths:
   /settings/api-keys/{apiKeyId}:
     put:
       operationId: SettingsAPI_UpsertAPIKeySettings
-      summary: Create or update API key settings
+      summary: CAST AI Create or update API key settings
       description: Create or update settings for an API key.
       tags:
         - Settings
@@ -777,7 +777,7 @@ paths:
   /llm/providers:
     get:
       operationId: AIEnablerProvidersAPI_GetProviders
-      summary: Get LLM providers
+      summary: CAST AI Get LLM providers
       description: Gets the list of registered LLM providers.
       tags:
         - AI Enabler
@@ -792,7 +792,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     post:
       operationId: AIEnablerProvidersAPI_RegisterProviders
-      summary: Register LLM providers
+      summary: CAST AI Register LLM providers
       description: Registers LLM providers.
       tags:
         - AI Enabler
@@ -814,7 +814,7 @@ paths:
   /metrics/prom:
     get:
       operationId: MetricsAPI_GetClusterMetrics
-      summary: Get cluster metrics
+      summary: CAST AI Get cluster metrics
       description: Returns Prometheus-compatible cluster metrics.
       tags:
         - Cost Reports
@@ -830,7 +830,7 @@ paths:
   /metrics/nodes:
     get:
       operationId: MetricsAPI_GetNodeMetrics
-      summary: Get node metrics
+      summary: CAST AI Get node metrics
       description: Returns node-level metrics data.
       tags:
         - Cost Reports
@@ -846,7 +846,7 @@ paths:
   /metrics/workloads:
     get:
       operationId: MetricsAPI_GetWorkloadMetrics
-      summary: Get workload metrics
+      summary: CAST AI Get workload metrics
       description: >-
         Returns workload-level metrics including cluster_id, namespace,
         workload_name, and workload_type.
@@ -864,7 +864,7 @@ paths:
   /metrics/allocation-groups:
     get:
       operationId: MetricsAPI_GetAllocationGroupMetrics
-      summary: Get allocation group metrics
+      summary: CAST AI Get allocation group metrics
       description: Returns allocation group-level metrics data.
       tags:
         - Cost Reports
