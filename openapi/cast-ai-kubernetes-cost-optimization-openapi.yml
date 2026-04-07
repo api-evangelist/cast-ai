@@ -21,18 +21,42 @@ servers:
 security:
   - ApiKeyAuth: []
 tags:
-  - name: External Clusters
+  - name: AI Enabler
     description: >-
-      Manage external Kubernetes clusters connected to CAST AI, including
-      listing nodes, draining nodes, and cluster operations.
+      Manage LLM provider integrations and AI enabler functionality for
+      intelligent optimization.
+  - name: Allocation Groups
+    description: >-
+      Manage allocation groups and view efficiency metrics for grouped
+      workloads.
   - name: Autoscaler
     description: >-
       Autoscaler operations including triggering rebalancing plans and managing
       cluster scaling behavior.
-  - name: Policies
+  - name: Cluster Actions
     description: >-
-      Manage autoscaler policies configuration for clusters, including
-      unscheduled pods, node downscaler, and spot instance policies.
+      Manage cluster controller actions including acknowledging completed
+      actions and ingesting logs.
+  - name: Cost Reports
+    description: >-
+      Access cost reporting and efficiency data at the cluster, namespace,
+      and workload levels.
+  - name: External Clusters
+    description: >-
+      Manage external Kubernetes clusters connected to CAST AI, including
+      listing nodes, draining nodes, and cluster operations.
+  - name: Hibernation Schedules
+    description: >-
+      Create and manage hibernation schedules for clusters to reduce costs
+      during off-peak hours.
+  - name: Insights
+    description: >-
+      Access security insights, best practices reports, and container image
+      scanning information.
+  - name: Inventory
+    description: >-
+      Manage inventory resources and blacklists for instance types and
+      regions.
   - name: Node Configuration
     description: >-
       Manage node configurations for clusters, which define how nodes are
@@ -41,52 +65,28 @@ tags:
     description: >-
       Manage node templates that define instance types, constraints, and
       configuration for autoscaled nodes.
-  - name: Workload Optimization
-    description: >-
-      Manage workload optimization settings, view workload recommendations,
-      and configure workload autoscaling.
-  - name: Scheduled Rebalancing
-    description: >-
-      Create and manage scheduled rebalancing jobs that periodically optimize
-      cluster node allocation.
   - name: Operations
     description: >-
       Track and manage long-running operations within CAST AI.
-  - name: Inventory
+  - name: Policies
     description: >-
-      Manage inventory resources and blacklists for instance types and
-      regions.
-  - name: Cluster Actions
-    description: >-
-      Manage cluster controller actions including acknowledging completed
-      actions and ingesting logs.
+      Manage autoscaler policies configuration for clusters, including
+      unscheduled pods, node downscaler, and spot instance policies.
   - name: Pricing
     description: >-
       Access pricing information for cloud provider instances and sync
       billing data.
-  - name: Cost Reports
+  - name: Scheduled Rebalancing
     description: >-
-      Access cost reporting and efficiency data at the cluster, namespace,
-      and workload levels.
-  - name: Allocation Groups
-    description: >-
-      Manage allocation groups and view efficiency metrics for grouped
-      workloads.
-  - name: Insights
-    description: >-
-      Access security insights, best practices reports, and container image
-      scanning information.
-  - name: Hibernation Schedules
-    description: >-
-      Create and manage hibernation schedules for clusters to reduce costs
-      during off-peak hours.
+      Create and manage scheduled rebalancing jobs that periodically optimize
+      cluster node allocation.
   - name: Settings
     description: >-
       Manage API key settings and organization-level configuration.
-  - name: AI Enabler
+  - name: Workload Optimization
     description: >-
-      Manage LLM provider integrations and AI enabler functionality for
-      intelligent optimization.
+      Manage workload optimization settings, view workload recommendations,
+      and configure workload autoscaling.
 paths:
   /kubernetes/external-clusters/{clusterId}/nodes:
     get:

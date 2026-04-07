@@ -5,20 +5,20 @@ apis:
   - aid: cast-ai:kubernetes-cost-optimization-api
     name: CAST AI Kubernetes Cost Optimization API
     tags:
-      - Kubernetes
-      - Clusters
       - Autoscaling
+      - Clusters
       - Cost Optimization
-      - Nodes
-      - Workloads
-      - Node Templates
-      - Policies
-      - Rebalancing
-      - Pricing
-      - Metrics
-      - Security
       - Hibernation
+      - Kubernetes
       - LLM
+      - Metrics
+      - Node Templates
+      - Nodes
+      - Policies
+      - Pricing
+      - Rebalancing
+      - Security
+      - Workloads
     humanURL: https://docs.cast.ai/docs/api
     properties:
       - url: https://docs.cast.ai/docs/api
@@ -52,11 +52,11 @@ apis:
       authentication and is available at api.cast.ai.
 name: CAST AI
 tags:
-  - Kubernetes
-  - Cost Optimization
   - Autoscaling
   - Cloud Infrastructure
+  - Cost Optimization
   - DevOps
+  - Kubernetes
 type: Index
 image: >-
   https://kinlane-productions2.s3.amazonaws.com/apis-json-icons/swagger-ui-n0PWZL5D.png
