@@ -1,0 +1,13 @@
+{
+  "repo": "cast-ai",
+  "feeds": [
+    {
+      "source": "https://cast.ai/blog/",
+      "feed_url": "https://cast.ai/feed/",
+      "saved": 5,
+      "title": "Cast AI"
+    }
+  ],
+  "post_count": 5,
+  "fetched": "2026-05-03T23:24:59Z"
+}
