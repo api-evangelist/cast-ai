@@ -193,6 +193,10 @@ common:
       - name: ServiceNow
       - name: PostgreSQL
       - name: MySQL
+  - type: Integrations
+    url: https://cast.ai/integrations/
+integrations:
+  - name: Cast AI
 maintainers:
   - FN: Kin Lane
     email: info@apievangelist.com
