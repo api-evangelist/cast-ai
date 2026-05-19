@@ -1,0 +1,88 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: CAST AI Kubernetes Cost Optimization API — Settings
+  description: 'CAST AI Kubernetes Cost Optimization API — Settings. 1 operations. Lead operation: CAST AI Create or update
+    API key settings. Self-contained Naftiko capability covering one Cast Ai business surface.'
+  tags:
+  - Cast Ai
+  - Settings
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CAST_AI_API_KEY: CAST_AI_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: kubernetes-cost-optimization-settings
+    baseUri: https://api.cast.ai/v1
+    description: CAST AI Kubernetes Cost Optimization API — Settings business capability. Self-contained, no shared references.
+    resources:
+    - name: settings-api-keys-apiKeyId
+      path: /settings/api-keys/{apiKeyId}
+      operations:
+      - name: settingsapiupsertapikeysettings
+        method: PUT
+        description: CAST AI Create or update API key settings
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: apiKeyId
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: apikey
+      key: X-API-Key
+      value: '{{env.CAST_AI_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: kubernetes-cost-optimization-settings-rest
+    port: 8080
+    description: REST adapter for CAST AI Kubernetes Cost Optimization API — Settings. One Spectral-compliant resource per
+      consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/settings/api-keys/{apikeyid}
+      name: settings-api-keys-apikeyid
+      description: REST surface for settings-api-keys-apiKeyId.
+      operations:
+      - method: PUT
+        name: settingsapiupsertapikeysettings
+        description: CAST AI Create or update API key settings
+        call: kubernetes-cost-optimization-settings.settingsapiupsertapikeysettings
+        with:
+          apiKeyId: rest.apiKeyId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: kubernetes-cost-optimization-settings-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for CAST AI Kubernetes Cost Optimization API — Settings. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: cast-ai-create-update-api
+      description: CAST AI Create or update API key settings
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: kubernetes-cost-optimization-settings.settingsapiupsertapikeysettings
+      with:
+        apiKeyId: tools.apiKeyId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

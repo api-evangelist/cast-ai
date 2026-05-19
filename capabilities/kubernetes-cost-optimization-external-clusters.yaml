@@ -1,0 +1,147 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: CAST AI Kubernetes Cost Optimization API — External Clusters
+  description: 'CAST AI Kubernetes Cost Optimization API — External Clusters. 3 operations. Lead operation: CAST AI List cluster
+    nodes. Self-contained Naftiko capability covering one Cast Ai business surface.'
+  tags:
+  - Cast Ai
+  - External Clusters
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CAST_AI_API_KEY: CAST_AI_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: kubernetes-cost-optimization-external-clusters
+    baseUri: https://api.cast.ai/v1
+    description: CAST AI Kubernetes Cost Optimization API — External Clusters business capability. Self-contained, no shared
+      references.
+    resources:
+    - name: kubernetes-external-clusters-clusterId-nodes
+      path: /kubernetes/external-clusters/{clusterId}/nodes
+      operations:
+      - name: externalclusterapilistnodes
+        method: GET
+        description: CAST AI List cluster nodes
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: kubernetes-external-clusters-clusterId-nodes-nodeId
+      path: /kubernetes/external-clusters/{clusterId}/nodes/{nodeId}
+      operations:
+      - name: externalclusterapideletenode
+        method: DELETE
+        description: CAST AI Delete cluster node
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: kubernetes-external-clusters-clusterId-nodes-nodeId-drain
+      path: /kubernetes/external-clusters/{clusterId}/nodes/{nodeId}/drain
+      operations:
+      - name: externalclusterapidrainnode
+        method: POST
+        description: CAST AI Drain cluster node
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    authentication:
+      type: apikey
+      key: X-API-Key
+      value: '{{env.CAST_AI_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: kubernetes-cost-optimization-external-clusters-rest
+    port: 8080
+    description: REST adapter for CAST AI Kubernetes Cost Optimization API — External Clusters. One Spectral-compliant resource
+      per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/kubernetes/external-clusters/{clusterid}/nodes
+      name: kubernetes-external-clusters-clusterid-nodes
+      description: REST surface for kubernetes-external-clusters-clusterId-nodes.
+      operations:
+      - method: GET
+        name: externalclusterapilistnodes
+        description: CAST AI List cluster nodes
+        call: kubernetes-cost-optimization-external-clusters.externalclusterapilistnodes
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/kubernetes/external-clusters/{clusterid}/nodes/{nodeid}
+      name: kubernetes-external-clusters-clusterid-nodes-nodeid
+      description: REST surface for kubernetes-external-clusters-clusterId-nodes-nodeId.
+      operations:
+      - method: DELETE
+        name: externalclusterapideletenode
+        description: CAST AI Delete cluster node
+        call: kubernetes-cost-optimization-external-clusters.externalclusterapideletenode
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/kubernetes/external-clusters/{clusterid}/nodes/{nodeid}/drain
+      name: kubernetes-external-clusters-clusterid-nodes-nodeid-drain
+      description: REST surface for kubernetes-external-clusters-clusterId-nodes-nodeId-drain.
+      operations:
+      - method: POST
+        name: externalclusterapidrainnode
+        description: CAST AI Drain cluster node
+        call: kubernetes-cost-optimization-external-clusters.externalclusterapidrainnode
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: kubernetes-cost-optimization-external-clusters-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for CAST AI Kubernetes Cost Optimization API — External Clusters. One tool per consumed operation,
+      routed inline through this capability's consumes block.
+    tools:
+    - name: cast-ai-list-cluster-nodes
+      description: CAST AI List cluster nodes
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kubernetes-cost-optimization-external-clusters.externalclusterapilistnodes
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: cast-ai-delete-cluster-node
+      description: CAST AI Delete cluster node
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: kubernetes-cost-optimization-external-clusters.externalclusterapideletenode
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: cast-ai-drain-cluster-node
+      description: CAST AI Drain cluster node
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kubernetes-cost-optimization-external-clusters.externalclusterapidrainnode
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

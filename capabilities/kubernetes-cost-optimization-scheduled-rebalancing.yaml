@@ -1,0 +1,158 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: CAST AI Kubernetes Cost Optimization API — Scheduled Rebalancing
+  description: 'CAST AI Kubernetes Cost Optimization API — Scheduled Rebalancing. 3 operations. Lead operation: CAST AI Create
+    rebalancing schedule. Self-contained Naftiko capability covering one Cast Ai business surface.'
+  tags:
+  - Cast Ai
+  - Scheduled Rebalancing
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CAST_AI_API_KEY: CAST_AI_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: kubernetes-cost-optimization-scheduled-rebalancing
+    baseUri: https://api.cast.ai/v1
+    description: CAST AI Kubernetes Cost Optimization API — Scheduled Rebalancing business capability. Self-contained, no
+      shared references.
+    resources:
+    - name: scheduled-rebalancing-schedules
+      path: /scheduled-rebalancing/schedules
+      operations:
+      - name: scheduledrebalancingapicreaterebalancingschedule
+        method: POST
+        description: CAST AI Create rebalancing schedule
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: scheduled-rebalancing-schedules-scheduleId
+      path: /scheduled-rebalancing/schedules/{scheduleId}
+      operations:
+      - name: scheduledrebalancingapigetrebalancingschedule
+        method: GET
+        description: CAST AI Get rebalancing schedule
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: scheduleId
+          in: path
+          type: string
+          required: true
+      - name: scheduledrebalancingapideleterebalancingschedule
+        method: DELETE
+        description: CAST AI Delete rebalancing schedule
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: scheduleId
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: apikey
+      key: X-API-Key
+      value: '{{env.CAST_AI_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: kubernetes-cost-optimization-scheduled-rebalancing-rest
+    port: 8080
+    description: REST adapter for CAST AI Kubernetes Cost Optimization API — Scheduled Rebalancing. One Spectral-compliant
+      resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/scheduled-rebalancing/schedules
+      name: scheduled-rebalancing-schedules
+      description: REST surface for scheduled-rebalancing-schedules.
+      operations:
+      - method: POST
+        name: scheduledrebalancingapicreaterebalancingschedule
+        description: CAST AI Create rebalancing schedule
+        call: kubernetes-cost-optimization-scheduled-rebalancing.scheduledrebalancingapicreaterebalancingschedule
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/scheduled-rebalancing/schedules/{scheduleid}
+      name: scheduled-rebalancing-schedules-scheduleid
+      description: REST surface for scheduled-rebalancing-schedules-scheduleId.
+      operations:
+      - method: GET
+        name: scheduledrebalancingapigetrebalancingschedule
+        description: CAST AI Get rebalancing schedule
+        call: kubernetes-cost-optimization-scheduled-rebalancing.scheduledrebalancingapigetrebalancingschedule
+        with:
+          scheduleId: rest.scheduleId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: scheduledrebalancingapideleterebalancingschedule
+        description: CAST AI Delete rebalancing schedule
+        call: kubernetes-cost-optimization-scheduled-rebalancing.scheduledrebalancingapideleterebalancingschedule
+        with:
+          scheduleId: rest.scheduleId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: kubernetes-cost-optimization-scheduled-rebalancing-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for CAST AI Kubernetes Cost Optimization API — Scheduled Rebalancing. One tool per consumed operation,
+      routed inline through this capability's consumes block.
+    tools:
+    - name: cast-ai-create-rebalancing-schedule
+      description: CAST AI Create rebalancing schedule
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kubernetes-cost-optimization-scheduled-rebalancing.scheduledrebalancingapicreaterebalancingschedule
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: cast-ai-get-rebalancing-schedule
+      description: CAST AI Get rebalancing schedule
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kubernetes-cost-optimization-scheduled-rebalancing.scheduledrebalancingapigetrebalancingschedule
+      with:
+        scheduleId: tools.scheduleId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: cast-ai-delete-rebalancing-schedule
+      description: CAST AI Delete rebalancing schedule
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: kubernetes-cost-optimization-scheduled-rebalancing.scheduledrebalancingapideleterebalancingschedule
+      with:
+        scheduleId: tools.scheduleId
+      outputParameters:
+      - type: object
+        mapping: $.

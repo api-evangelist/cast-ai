@@ -1,0 +1,124 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: CAST AI Kubernetes Cost Optimization API — Cluster Actions
+  description: 'CAST AI Kubernetes Cost Optimization API — Cluster Actions. 2 operations. Lead operation: CAST AI Ingest cluster
+    controller logs. Self-contained Naftiko capability covering one Cast Ai business surface.'
+  tags:
+  - Cast Ai
+  - Cluster Actions
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CAST_AI_API_KEY: CAST_AI_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: kubernetes-cost-optimization-cluster-actions
+    baseUri: https://api.cast.ai/v1
+    description: CAST AI Kubernetes Cost Optimization API — Cluster Actions business capability. Self-contained, no shared
+      references.
+    resources:
+    - name: kubernetes-clusters-clusterId-actions-logs
+      path: /kubernetes/clusters/{clusterId}/actions/logs
+      operations:
+      - name: clusteractionsapiingestlogs
+        method: POST
+        description: CAST AI Ingest cluster controller logs
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: kubernetes-clusters-clusterId-actions-actionId-ack
+      path: /kubernetes/clusters/{clusterId}/actions/{actionId}/ack
+      operations:
+      - name: clusteractionsapiackclusteraction
+        method: POST
+        description: CAST AI Acknowledge cluster action
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: actionId
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: apikey
+      key: X-API-Key
+      value: '{{env.CAST_AI_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: kubernetes-cost-optimization-cluster-actions-rest
+    port: 8080
+    description: REST adapter for CAST AI Kubernetes Cost Optimization API — Cluster Actions. One Spectral-compliant resource
+      per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/kubernetes/clusters/{clusterid}/actions/logs
+      name: kubernetes-clusters-clusterid-actions-logs
+      description: REST surface for kubernetes-clusters-clusterId-actions-logs.
+      operations:
+      - method: POST
+        name: clusteractionsapiingestlogs
+        description: CAST AI Ingest cluster controller logs
+        call: kubernetes-cost-optimization-cluster-actions.clusteractionsapiingestlogs
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/kubernetes/clusters/{clusterid}/actions/{actionid}/ack
+      name: kubernetes-clusters-clusterid-actions-actionid-ack
+      description: REST surface for kubernetes-clusters-clusterId-actions-actionId-ack.
+      operations:
+      - method: POST
+        name: clusteractionsapiackclusteraction
+        description: CAST AI Acknowledge cluster action
+        call: kubernetes-cost-optimization-cluster-actions.clusteractionsapiackclusteraction
+        with:
+          actionId: rest.actionId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: kubernetes-cost-optimization-cluster-actions-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for CAST AI Kubernetes Cost Optimization API — Cluster Actions. One tool per consumed operation,
+      routed inline through this capability's consumes block.
+    tools:
+    - name: cast-ai-ingest-cluster-controller
+      description: CAST AI Ingest cluster controller logs
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kubernetes-cost-optimization-cluster-actions.clusteractionsapiingestlogs
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: cast-ai-acknowledge-cluster-action
+      description: CAST AI Acknowledge cluster action
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kubernetes-cost-optimization-cluster-actions.clusteractionsapiackclusteraction
+      with:
+        actionId: tools.actionId
+      outputParameters:
+      - type: object
+        mapping: $.

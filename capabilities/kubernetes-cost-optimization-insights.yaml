@@ -1,0 +1,113 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: CAST AI Kubernetes Cost Optimization API — Insights
+  description: 'CAST AI Kubernetes Cost Optimization API — Insights. 2 operations. Lead operation: CAST AI Get best practices
+    report filters. Self-contained Naftiko capability covering one Cast Ai business surface.'
+  tags:
+  - Cast Ai
+  - Insights
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CAST_AI_API_KEY: CAST_AI_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: kubernetes-cost-optimization-insights
+    baseUri: https://api.cast.ai/v1
+    description: CAST AI Kubernetes Cost Optimization API — Insights business capability. Self-contained, no shared references.
+    resources:
+    - name: security-insights-best-practices-filters
+      path: /security/insights/best-practices/filters
+      operations:
+      - name: insightsapigetbestpracticesreportfilters
+        method: GET
+        description: CAST AI Get best practices report filters
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: security-insights-images-tagId-digests
+      path: /security/insights/images/{tagId}/digests
+      operations:
+      - name: insightsapigetcontainerimagedigests
+        method: GET
+        description: CAST AI Get container image digests
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: tagId
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: apikey
+      key: X-API-Key
+      value: '{{env.CAST_AI_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: kubernetes-cost-optimization-insights-rest
+    port: 8080
+    description: REST adapter for CAST AI Kubernetes Cost Optimization API — Insights. One Spectral-compliant resource per
+      consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/security/insights/best-practices/filters
+      name: security-insights-best-practices-filters
+      description: REST surface for security-insights-best-practices-filters.
+      operations:
+      - method: GET
+        name: insightsapigetbestpracticesreportfilters
+        description: CAST AI Get best practices report filters
+        call: kubernetes-cost-optimization-insights.insightsapigetbestpracticesreportfilters
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/security/insights/images/{tagid}/digests
+      name: security-insights-images-tagid-digests
+      description: REST surface for security-insights-images-tagId-digests.
+      operations:
+      - method: GET
+        name: insightsapigetcontainerimagedigests
+        description: CAST AI Get container image digests
+        call: kubernetes-cost-optimization-insights.insightsapigetcontainerimagedigests
+        with:
+          tagId: rest.tagId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: kubernetes-cost-optimization-insights-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for CAST AI Kubernetes Cost Optimization API — Insights. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: cast-ai-get-best-practices
+      description: CAST AI Get best practices report filters
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kubernetes-cost-optimization-insights.insightsapigetbestpracticesreportfilters
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: cast-ai-get-container-image
+      description: CAST AI Get container image digests
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kubernetes-cost-optimization-insights.insightsapigetcontainerimagedigests
+      with:
+        tagId: tools.tagId
+      outputParameters:
+      - type: object
+        mapping: $.

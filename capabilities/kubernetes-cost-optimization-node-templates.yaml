@@ -1,0 +1,200 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: CAST AI Kubernetes Cost Optimization API — Node Templates
+  description: 'CAST AI Kubernetes Cost Optimization API — Node Templates. 5 operations. Lead operation: CAST AI List node
+    templates. Self-contained Naftiko capability covering one Cast Ai business surface.'
+  tags:
+  - Cast Ai
+  - Node Templates
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CAST_AI_API_KEY: CAST_AI_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: kubernetes-cost-optimization-node-templates
+    baseUri: https://api.cast.ai/v1
+    description: CAST AI Kubernetes Cost Optimization API — Node Templates business capability. Self-contained, no shared
+      references.
+    resources:
+    - name: kubernetes-clusters-clusterId-node-templates
+      path: /kubernetes/clusters/{clusterId}/node-templates
+      operations:
+      - name: nodetemplatesapilistnodetemplates
+        method: GET
+        description: CAST AI List node templates
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: nodetemplatesapicreatenodetemplate
+        method: POST
+        description: CAST AI Create node template
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: kubernetes-clusters-clusterId-node-templates-nodeTemplateId
+      path: /kubernetes/clusters/{clusterId}/node-templates/{nodeTemplateId}
+      operations:
+      - name: nodetemplatesapigetnodetemplate
+        method: GET
+        description: CAST AI Get node template
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: nodetemplatesapiupdatenodetemplate
+        method: PUT
+        description: CAST AI Update node template
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: nodetemplatesapideletenodetemplate
+        method: DELETE
+        description: CAST AI Delete node template
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: X-API-Key
+      value: '{{env.CAST_AI_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: kubernetes-cost-optimization-node-templates-rest
+    port: 8080
+    description: REST adapter for CAST AI Kubernetes Cost Optimization API — Node Templates. One Spectral-compliant resource
+      per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/kubernetes/clusters/{clusterid}/node-templates
+      name: kubernetes-clusters-clusterid-node-templates
+      description: REST surface for kubernetes-clusters-clusterId-node-templates.
+      operations:
+      - method: GET
+        name: nodetemplatesapilistnodetemplates
+        description: CAST AI List node templates
+        call: kubernetes-cost-optimization-node-templates.nodetemplatesapilistnodetemplates
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: nodetemplatesapicreatenodetemplate
+        description: CAST AI Create node template
+        call: kubernetes-cost-optimization-node-templates.nodetemplatesapicreatenodetemplate
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/kubernetes/clusters/{clusterid}/node-templates/{nodetemplateid}
+      name: kubernetes-clusters-clusterid-node-templates-nodetemplateid
+      description: REST surface for kubernetes-clusters-clusterId-node-templates-nodeTemplateId.
+      operations:
+      - method: GET
+        name: nodetemplatesapigetnodetemplate
+        description: CAST AI Get node template
+        call: kubernetes-cost-optimization-node-templates.nodetemplatesapigetnodetemplate
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: nodetemplatesapiupdatenodetemplate
+        description: CAST AI Update node template
+        call: kubernetes-cost-optimization-node-templates.nodetemplatesapiupdatenodetemplate
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: nodetemplatesapideletenodetemplate
+        description: CAST AI Delete node template
+        call: kubernetes-cost-optimization-node-templates.nodetemplatesapideletenodetemplate
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: kubernetes-cost-optimization-node-templates-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for CAST AI Kubernetes Cost Optimization API — Node Templates. One tool per consumed operation,
+      routed inline through this capability's consumes block.
+    tools:
+    - name: cast-ai-list-node-templates
+      description: CAST AI List node templates
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kubernetes-cost-optimization-node-templates.nodetemplatesapilistnodetemplates
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: cast-ai-create-node-template
+      description: CAST AI Create node template
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kubernetes-cost-optimization-node-templates.nodetemplatesapicreatenodetemplate
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: cast-ai-get-node-template
+      description: CAST AI Get node template
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kubernetes-cost-optimization-node-templates.nodetemplatesapigetnodetemplate
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: cast-ai-update-node-template
+      description: CAST AI Update node template
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: kubernetes-cost-optimization-node-templates.nodetemplatesapiupdatenodetemplate
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: cast-ai-delete-node-template
+      description: CAST AI Delete node template
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: kubernetes-cost-optimization-node-templates.nodetemplatesapideletenodetemplate
+      outputParameters:
+      - type: object
+        mapping: $.

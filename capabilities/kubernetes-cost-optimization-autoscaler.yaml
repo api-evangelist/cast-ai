@@ -1,0 +1,81 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: CAST AI Kubernetes Cost Optimization API — Autoscaler
+  description: 'CAST AI Kubernetes Cost Optimization API — Autoscaler. 1 operations. Lead operation: CAST AI Trigger rebalancing
+    plan. Self-contained Naftiko capability covering one Cast Ai business surface.'
+  tags:
+  - Cast Ai
+  - Autoscaler
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CAST_AI_API_KEY: CAST_AI_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: kubernetes-cost-optimization-autoscaler
+    baseUri: https://api.cast.ai/v1
+    description: CAST AI Kubernetes Cost Optimization API — Autoscaler business capability. Self-contained, no shared references.
+    resources:
+    - name: kubernetes-clusters-clusterId-rebalancing-plans-rebalancingPlanId-execute
+      path: /kubernetes/clusters/{clusterId}/rebalancing-plans/{rebalancingPlanId}/execute
+      operations:
+      - name: autoscalerapiexecuterebalancingplan
+        method: POST
+        description: CAST AI Trigger rebalancing plan
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: rebalancingPlanId
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: apikey
+      key: X-API-Key
+      value: '{{env.CAST_AI_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: kubernetes-cost-optimization-autoscaler-rest
+    port: 8080
+    description: REST adapter for CAST AI Kubernetes Cost Optimization API — Autoscaler. One Spectral-compliant resource per
+      consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/kubernetes/clusters/{clusterid}/rebalancing-plans/{rebalancingplanid}/execute
+      name: kubernetes-clusters-clusterid-rebalancing-plans-rebalancingplanid-execute
+      description: REST surface for kubernetes-clusters-clusterId-rebalancing-plans-rebalancingPlanId-execute.
+      operations:
+      - method: POST
+        name: autoscalerapiexecuterebalancingplan
+        description: CAST AI Trigger rebalancing plan
+        call: kubernetes-cost-optimization-autoscaler.autoscalerapiexecuterebalancingplan
+        with:
+          rebalancingPlanId: rest.rebalancingPlanId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: kubernetes-cost-optimization-autoscaler-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for CAST AI Kubernetes Cost Optimization API — Autoscaler. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: cast-ai-trigger-rebalancing-plan
+      description: CAST AI Trigger rebalancing plan
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kubernetes-cost-optimization-autoscaler.autoscalerapiexecuterebalancingplan
+      with:
+        rebalancingPlanId: tools.rebalancingPlanId
+      outputParameters:
+      - type: object
+        mapping: $.

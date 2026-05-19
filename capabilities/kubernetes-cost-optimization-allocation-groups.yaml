@@ -1,0 +1,82 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: CAST AI Kubernetes Cost Optimization API — Allocation Groups
+  description: 'CAST AI Kubernetes Cost Optimization API — Allocation Groups. 1 operations. Lead operation: CAST AI Get allocation
+    group workloads efficiency. Self-contained Naftiko capability covering one Cast Ai business surface.'
+  tags:
+  - Cast Ai
+  - Allocation Groups
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CAST_AI_API_KEY: CAST_AI_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: kubernetes-cost-optimization-allocation-groups
+    baseUri: https://api.cast.ai/v1
+    description: CAST AI Kubernetes Cost Optimization API — Allocation Groups business capability. Self-contained, no shared
+      references.
+    resources:
+    - name: allocation-groups-allocationGroupId-workloads-efficiency
+      path: /allocation-groups/{allocationGroupId}/workloads/efficiency
+      operations:
+      - name: allocationgroupapigetallocationgroupworkloadsefficiency
+        method: GET
+        description: CAST AI Get allocation group workloads efficiency
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: allocationGroupId
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: apikey
+      key: X-API-Key
+      value: '{{env.CAST_AI_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: kubernetes-cost-optimization-allocation-groups-rest
+    port: 8080
+    description: REST adapter for CAST AI Kubernetes Cost Optimization API — Allocation Groups. One Spectral-compliant resource
+      per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/allocation-groups/{allocationgroupid}/workloads/efficiency
+      name: allocation-groups-allocationgroupid-workloads-efficiency
+      description: REST surface for allocation-groups-allocationGroupId-workloads-efficiency.
+      operations:
+      - method: GET
+        name: allocationgroupapigetallocationgroupworkloadsefficiency
+        description: CAST AI Get allocation group workloads efficiency
+        call: kubernetes-cost-optimization-allocation-groups.allocationgroupapigetallocationgroupworkloadsefficiency
+        with:
+          allocationGroupId: rest.allocationGroupId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: kubernetes-cost-optimization-allocation-groups-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for CAST AI Kubernetes Cost Optimization API — Allocation Groups. One tool per consumed operation,
+      routed inline through this capability's consumes block.
+    tools:
+    - name: cast-ai-get-allocation-group
+      description: CAST AI Get allocation group workloads efficiency
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kubernetes-cost-optimization-allocation-groups.allocationgroupapigetallocationgroupworkloadsefficiency
+      with:
+        allocationGroupId: tools.allocationGroupId
+      outputParameters:
+      - type: object
+        mapping: $.
