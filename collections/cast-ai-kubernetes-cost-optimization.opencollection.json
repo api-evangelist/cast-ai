@@ -1,0 +1,874 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CAST AI Kubernetes Cost Optimization API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Key",
+      "value": "{{X-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "External Clusters",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "CAST AI List cluster nodes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cast.ai/v1/kubernetes/external-clusters/:clusterId/nodes",
+            "params": [
+              {
+                "name": "clusterId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the cluster."
+              }
+            ]
+          },
+          "docs": "Lists the nodes for a cluster."
+        },
+        {
+          "info": {
+            "name": "CAST AI Drain cluster node",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cast.ai/v1/kubernetes/external-clusters/:clusterId/nodes/:nodeId/drain",
+            "params": [
+              {
+                "name": "clusterId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the cluster."
+              },
+              {
+                "name": "nodeId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the node."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Drains the specified cluster node."
+        },
+        {
+          "info": {
+            "name": "CAST AI Delete cluster node",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.cast.ai/v1/kubernetes/external-clusters/:clusterId/nodes/:nodeId",
+            "params": [
+              {
+                "name": "clusterId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the cluster."
+              },
+              {
+                "name": "nodeId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the node."
+              }
+            ]
+          },
+          "docs": "Deletes the specified cluster node."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Policies",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "CAST AI Get cluster policies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cast.ai/v1/kubernetes/clusters/:clusterId/policies",
+            "params": [
+              {
+                "name": "clusterId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the cluster."
+              }
+            ]
+          },
+          "docs": "Gets policies configuration for the target cluster."
+        },
+        {
+          "info": {
+            "name": "CAST AI Upsert cluster policies",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.cast.ai/v1/kubernetes/clusters/:clusterId/policies",
+            "params": [
+              {
+                "name": "clusterId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the cluster."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Upsert cluster's policies configuration."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Node Templates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "CAST AI List node templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cast.ai/v1/kubernetes/clusters/:clusterId/node-templates",
+            "params": [
+              {
+                "name": "clusterId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the cluster."
+              }
+            ]
+          },
+          "docs": "Lists node templates for the specified cluster."
+        },
+        {
+          "info": {
+            "name": "CAST AI Create node template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cast.ai/v1/kubernetes/clusters/:clusterId/node-templates",
+            "params": [
+              {
+                "name": "clusterId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the cluster."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new node template for the specified cluster."
+        },
+        {
+          "info": {
+            "name": "CAST AI Get node template",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cast.ai/v1/kubernetes/clusters/:clusterId/node-templates/:nodeTemplateId",
+            "params": [
+              {
+                "name": "clusterId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the cluster."
+              },
+              {
+                "name": "nodeTemplateId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the node template."
+              }
+            ]
+          },
+          "docs": "Gets a specific node template by ID."
+        },
+        {
+          "info": {
+            "name": "CAST AI Update node template",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.cast.ai/v1/kubernetes/clusters/:clusterId/node-templates/:nodeTemplateId",
+            "params": [
+              {
+                "name": "clusterId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the cluster."
+              },
+              {
+                "name": "nodeTemplateId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the node template."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing node template."
+        },
+        {
+          "info": {
+            "name": "CAST AI Delete node template",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.cast.ai/v1/kubernetes/clusters/:clusterId/node-templates/:nodeTemplateId",
+            "params": [
+              {
+                "name": "clusterId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the cluster."
+              },
+              {
+                "name": "nodeTemplateId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the node template."
+              }
+            ]
+          },
+          "docs": "Deletes the specified node template."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Node Configuration",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "CAST AI List node configurations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cast.ai/v1/kubernetes/clusters/:clusterId/node-configurations",
+            "params": [
+              {
+                "name": "clusterId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the cluster."
+              }
+            ]
+          },
+          "docs": "Lists node configurations for the specified cluster."
+        },
+        {
+          "info": {
+            "name": "CAST AI Create node configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cast.ai/v1/kubernetes/clusters/:clusterId/node-configurations",
+            "params": [
+              {
+                "name": "clusterId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the cluster."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new node configuration for the specified cluster."
+        },
+        {
+          "info": {
+            "name": "CAST AI Delete node configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.cast.ai/v1/kubernetes/clusters/:clusterId/node-configurations/:configurationId",
+            "params": [
+              {
+                "name": "clusterId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the cluster."
+              },
+              {
+                "name": "configurationId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deletes node configuration of a specific cluster."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Autoscaler",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "CAST AI Trigger rebalancing plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cast.ai/v1/kubernetes/clusters/:clusterId/rebalancing-plans/:rebalancingPlanId/execute",
+            "params": [
+              {
+                "name": "clusterId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the cluster."
+              },
+              {
+                "name": "rebalancingPlanId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Triggers and executes a rebalancing plan for the cluster."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Cluster Actions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "CAST AI Acknowledge cluster action",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cast.ai/v1/kubernetes/clusters/:clusterId/actions/:actionId/ack",
+            "params": [
+              {
+                "name": "clusterId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the cluster."
+              },
+              {
+                "name": "actionId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Ack completed cluster action."
+        },
+        {
+          "info": {
+            "name": "CAST AI Ingest cluster controller logs",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cast.ai/v1/kubernetes/clusters/:clusterId/actions/logs",
+            "params": [
+              {
+                "name": "clusterId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the cluster."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Ingest cluster controller logs."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Workload Optimization",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "CAST AI List workloads",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cast.ai/v1/workload-autoscaling/clusters/:clusterId/workloads",
+            "params": [
+              {
+                "name": "clusterId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the cluster."
+              }
+            ]
+          },
+          "docs": "Returns a list of workloads for the given cluster."
+        },
+        {
+          "info": {
+            "name": "CAST AI Get workload",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cast.ai/v1/workload-autoscaling/clusters/:clusterId/workloads/:workloadId",
+            "params": [
+              {
+                "name": "clusterId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the cluster."
+              },
+              {
+                "name": "workloadId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns workload details and optimization recommendations."
+        },
+        {
+          "info": {
+            "name": "CAST AI Get agent statuses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cast.ai/v1/workload-autoscaling/agent-statuses"
+          },
+          "docs": "Returns status of workload-autoscaler agents for all clusters in an organization."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Scheduled Rebalancing",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "CAST AI Create rebalancing schedule",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cast.ai/v1/scheduled-rebalancing/schedules",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new scheduled rebalancing job."
+        },
+        {
+          "info": {
+            "name": "CAST AI Get rebalancing schedule",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cast.ai/v1/scheduled-rebalancing/schedules/:scheduleId",
+            "params": [
+              {
+                "name": "scheduleId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Gets a specific rebalancing schedule by ID."
+        },
+        {
+          "info": {
+            "name": "CAST AI Delete rebalancing schedule",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.cast.ai/v1/scheduled-rebalancing/schedules/:scheduleId",
+            "params": [
+              {
+                "name": "scheduleId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deletes the specified rebalancing schedule."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Operations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "CAST AI Get operation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cast.ai/v1/operations/:operationId",
+            "params": [
+              {
+                "name": "operationId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "GetOperation returns the operation object by ID."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Inventory",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "CAST AI Add to blacklist",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cast.ai/v1/inventory/blacklist/add",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds instance types or regions to the inventory blacklist."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Pricing",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "CAST AI Get node pricing",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cast.ai/v1/pricing/clusters/:clusterId/nodes/:nodeId",
+            "params": [
+              {
+                "name": "clusterId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the cluster."
+              },
+              {
+                "name": "nodeId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the node."
+              }
+            ]
+          },
+          "docs": "Returns pricing data for a specific node in a cluster."
+        },
+        {
+          "info": {
+            "name": "CAST AI Sync GCP billing data",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cast.ai/v1/pricing/sync-gcp-billing"
+          },
+          "docs": "Sync GCP billing pricing API data."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Cost Reports",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "CAST AI Get cluster efficiency",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cast.ai/v1/cost-reports/clusters/:clusterId/efficiency",
+            "params": [
+              {
+                "name": "clusterId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the cluster."
+              }
+            ]
+          },
+          "docs": "Returns efficiency report data for the specified cluster."
+        },
+        {
+          "info": {
+            "name": "CAST AI Get cluster metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cast.ai/v1/metrics/prom"
+          },
+          "docs": "Returns Prometheus-compatible cluster metrics."
+        },
+        {
+          "info": {
+            "name": "CAST AI Get node metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cast.ai/v1/metrics/nodes"
+          },
+          "docs": "Returns node-level metrics data."
+        },
+        {
+          "info": {
+            "name": "CAST AI Get workload metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cast.ai/v1/metrics/workloads"
+          },
+          "docs": "Returns workload-level metrics including cluster_id, namespace, workload_name, and workload_type."
+        },
+        {
+          "info": {
+            "name": "CAST AI Get allocation group metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cast.ai/v1/metrics/allocation-groups"
+          },
+          "docs": "Returns allocation group-level metrics data."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Allocation Groups",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "CAST AI Get allocation group workloads efficiency",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cast.ai/v1/allocation-groups/:allocationGroupId/workloads/efficiency",
+            "params": [
+              {
+                "name": "allocationGroupId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Gets allocation group efficiency workloads."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Insights",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "CAST AI Get best practices report filters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cast.ai/v1/security/insights/best-practices/filters"
+          },
+          "docs": "Retrieve a list of possible filters for best practices report."
+        },
+        {
+          "info": {
+            "name": "CAST AI Get container image digests",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cast.ai/v1/security/insights/images/:tagId/digests",
+            "params": [
+              {
+                "name": "tagId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get container image digests for organization by tag ID."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Hibernation Schedules",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "CAST AI Create hibernation schedule",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cast.ai/v1/hibernation/schedules",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a hibernation schedule."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Settings",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "CAST AI Create or update API key settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.cast.ai/v1/settings/api-keys/:apiKeyId",
+            "params": [
+              {
+                "name": "apiKeyId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create or update settings for an API key."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "AI Enabler",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "CAST AI Get LLM providers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cast.ai/v1/llm/providers"
+          },
+          "docs": "Gets the list of registered LLM providers."
+        },
+        {
+          "info": {
+            "name": "CAST AI Register LLM providers",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cast.ai/v1/llm/providers",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Registers LLM providers."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
