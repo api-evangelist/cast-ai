@@ -187,7 +187,7 @@ common:
       - name: MySQL
   - type: Integrations
     url: https://cast.ai/integrations/
-  - type: LLMsTxt
+  - type: LlmsText
     url: https://docs.cast.ai/llms.txt
 integrations:
   - name: Cast AI
