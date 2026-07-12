@@ -1,0 +1,17 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/cast-ai-kubernetes-cost-optimization-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: ApiKeyAuth
+  type: apiKey
+  in: header
+  parameter: X-API-Key
+  description: API key for authentication. Create access keys from the CAST AI console under
+    API > API access keys.
+  sources:
+  - openapi/cast-ai-kubernetes-cost-optimization-openapi.yml
