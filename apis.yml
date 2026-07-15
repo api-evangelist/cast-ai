@@ -76,6 +76,8 @@ apis:
       scheduled rebalancing, cost reporting, security insights, hibernation schedules, AI enabler / LLM workload
       optimization, and GPU/OMNI compute features. Authentication uses API keys and the API is served at api.cast.ai.
 common:
+  - type: AgenticAccess
+    url: agentic-access/cast-ai-agentic-access.yml
   - type: DomainSecurity
     url: security/cast-ai-domain-security.yml
   - type: Authentication

@@ -1,0 +1,505 @@
+generated: '2026-07-15'
+method: generated
+source: openapi/cast-ai-kubernetes-cost-optimization-openapi.yml
+description: Recommended x-agentic-access execution contracts, classified heuristically from
+  the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
+  audience per deployment. See research/curity/agentic-governance/.
+summary:
+  operations: 38
+  by_action_class:
+    connected: 20
+    acting: 18
+  by_consequence:
+    read: 20
+    write: 17
+    safety-critical: 1
+  human_in_the_loop_required: 1
+operations:
+- path: /kubernetes/external-clusters/{clusterId}/nodes
+  method: get
+  operationId: ExternalClusterAPI_ListNodes
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /kubernetes/external-clusters/{clusterId}/nodes/{nodeId}/drain
+  method: post
+  operationId: ExternalClusterAPI_DrainNode
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /kubernetes/external-clusters/{clusterId}/nodes/{nodeId}
+  method: delete
+  operationId: ExternalClusterAPI_DeleteNode
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /kubernetes/clusters/{clusterId}/policies
+  method: get
+  operationId: PoliciesAPI_GetClusterPolicies
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /kubernetes/clusters/{clusterId}/policies
+  method: put
+  operationId: PoliciesAPI_UpsertClusterPolicies
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /kubernetes/clusters/{clusterId}/node-templates
+  method: get
+  operationId: NodeTemplatesAPI_ListNodeTemplates
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /kubernetes/clusters/{clusterId}/node-templates
+  method: post
+  operationId: NodeTemplatesAPI_CreateNodeTemplate
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /kubernetes/clusters/{clusterId}/node-templates/{nodeTemplateId}
+  method: get
+  operationId: NodeTemplatesAPI_GetNodeTemplate
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /kubernetes/clusters/{clusterId}/node-templates/{nodeTemplateId}
+  method: put
+  operationId: NodeTemplatesAPI_UpdateNodeTemplate
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /kubernetes/clusters/{clusterId}/node-templates/{nodeTemplateId}
+  method: delete
+  operationId: NodeTemplatesAPI_DeleteNodeTemplate
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /kubernetes/clusters/{clusterId}/node-configurations
+  method: get
+  operationId: NodeConfigurationAPI_ListConfigurations
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /kubernetes/clusters/{clusterId}/node-configurations
+  method: post
+  operationId: NodeConfigurationAPI_CreateConfiguration
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /kubernetes/clusters/{clusterId}/node-configurations/{configurationId}
+  method: delete
+  operationId: NodeConfigurationAPI_DeleteConfiguration
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /kubernetes/clusters/{clusterId}/rebalancing-plans/{rebalancingPlanId}/execute
+  method: post
+  operationId: AutoscalerAPI_ExecuteRebalancingPlan
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /kubernetes/clusters/{clusterId}/actions/{actionId}/ack
+  method: post
+  operationId: ClusterActionsAPI_AckClusterAction
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /kubernetes/clusters/{clusterId}/actions/logs
+  method: post
+  operationId: ClusterActionsAPI_IngestLogs
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /workload-autoscaling/clusters/{clusterId}/workloads
+  method: get
+  operationId: WorkloadOptimizationAPI_ListWorkloads
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /workload-autoscaling/clusters/{clusterId}/workloads/{workloadId}
+  method: get
+  operationId: WorkloadOptimizationAPI_GetWorkload
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /workload-autoscaling/agent-statuses
+  method: get
+  operationId: WorkloadOptimizationAPI_GetOrganizationAgentStatuses
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /scheduled-rebalancing/schedules
+  method: post
+  operationId: ScheduledRebalancingAPI_CreateRebalancingSchedule
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /scheduled-rebalancing/schedules/{scheduleId}
+  method: get
+  operationId: ScheduledRebalancingAPI_GetRebalancingSchedule
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /scheduled-rebalancing/schedules/{scheduleId}
+  method: delete
+  operationId: ScheduledRebalancingAPI_DeleteRebalancingSchedule
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /operations/{operationId}
+  method: get
+  operationId: OperationsAPI_GetOperation
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /inventory/blacklist/add
+  method: post
+  operationId: InventoryBlacklistAPI_AddBlacklist
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /pricing/clusters/{clusterId}/nodes/{nodeId}
+  method: get
+  operationId: PricingAPI_GetNodePricing
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /pricing/sync-gcp-billing
+  method: post
+  operationId: PricingAPI_SyncGCPBillingAPIData
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /cost-reports/clusters/{clusterId}/efficiency
+  method: get
+  operationId: CostReportsAPI_GetClusterEfficiency
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /allocation-groups/{allocationGroupId}/workloads/efficiency
+  method: get
+  operationId: AllocationGroupAPI_GetAllocationGroupWorkloadsEfficiency
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /security/insights/best-practices/filters
+  method: get
+  operationId: InsightsAPI_GetBestPracticesReportFilters
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /security/insights/images/{tagId}/digests
+  method: get
+  operationId: InsightsAPI_GetContainerImageDigests
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /hibernation/schedules
+  method: post
+  operationId: HibernationSchedulesAPI_CreateHibernationSchedule
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /settings/api-keys/{apiKeyId}
+  method: put
+  operationId: SettingsAPI_UpsertAPIKeySettings
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /llm/providers
+  method: get
+  operationId: AIEnablerProvidersAPI_GetProviders
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /llm/providers
+  method: post
+  operationId: AIEnablerProvidersAPI_RegisterProviders
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /metrics/prom
+  method: get
+  operationId: MetricsAPI_GetClusterMetrics
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /metrics/nodes
+  method: get
+  operationId: MetricsAPI_GetNodeMetrics
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /metrics/workloads
+  method: get
+  operationId: MetricsAPI_GetWorkloadMetrics
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /metrics/allocation-groups
+  method: get
+  operationId: MetricsAPI_GetAllocationGroupMetrics
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
