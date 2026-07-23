@@ -1,0 +1,118 @@
+openapi: 3.1.0
+info:
+  title: CAST AI Kubernetes Cost Optimization AI Enabler Insights API
+  description: CAST AI is a Kubernetes cost optimization platform that provides APIs for managing clusters, autoscaling, node configuration, workload optimization, cost reporting, security insights, and more. The platform continuously monitors clusters and optimizes them for cost efficiency using autoscaling, spot instance automation, bin packing, and other techniques.
+  version: 1.0.0
+  contact:
+    name: CAST AI
+    url: https://cast.ai
+  termsOfService: https://cast.ai/terms-of-service
+servers:
+- url: https://api.cast.ai/v1
+  description: CAST AI Production API
+security:
+- ApiKeyAuth: []
+tags:
+- name: Insights
+  description: Access security insights, best practices reports, and container image scanning information.
+paths:
+  /security/insights/best-practices/filters:
+    get:
+      operationId: InsightsAPI_GetBestPracticesReportFilters
+      summary: CAST AI Get best practices report filters
+      description: Retrieve a list of possible filters for best practices report.
+      tags:
+      - Insights
+      responses:
+        '200':
+          description: Successful response with available filters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BestPracticesFilters'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /security/insights/images/{tagId}/digests:
+    get:
+      operationId: InsightsAPI_GetContainerImageDigests
+      summary: CAST AI Get container image digests
+      description: Get container image digests for organization by tag ID.
+      tags:
+      - Insights
+      parameters:
+      - name: tagId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response with image digests.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContainerImageDigests'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  responses:
+    Unauthorized:
+      description: Authentication failed. Invalid or missing API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    ContainerImageDigests:
+      type: object
+      properties:
+        digests:
+          type: array
+          items:
+            type: object
+            properties:
+              digest:
+                type: string
+              createdAt:
+                type: string
+                format: date-time
+    BestPracticesFilters:
+      type: object
+      properties:
+        filters:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              values:
+                type: array
+                items:
+                  type: string
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        code:
+          type: integer
+          description: Error code.
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: API key for authentication. Create access keys from the CAST AI console under API > API access keys.
+externalDocs:
+  description: CAST AI API Documentation
+  url: https://docs.cast.ai/docs/api

@@ -1,0 +1,156 @@
+openapi: 3.1.0
+info:
+  title: CAST AI Kubernetes Cost Optimization AI Enabler Node Configuration API
+  description: CAST AI is a Kubernetes cost optimization platform that provides APIs for managing clusters, autoscaling, node configuration, workload optimization, cost reporting, security insights, and more. The platform continuously monitors clusters and optimizes them for cost efficiency using autoscaling, spot instance automation, bin packing, and other techniques.
+  version: 1.0.0
+  contact:
+    name: CAST AI
+    url: https://cast.ai
+  termsOfService: https://cast.ai/terms-of-service
+servers:
+- url: https://api.cast.ai/v1
+  description: CAST AI Production API
+security:
+- ApiKeyAuth: []
+tags:
+- name: Node Configuration
+  description: Manage node configurations for clusters, which define how nodes are provisioned and configured.
+paths:
+  /kubernetes/clusters/{clusterId}/node-configurations:
+    get:
+      operationId: NodeConfigurationAPI_ListConfigurations
+      summary: CAST AI List node configurations
+      description: Lists node configurations for the specified cluster.
+      tags:
+      - Node Configuration
+      parameters:
+      - $ref: '#/components/parameters/ClusterId'
+      responses:
+        '200':
+          description: Successful response with list of node configurations.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListNodeConfigurationsResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: NodeConfigurationAPI_CreateConfiguration
+      summary: CAST AI Create node configuration
+      description: Creates a new node configuration for the specified cluster.
+      tags:
+      - Node Configuration
+      parameters:
+      - $ref: '#/components/parameters/ClusterId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NodeConfiguration'
+      responses:
+        '200':
+          description: Node configuration created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NodeConfiguration'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /kubernetes/clusters/{clusterId}/node-configurations/{configurationId}:
+    delete:
+      operationId: NodeConfigurationAPI_DeleteConfiguration
+      summary: CAST AI Delete node configuration
+      description: Deletes node configuration of a specific cluster.
+      tags:
+      - Node Configuration
+      parameters:
+      - $ref: '#/components/parameters/ClusterId'
+      - name: configurationId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Node configuration deleted successfully.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  responses:
+    Unauthorized:
+      description: Authentication failed. Invalid or missing API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    ClusterId:
+      name: clusterId
+      in: path
+      required: true
+      description: The unique identifier of the cluster.
+      schema:
+        type: string
+        format: uuid
+  schemas:
+    ListNodeConfigurationsResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/NodeConfiguration'
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        code:
+          type: integer
+          description: Error code.
+    NodeConfiguration:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        diskCpuRatio:
+          type: integer
+        minDiskSize:
+          type: integer
+        subnets:
+          type: array
+          items:
+            type: string
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+        createdAt:
+          type: string
+          format: date-time
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: API key for authentication. Create access keys from the CAST AI console under API > API access keys.
+externalDocs:
+  description: CAST AI API Documentation
+  url: https://docs.cast.ai/docs/api

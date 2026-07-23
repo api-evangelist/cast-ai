@@ -1,0 +1,95 @@
+openapi: 3.1.0
+info:
+  title: CAST AI Kubernetes Cost Optimization AI Enabler Settings API
+  description: CAST AI is a Kubernetes cost optimization platform that provides APIs for managing clusters, autoscaling, node configuration, workload optimization, cost reporting, security insights, and more. The platform continuously monitors clusters and optimizes them for cost efficiency using autoscaling, spot instance automation, bin packing, and other techniques.
+  version: 1.0.0
+  contact:
+    name: CAST AI
+    url: https://cast.ai
+  termsOfService: https://cast.ai/terms-of-service
+servers:
+- url: https://api.cast.ai/v1
+  description: CAST AI Production API
+security:
+- ApiKeyAuth: []
+tags:
+- name: Settings
+  description: Manage API key settings and organization-level configuration.
+paths:
+  /settings/api-keys/{apiKeyId}:
+    put:
+      operationId: SettingsAPI_UpsertAPIKeySettings
+      summary: CAST AI Create or update API key settings
+      description: Create or update settings for an API key.
+      tags:
+      - Settings
+      parameters:
+      - name: apiKeyId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/APIKeySettings'
+      responses:
+        '200':
+          description: API key settings updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIKeySettings'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  responses:
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication failed. Invalid or missing API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    APIKeySettings:
+      type: object
+      properties:
+        apiKeyId:
+          type: string
+        name:
+          type: string
+        permissions:
+          type: array
+          items:
+            type: string
+        createdAt:
+          type: string
+          format: date-time
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        code:
+          type: integer
+          description: Error code.
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: API key for authentication. Create access keys from the CAST AI console under API > API access keys.
+externalDocs:
+  description: CAST AI API Documentation
+  url: https://docs.cast.ai/docs/api

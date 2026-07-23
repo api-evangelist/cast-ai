@@ -1,0 +1,118 @@
+openapi: 3.1.0
+info:
+  title: CAST AI Kubernetes Cost Optimization AI Enabler Cluster Actions API
+  description: CAST AI is a Kubernetes cost optimization platform that provides APIs for managing clusters, autoscaling, node configuration, workload optimization, cost reporting, security insights, and more. The platform continuously monitors clusters and optimizes them for cost efficiency using autoscaling, spot instance automation, bin packing, and other techniques.
+  version: 1.0.0
+  contact:
+    name: CAST AI
+    url: https://cast.ai
+  termsOfService: https://cast.ai/terms-of-service
+servers:
+- url: https://api.cast.ai/v1
+  description: CAST AI Production API
+security:
+- ApiKeyAuth: []
+tags:
+- name: Cluster Actions
+  description: Manage cluster controller actions including acknowledging completed actions and ingesting logs.
+paths:
+  /kubernetes/clusters/{clusterId}/actions/{actionId}/ack:
+    post:
+      operationId: ClusterActionsAPI_AckClusterAction
+      summary: CAST AI Acknowledge cluster action
+      description: Ack completed cluster action.
+      tags:
+      - Cluster Actions
+      parameters:
+      - $ref: '#/components/parameters/ClusterId'
+      - name: actionId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Action acknowledged successfully.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /kubernetes/clusters/{clusterId}/actions/logs:
+    post:
+      operationId: ClusterActionsAPI_IngestLogs
+      summary: CAST AI Ingest cluster controller logs
+      description: Ingest cluster controller logs.
+      tags:
+      - Cluster Actions
+      parameters:
+      - $ref: '#/components/parameters/ClusterId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IngestLogsRequest'
+      responses:
+        '200':
+          description: Logs ingested successfully.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  responses:
+    Unauthorized:
+      description: Authentication failed. Invalid or missing API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    ClusterId:
+      name: clusterId
+      in: path
+      required: true
+      description: The unique identifier of the cluster.
+      schema:
+        type: string
+        format: uuid
+  schemas:
+    IngestLogsRequest:
+      type: object
+      properties:
+        logs:
+          type: array
+          items:
+            type: object
+            properties:
+              level:
+                type: string
+              message:
+                type: string
+              timestamp:
+                type: string
+                format: date-time
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        code:
+          type: integer
+          description: Error code.
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: API key for authentication. Create access keys from the CAST AI console under API > API access keys.
+externalDocs:
+  description: CAST AI API Documentation
+  url: https://docs.cast.ai/docs/api

@@ -1,0 +1,179 @@
+openapi: 3.1.0
+info:
+  title: CAST AI Kubernetes Cost Optimization AI Enabler External Clusters API
+  description: CAST AI is a Kubernetes cost optimization platform that provides APIs for managing clusters, autoscaling, node configuration, workload optimization, cost reporting, security insights, and more. The platform continuously monitors clusters and optimizes them for cost efficiency using autoscaling, spot instance automation, bin packing, and other techniques.
+  version: 1.0.0
+  contact:
+    name: CAST AI
+    url: https://cast.ai
+  termsOfService: https://cast.ai/terms-of-service
+servers:
+- url: https://api.cast.ai/v1
+  description: CAST AI Production API
+security:
+- ApiKeyAuth: []
+tags:
+- name: External Clusters
+  description: Manage external Kubernetes clusters connected to CAST AI, including listing nodes, draining nodes, and cluster operations.
+paths:
+  /kubernetes/external-clusters/{clusterId}/nodes:
+    get:
+      operationId: ExternalClusterAPI_ListNodes
+      summary: CAST AI List cluster nodes
+      description: Lists the nodes for a cluster.
+      tags:
+      - External Clusters
+      parameters:
+      - $ref: '#/components/parameters/ClusterId'
+      responses:
+        '200':
+          description: Successful response with list of nodes.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListNodesResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /kubernetes/external-clusters/{clusterId}/nodes/{nodeId}/drain:
+    post:
+      operationId: ExternalClusterAPI_DrainNode
+      summary: CAST AI Drain cluster node
+      description: Drains the specified cluster node.
+      tags:
+      - External Clusters
+      parameters:
+      - $ref: '#/components/parameters/ClusterId'
+      - $ref: '#/components/parameters/NodeId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DrainNodeRequest'
+      responses:
+        '200':
+          description: Node drain initiated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DrainNodeResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /kubernetes/external-clusters/{clusterId}/nodes/{nodeId}:
+    delete:
+      operationId: ExternalClusterAPI_DeleteNode
+      summary: CAST AI Delete cluster node
+      description: Deletes the specified cluster node.
+      tags:
+      - External Clusters
+      parameters:
+      - $ref: '#/components/parameters/ClusterId'
+      - $ref: '#/components/parameters/NodeId'
+      responses:
+        '200':
+          description: Node deleted successfully.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    Node:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        instanceType:
+          type: string
+        state:
+          type: string
+          enum:
+          - ready
+          - not_ready
+          - draining
+          - deleting
+        createdAt:
+          type: string
+          format: date-time
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+    DrainNodeRequest:
+      type: object
+      properties:
+        force:
+          type: boolean
+          description: Whether to force drain the node.
+        timeout:
+          type: integer
+          description: Drain timeout in seconds.
+    DrainNodeResponse:
+      type: object
+      properties:
+        nodeId:
+          type: string
+          format: uuid
+        status:
+          type: string
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        code:
+          type: integer
+          description: Error code.
+    ListNodesResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Node'
+  responses:
+    Unauthorized:
+      description: Authentication failed. Invalid or missing API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    ClusterId:
+      name: clusterId
+      in: path
+      required: true
+      description: The unique identifier of the cluster.
+      schema:
+        type: string
+        format: uuid
+    NodeId:
+      name: nodeId
+      in: path
+      required: true
+      description: The unique identifier of the node.
+      schema:
+        type: string
+        format: uuid
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: API key for authentication. Create access keys from the CAST AI console under API > API access keys.
+externalDocs:
+  description: CAST AI API Documentation
+  url: https://docs.cast.ai/docs/api

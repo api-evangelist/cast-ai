@@ -1,0 +1,133 @@
+openapi: 3.1.0
+info:
+  title: CAST AI Kubernetes Cost Optimization AI Enabler Scheduled Rebalancing API
+  description: CAST AI is a Kubernetes cost optimization platform that provides APIs for managing clusters, autoscaling, node configuration, workload optimization, cost reporting, security insights, and more. The platform continuously monitors clusters and optimizes them for cost efficiency using autoscaling, spot instance automation, bin packing, and other techniques.
+  version: 1.0.0
+  contact:
+    name: CAST AI
+    url: https://cast.ai
+  termsOfService: https://cast.ai/terms-of-service
+servers:
+- url: https://api.cast.ai/v1
+  description: CAST AI Production API
+security:
+- ApiKeyAuth: []
+tags:
+- name: Scheduled Rebalancing
+  description: Create and manage scheduled rebalancing jobs that periodically optimize cluster node allocation.
+paths:
+  /scheduled-rebalancing/schedules:
+    post:
+      operationId: ScheduledRebalancingAPI_CreateRebalancingSchedule
+      summary: CAST AI Create rebalancing schedule
+      description: Creates a new scheduled rebalancing job.
+      tags:
+      - Scheduled Rebalancing
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RebalancingSchedule'
+      responses:
+        '200':
+          description: Schedule created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RebalancingSchedule'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /scheduled-rebalancing/schedules/{scheduleId}:
+    get:
+      operationId: ScheduledRebalancingAPI_GetRebalancingSchedule
+      summary: CAST AI Get rebalancing schedule
+      description: Gets a specific rebalancing schedule by ID.
+      tags:
+      - Scheduled Rebalancing
+      parameters:
+      - name: scheduleId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response with schedule details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RebalancingSchedule'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: ScheduledRebalancingAPI_DeleteRebalancingSchedule
+      summary: CAST AI Delete rebalancing schedule
+      description: Deletes the specified rebalancing schedule.
+      tags:
+      - Scheduled Rebalancing
+      parameters:
+      - name: scheduleId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Schedule deleted successfully.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  responses:
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication failed. Invalid or missing API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        code:
+          type: integer
+          description: Error code.
+    RebalancingSchedule:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        clusterId:
+          type: string
+          format: uuid
+        schedule:
+          type: string
+          description: Cron expression for the rebalancing schedule.
+        enabled:
+          type: boolean
+        createdAt:
+          type: string
+          format: date-time
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: API key for authentication. Create access keys from the CAST AI console under API > API access keys.
+externalDocs:
+  description: CAST AI API Documentation
+  url: https://docs.cast.ai/docs/api

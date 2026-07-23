@@ -1,0 +1,217 @@
+openapi: 3.1.0
+info:
+  title: CAST AI Kubernetes Cost Optimization AI Enabler Node Templates API
+  description: CAST AI is a Kubernetes cost optimization platform that provides APIs for managing clusters, autoscaling, node configuration, workload optimization, cost reporting, security insights, and more. The platform continuously monitors clusters and optimizes them for cost efficiency using autoscaling, spot instance automation, bin packing, and other techniques.
+  version: 1.0.0
+  contact:
+    name: CAST AI
+    url: https://cast.ai
+  termsOfService: https://cast.ai/terms-of-service
+servers:
+- url: https://api.cast.ai/v1
+  description: CAST AI Production API
+security:
+- ApiKeyAuth: []
+tags:
+- name: Node Templates
+  description: Manage node templates that define instance types, constraints, and configuration for autoscaled nodes.
+paths:
+  /kubernetes/clusters/{clusterId}/node-templates:
+    get:
+      operationId: NodeTemplatesAPI_ListNodeTemplates
+      summary: CAST AI List node templates
+      description: Lists node templates for the specified cluster.
+      tags:
+      - Node Templates
+      parameters:
+      - $ref: '#/components/parameters/ClusterId'
+      responses:
+        '200':
+          description: Successful response with list of node templates.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListNodeTemplatesResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: NodeTemplatesAPI_CreateNodeTemplate
+      summary: CAST AI Create node template
+      description: Creates a new node template for the specified cluster.
+      tags:
+      - Node Templates
+      parameters:
+      - $ref: '#/components/parameters/ClusterId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NodeTemplate'
+      responses:
+        '200':
+          description: Node template created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NodeTemplate'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /kubernetes/clusters/{clusterId}/node-templates/{nodeTemplateId}:
+    get:
+      operationId: NodeTemplatesAPI_GetNodeTemplate
+      summary: CAST AI Get node template
+      description: Gets a specific node template by ID.
+      tags:
+      - Node Templates
+      parameters:
+      - $ref: '#/components/parameters/ClusterId'
+      - $ref: '#/components/parameters/NodeTemplateId'
+      responses:
+        '200':
+          description: Successful response with node template.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NodeTemplate'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: NodeTemplatesAPI_UpdateNodeTemplate
+      summary: CAST AI Update node template
+      description: Updates an existing node template.
+      tags:
+      - Node Templates
+      parameters:
+      - $ref: '#/components/parameters/ClusterId'
+      - $ref: '#/components/parameters/NodeTemplateId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NodeTemplate'
+      responses:
+        '200':
+          description: Node template updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NodeTemplate'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: NodeTemplatesAPI_DeleteNodeTemplate
+      summary: CAST AI Delete node template
+      description: Deletes the specified node template.
+      tags:
+      - Node Templates
+      parameters:
+      - $ref: '#/components/parameters/ClusterId'
+      - $ref: '#/components/parameters/NodeTemplateId'
+      responses:
+        '200':
+          description: Node template deleted successfully.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  parameters:
+    NodeTemplateId:
+      name: nodeTemplateId
+      in: path
+      required: true
+      description: The unique identifier of the node template.
+      schema:
+        type: string
+        format: uuid
+    ClusterId:
+      name: clusterId
+      in: path
+      required: true
+      description: The unique identifier of the cluster.
+      schema:
+        type: string
+        format: uuid
+  responses:
+    Unauthorized:
+      description: Authentication failed. Invalid or missing API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    NodeTemplate:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        configurationId:
+          type: string
+          format: uuid
+        constraints:
+          type: object
+          properties:
+            minCpu:
+              type: integer
+            maxCpu:
+              type: integer
+            minMemory:
+              type: integer
+            maxMemory:
+              type: integer
+            useSpotInstances:
+              type: boolean
+            architectures:
+              type: array
+              items:
+                type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    ListNodeTemplatesResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/NodeTemplate'
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        code:
+          type: integer
+          description: Error code.
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: API key for authentication. Create access keys from the CAST AI console under API > API access keys.
+externalDocs:
+  description: CAST AI API Documentation
+  url: https://docs.cast.ai/docs/api

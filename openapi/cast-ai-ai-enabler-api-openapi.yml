@@ -1,0 +1,116 @@
+openapi: 3.1.0
+info:
+  title: CAST AI Kubernetes Cost Optimization AI Enabler API
+  description: CAST AI is a Kubernetes cost optimization platform that provides APIs for managing clusters, autoscaling, node configuration, workload optimization, cost reporting, security insights, and more. The platform continuously monitors clusters and optimizes them for cost efficiency using autoscaling, spot instance automation, bin packing, and other techniques.
+  version: 1.0.0
+  contact:
+    name: CAST AI
+    url: https://cast.ai
+  termsOfService: https://cast.ai/terms-of-service
+servers:
+- url: https://api.cast.ai/v1
+  description: CAST AI Production API
+security:
+- ApiKeyAuth: []
+tags:
+- name: AI Enabler
+  description: Manage LLM provider integrations and AI enabler functionality for intelligent optimization.
+paths:
+  /llm/providers:
+    get:
+      operationId: AIEnablerProvidersAPI_GetProviders
+      summary: CAST AI Get LLM providers
+      description: Gets the list of registered LLM providers.
+      tags:
+      - AI Enabler
+      responses:
+        '200':
+          description: Successful response with list of providers.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LLMProvidersResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: AIEnablerProvidersAPI_RegisterProviders
+      summary: CAST AI Register LLM providers
+      description: Registers LLM providers.
+      tags:
+      - AI Enabler
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterProvidersRequest'
+      responses:
+        '200':
+          description: Providers registered successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LLMProvidersResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  responses:
+    Unauthorized:
+      description: Authentication failed. Invalid or missing API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    LLMProvider:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+        status:
+          type: string
+    RegisterProvidersRequest:
+      type: object
+      properties:
+        providers:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              type:
+                type: string
+              apiKey:
+                type: string
+              endpoint:
+                type: string
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        code:
+          type: integer
+          description: Error code.
+    LLMProvidersResponse:
+      type: object
+      properties:
+        providers:
+          type: array
+          items:
+            $ref: '#/components/schemas/LLMProvider'
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: API key for authentication. Create access keys from the CAST AI console under API > API access keys.
+externalDocs:
+  description: CAST AI API Documentation
+  url: https://docs.cast.ai/docs/api

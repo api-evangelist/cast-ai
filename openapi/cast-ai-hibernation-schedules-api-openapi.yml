@@ -1,0 +1,89 @@
+openapi: 3.1.0
+info:
+  title: CAST AI Kubernetes Cost Optimization AI Enabler Hibernation Schedules API
+  description: CAST AI is a Kubernetes cost optimization platform that provides APIs for managing clusters, autoscaling, node configuration, workload optimization, cost reporting, security insights, and more. The platform continuously monitors clusters and optimizes them for cost efficiency using autoscaling, spot instance automation, bin packing, and other techniques.
+  version: 1.0.0
+  contact:
+    name: CAST AI
+    url: https://cast.ai
+  termsOfService: https://cast.ai/terms-of-service
+servers:
+- url: https://api.cast.ai/v1
+  description: CAST AI Production API
+security:
+- ApiKeyAuth: []
+tags:
+- name: Hibernation Schedules
+  description: Create and manage hibernation schedules for clusters to reduce costs during off-peak hours.
+paths:
+  /hibernation/schedules:
+    post:
+      operationId: HibernationSchedulesAPI_CreateHibernationSchedule
+      summary: CAST AI Create hibernation schedule
+      description: Create a hibernation schedule.
+      tags:
+      - Hibernation Schedules
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HibernationSchedule'
+      responses:
+        '200':
+          description: Hibernation schedule created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HibernationSchedule'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  responses:
+    Unauthorized:
+      description: Authentication failed. Invalid or missing API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        code:
+          type: integer
+          description: Error code.
+    HibernationSchedule:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        clusterId:
+          type: string
+          format: uuid
+        name:
+          type: string
+        pauseCron:
+          type: string
+          description: Cron expression for when to pause the cluster.
+        resumeCron:
+          type: string
+          description: Cron expression for when to resume the cluster.
+        enabled:
+          type: boolean
+        createdAt:
+          type: string
+          format: date-time
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: API key for authentication. Create access keys from the CAST AI console under API > API access keys.
+externalDocs:
+  description: CAST AI API Documentation
+  url: https://docs.cast.ai/docs/api

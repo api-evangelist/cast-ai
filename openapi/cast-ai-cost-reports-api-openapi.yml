@@ -1,0 +1,162 @@
+openapi: 3.1.0
+info:
+  title: CAST AI Kubernetes Cost Optimization AI Enabler Cost Reports API
+  description: CAST AI is a Kubernetes cost optimization platform that provides APIs for managing clusters, autoscaling, node configuration, workload optimization, cost reporting, security insights, and more. The platform continuously monitors clusters and optimizes them for cost efficiency using autoscaling, spot instance automation, bin packing, and other techniques.
+  version: 1.0.0
+  contact:
+    name: CAST AI
+    url: https://cast.ai
+  termsOfService: https://cast.ai/terms-of-service
+servers:
+- url: https://api.cast.ai/v1
+  description: CAST AI Production API
+security:
+- ApiKeyAuth: []
+tags:
+- name: Cost Reports
+  description: Access cost reporting and efficiency data at the cluster, namespace, and workload levels.
+paths:
+  /cost-reports/clusters/{clusterId}/efficiency:
+    get:
+      operationId: CostReportsAPI_GetClusterEfficiency
+      summary: CAST AI Get cluster efficiency
+      description: Returns efficiency report data for the specified cluster.
+      tags:
+      - Cost Reports
+      parameters:
+      - $ref: '#/components/parameters/ClusterId'
+      responses:
+        '200':
+          description: Successful response with efficiency data.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClusterEfficiency'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /metrics/prom:
+    get:
+      operationId: MetricsAPI_GetClusterMetrics
+      summary: CAST AI Get cluster metrics
+      description: Returns Prometheus-compatible cluster metrics.
+      tags:
+      - Cost Reports
+      responses:
+        '200':
+          description: Successful response with cluster metrics.
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /metrics/nodes:
+    get:
+      operationId: MetricsAPI_GetNodeMetrics
+      summary: CAST AI Get node metrics
+      description: Returns node-level metrics data.
+      tags:
+      - Cost Reports
+      responses:
+        '200':
+          description: Successful response with node metrics.
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /metrics/workloads:
+    get:
+      operationId: MetricsAPI_GetWorkloadMetrics
+      summary: CAST AI Get workload metrics
+      description: Returns workload-level metrics including cluster_id, namespace, workload_name, and workload_type.
+      tags:
+      - Cost Reports
+      responses:
+        '200':
+          description: Successful response with workload metrics.
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /metrics/allocation-groups:
+    get:
+      operationId: MetricsAPI_GetAllocationGroupMetrics
+      summary: CAST AI Get allocation group metrics
+      description: Returns allocation group-level metrics data.
+      tags:
+      - Cost Reports
+      responses:
+        '200':
+          description: Successful response with allocation group metrics.
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  responses:
+    Unauthorized:
+      description: Authentication failed. Invalid or missing API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    ClusterId:
+      name: clusterId
+      in: path
+      required: true
+      description: The unique identifier of the cluster.
+      schema:
+        type: string
+        format: uuid
+  schemas:
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        code:
+          type: integer
+          description: Error code.
+    ClusterEfficiency:
+      type: object
+      properties:
+        clusterId:
+          type: string
+          format: uuid
+        cpuEfficiency:
+          type: number
+          description: CPU efficiency percentage.
+        memoryEfficiency:
+          type: number
+          description: Memory efficiency percentage.
+        totalMonthlyCost:
+          type: number
+        optimizedMonthlyCost:
+          type: number
+        savingsPercentage:
+          type: number
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: API key for authentication. Create access keys from the CAST AI console under API > API access keys.
+externalDocs:
+  description: CAST AI API Documentation
+  url: https://docs.cast.ai/docs/api

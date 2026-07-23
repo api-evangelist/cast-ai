@@ -1,0 +1,186 @@
+openapi: 3.1.0
+info:
+  title: CAST AI Kubernetes Cost Optimization AI Enabler Workload Optimization API
+  description: CAST AI is a Kubernetes cost optimization platform that provides APIs for managing clusters, autoscaling, node configuration, workload optimization, cost reporting, security insights, and more. The platform continuously monitors clusters and optimizes them for cost efficiency using autoscaling, spot instance automation, bin packing, and other techniques.
+  version: 1.0.0
+  contact:
+    name: CAST AI
+    url: https://cast.ai
+  termsOfService: https://cast.ai/terms-of-service
+servers:
+- url: https://api.cast.ai/v1
+  description: CAST AI Production API
+security:
+- ApiKeyAuth: []
+tags:
+- name: Workload Optimization
+  description: Manage workload optimization settings, view workload recommendations, and configure workload autoscaling.
+paths:
+  /workload-autoscaling/clusters/{clusterId}/workloads:
+    get:
+      operationId: WorkloadOptimizationAPI_ListWorkloads
+      summary: CAST AI List workloads
+      description: Returns a list of workloads for the given cluster.
+      tags:
+      - Workload Optimization
+      parameters:
+      - $ref: '#/components/parameters/ClusterId'
+      responses:
+        '200':
+          description: Successful response with list of workloads.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListWorkloadsResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /workload-autoscaling/clusters/{clusterId}/workloads/{workloadId}:
+    get:
+      operationId: WorkloadOptimizationAPI_GetWorkload
+      summary: CAST AI Get workload
+      description: Returns workload details and optimization recommendations.
+      tags:
+      - Workload Optimization
+      parameters:
+      - $ref: '#/components/parameters/ClusterId'
+      - name: workloadId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response with workload details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Workload'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /workload-autoscaling/agent-statuses:
+    get:
+      operationId: WorkloadOptimizationAPI_GetOrganizationAgentStatuses
+      summary: CAST AI Get agent statuses
+      description: Returns status of workload-autoscaler agents for all clusters in an organization.
+      tags:
+      - Workload Optimization
+      responses:
+        '200':
+          description: Successful response with agent statuses.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentStatusesResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  responses:
+    Unauthorized:
+      description: Authentication failed. Invalid or missing API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    ListWorkloadsResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Workload'
+    AgentStatusesResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              clusterId:
+                type: string
+                format: uuid
+              status:
+                type: string
+              lastSeenAt:
+                type: string
+                format: date-time
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        code:
+          type: integer
+          description: Error code.
+    Workload:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        clusterId:
+          type: string
+          format: uuid
+        namespace:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+          enum:
+          - Deployment
+          - StatefulSet
+          - DaemonSet
+          - Job
+          - CronJob
+        containers:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              requests:
+                type: object
+                properties:
+                  cpu:
+                    type: string
+                  memory:
+                    type: string
+              recommendations:
+                type: object
+                properties:
+                  cpu:
+                    type: string
+                  memory:
+                    type: string
+  parameters:
+    ClusterId:
+      name: clusterId
+      in: path
+      required: true
+      description: The unique identifier of the cluster.
+      schema:
+        type: string
+        format: uuid
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: API key for authentication. Create access keys from the CAST AI console under API > API access keys.
+externalDocs:
+  description: CAST AI API Documentation
+  url: https://docs.cast.ai/docs/api

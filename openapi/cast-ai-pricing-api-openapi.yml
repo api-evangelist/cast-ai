@@ -1,0 +1,114 @@
+openapi: 3.1.0
+info:
+  title: CAST AI Kubernetes Cost Optimization AI Enabler Pricing API
+  description: CAST AI is a Kubernetes cost optimization platform that provides APIs for managing clusters, autoscaling, node configuration, workload optimization, cost reporting, security insights, and more. The platform continuously monitors clusters and optimizes them for cost efficiency using autoscaling, spot instance automation, bin packing, and other techniques.
+  version: 1.0.0
+  contact:
+    name: CAST AI
+    url: https://cast.ai
+  termsOfService: https://cast.ai/terms-of-service
+servers:
+- url: https://api.cast.ai/v1
+  description: CAST AI Production API
+security:
+- ApiKeyAuth: []
+tags:
+- name: Pricing
+  description: Access pricing information for cloud provider instances and sync billing data.
+paths:
+  /pricing/clusters/{clusterId}/nodes/{nodeId}:
+    get:
+      operationId: PricingAPI_GetNodePricing
+      summary: CAST AI Get node pricing
+      description: Returns pricing data for a specific node in a cluster.
+      tags:
+      - Pricing
+      parameters:
+      - $ref: '#/components/parameters/ClusterId'
+      - $ref: '#/components/parameters/NodeId'
+      responses:
+        '200':
+          description: Successful response with pricing data.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NodePricing'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /pricing/sync-gcp-billing:
+    post:
+      operationId: PricingAPI_SyncGCPBillingAPIData
+      summary: CAST AI Sync GCP billing data
+      description: Sync GCP billing pricing API data.
+      tags:
+      - Pricing
+      responses:
+        '200':
+          description: GCP billing data synced successfully.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    NodePricing:
+      type: object
+      properties:
+        nodeId:
+          type: string
+        instanceType:
+          type: string
+        onDemandPrice:
+          type: number
+        spotPrice:
+          type: number
+        currency:
+          type: string
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        code:
+          type: integer
+          description: Error code.
+  responses:
+    Unauthorized:
+      description: Authentication failed. Invalid or missing API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    ClusterId:
+      name: clusterId
+      in: path
+      required: true
+      description: The unique identifier of the cluster.
+      schema:
+        type: string
+        format: uuid
+    NodeId:
+      name: nodeId
+      in: path
+      required: true
+      description: The unique identifier of the node.
+      schema:
+        type: string
+        format: uuid
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: API key for authentication. Create access keys from the CAST AI console under API > API access keys.
+externalDocs:
+  description: CAST AI API Documentation
+  url: https://docs.cast.ai/docs/api
