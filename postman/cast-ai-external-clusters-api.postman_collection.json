@@ -1,0 +1,759 @@
+{
+  "info": {
+    "_postman_id": "084126ca-60d0-44e1-8648-2a6b6100088b",
+    "name": "CAST AI Kubernetes Cost Optimization AI Enabler External Clusters API",
+    "description": "CAST AI is a Kubernetes cost optimization platform that provides APIs for managing clusters, autoscaling, node configuration, workload optimization, cost reporting, security insights, and more. The platform continuously monitors clusters and optimizes them for cost efficiency using autoscaling, spot instance automation, bin packing, and other techniques.\n\nContact Support:\n Name: CAST AI",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:17:18.000Z",
+    "updatedAt": "2026-07-28T01:17:18.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-084126ca-60d0-44e1-8648-2a6b6100088b"
+  },
+  "item": [
+    {
+      "name": "kubernetes",
+      "item": [
+        {
+          "name": "external-clusters",
+          "item": [
+            {
+              "name": "{clusterId}",
+              "item": [
+                {
+                  "name": "nodes",
+                  "item": [
+                    {
+                      "name": "{nodeId}",
+                      "item": [
+                        {
+                          "name": "drain",
+                          "item": [
+                            {
+                              "name": "CAST AI Drain cluster node",
+                              "id": "03e137f5-9d2f-47c4-acef-8731296ee55d",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"force\": \"<boolean>\",\n  \"timeout\": \"<integer>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/kubernetes/external-clusters/:clusterId/nodes/:nodeId/drain",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "kubernetes",
+                                    "external-clusters",
+                                    ":clusterId",
+                                    "nodes",
+                                    ":nodeId",
+                                    "drain"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "820fc3f3-93d4-4cfc-b680-053d63a540b3",
+                                      "key": "clusterId",
+                                      "value": "<uuid>",
+                                      "description": "(Required) The unique identifier of the cluster."
+                                    },
+                                    {
+                                      "id": "605c23d3-77cd-482c-a22b-ba3e8451af6d",
+                                      "key": "nodeId",
+                                      "value": "<uuid>",
+                                      "description": "(Required) The unique identifier of the node."
+                                    }
+                                  ]
+                                },
+                                "description": "Drains the specified cluster node."
+                              },
+                              "response": [
+                                {
+                                  "id": "ab652c67-30ca-4638-b88e-6f6d085e6063",
+                                  "name": "Node drain initiated successfully.",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "X-API-Key",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"force\": \"<boolean>\",\n  \"timeout\": \"<integer>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/kubernetes/external-clusters/:clusterId/nodes/:nodeId/drain",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "kubernetes",
+                                        "external-clusters",
+                                        ":clusterId",
+                                        "nodes",
+                                        ":nodeId",
+                                        "drain"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "clusterId"
+                                        },
+                                        {
+                                          "key": "nodeId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"nodeId\": \"<uuid>\",\n  \"status\": \"<string>\"\n}",
+                                  "createdAt": "2026-07-28T01:17:18.000Z",
+                                  "updatedAt": "2026-07-28T01:17:18.000Z",
+                                  "uid": "35240-ab652c67-30ca-4638-b88e-6f6d085e6063"
+                                },
+                                {
+                                  "id": "6e48e9b3-dedb-4d04-9ce7-68e1e3b284d3",
+                                  "name": "Authentication failed. Invalid or missing API key.",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "X-API-Key",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"force\": \"<boolean>\",\n  \"timeout\": \"<integer>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/kubernetes/external-clusters/:clusterId/nodes/:nodeId/drain",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "kubernetes",
+                                        "external-clusters",
+                                        ":clusterId",
+                                        "nodes",
+                                        ":nodeId",
+                                        "drain"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "clusterId"
+                                        },
+                                        {
+                                          "key": "nodeId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+                                  "createdAt": "2026-07-28T01:17:18.000Z",
+                                  "updatedAt": "2026-07-28T01:17:18.000Z",
+                                  "uid": "35240-6e48e9b3-dedb-4d04-9ce7-68e1e3b284d3"
+                                },
+                                {
+                                  "id": "472ddc94-895c-4f4a-a712-456a5bdc15b4",
+                                  "name": "The requested resource was not found.",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "X-API-Key",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"force\": \"<boolean>\",\n  \"timeout\": \"<integer>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/kubernetes/external-clusters/:clusterId/nodes/:nodeId/drain",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "kubernetes",
+                                        "external-clusters",
+                                        ":clusterId",
+                                        "nodes",
+                                        ":nodeId",
+                                        "drain"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "clusterId"
+                                        },
+                                        {
+                                          "key": "nodeId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Found",
+                                  "code": 404,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+                                  "createdAt": "2026-07-28T01:17:18.000Z",
+                                  "updatedAt": "2026-07-28T01:17:18.000Z",
+                                  "uid": "35240-472ddc94-895c-4f4a-a712-456a5bdc15b4"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T01:17:18.000Z",
+                              "updatedAt": "2026-07-28T01:17:18.000Z",
+                              "uid": "35240-03e137f5-9d2f-47c4-acef-8731296ee55d"
+                            }
+                          ],
+                          "id": "633598d9-6eee-416b-9643-4200e90aa8da",
+                          "createdAt": "2026-07-28T01:17:18.000Z",
+                          "updatedAt": "2026-07-28T01:17:18.000Z",
+                          "uid": "35240-633598d9-6eee-416b-9643-4200e90aa8da"
+                        },
+                        {
+                          "name": "CAST AI Delete cluster node",
+                          "id": "fda5f1b9-5e21-464b-a1af-7a3397419fc7",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/kubernetes/external-clusters/:clusterId/nodes/:nodeId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "kubernetes",
+                                "external-clusters",
+                                ":clusterId",
+                                "nodes",
+                                ":nodeId"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "650389f4-78ac-46c0-bbd0-da221e90df87",
+                                  "key": "clusterId",
+                                  "value": "<uuid>",
+                                  "description": "(Required) The unique identifier of the cluster."
+                                },
+                                {
+                                  "id": "3d36be4f-ddf3-460c-b8e6-9db707c018da",
+                                  "key": "nodeId",
+                                  "value": "<uuid>",
+                                  "description": "(Required) The unique identifier of the node."
+                                }
+                              ]
+                            },
+                            "description": "Deletes the specified cluster node."
+                          },
+                          "response": [
+                            {
+                              "id": "a6d1c02c-b05b-4984-bd77-110fe76d451c",
+                              "name": "Node deleted successfully.",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-API-Key",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/kubernetes/external-clusters/:clusterId/nodes/:nodeId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "kubernetes",
+                                    "external-clusters",
+                                    ":clusterId",
+                                    "nodes",
+                                    ":nodeId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "clusterId"
+                                    },
+                                    {
+                                      "key": "nodeId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T01:17:18.000Z",
+                              "updatedAt": "2026-07-28T01:17:18.000Z",
+                              "uid": "35240-a6d1c02c-b05b-4984-bd77-110fe76d451c"
+                            },
+                            {
+                              "id": "a0707661-62f4-415b-a913-41b2f0c36f36",
+                              "name": "Authentication failed. Invalid or missing API key.",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-API-Key",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/kubernetes/external-clusters/:clusterId/nodes/:nodeId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "kubernetes",
+                                    "external-clusters",
+                                    ":clusterId",
+                                    "nodes",
+                                    ":nodeId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "clusterId"
+                                    },
+                                    {
+                                      "key": "nodeId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+                              "createdAt": "2026-07-28T01:17:18.000Z",
+                              "updatedAt": "2026-07-28T01:17:18.000Z",
+                              "uid": "35240-a0707661-62f4-415b-a913-41b2f0c36f36"
+                            },
+                            {
+                              "id": "70d1c0a7-3ded-47ec-af66-f16f99583048",
+                              "name": "The requested resource was not found.",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-API-Key",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/kubernetes/external-clusters/:clusterId/nodes/:nodeId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "kubernetes",
+                                    "external-clusters",
+                                    ":clusterId",
+                                    "nodes",
+                                    ":nodeId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "clusterId"
+                                    },
+                                    {
+                                      "key": "nodeId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+                              "createdAt": "2026-07-28T01:17:18.000Z",
+                              "updatedAt": "2026-07-28T01:17:18.000Z",
+                              "uid": "35240-70d1c0a7-3ded-47ec-af66-f16f99583048"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:17:18.000Z",
+                          "updatedAt": "2026-07-28T01:17:18.000Z",
+                          "uid": "35240-fda5f1b9-5e21-464b-a1af-7a3397419fc7"
+                        }
+                      ],
+                      "id": "0e1b7cd6-55d3-43f2-8e2a-a5dff407898c",
+                      "createdAt": "2026-07-28T01:17:18.000Z",
+                      "updatedAt": "2026-07-28T01:17:18.000Z",
+                      "uid": "35240-0e1b7cd6-55d3-43f2-8e2a-a5dff407898c"
+                    },
+                    {
+                      "name": "CAST AI List cluster nodes",
+                      "id": "65e1ae04-ba35-4dc4-b33d-cf2cff834a03",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/kubernetes/external-clusters/:clusterId/nodes",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "kubernetes",
+                            "external-clusters",
+                            ":clusterId",
+                            "nodes"
+                          ],
+                          "variable": [
+                            {
+                              "id": "d430f802-d480-4450-bc80-f9ca2ccbd1cb",
+                              "key": "clusterId",
+                              "value": "<uuid>",
+                              "description": "(Required) The unique identifier of the cluster."
+                            }
+                          ]
+                        },
+                        "description": "Lists the nodes for a cluster."
+                      },
+                      "response": [
+                        {
+                          "id": "ab3124b2-e63b-412e-a6b7-a7e3334f4349",
+                          "name": "Successful response with list of nodes.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-API-Key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/kubernetes/external-clusters/:clusterId/nodes",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "kubernetes",
+                                "external-clusters",
+                                ":clusterId",
+                                "nodes"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "clusterId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"items\": [\n    {\n      \"id\": \"<uuid>\",\n      \"name\": \"<string>\",\n      \"instanceType\": \"<string>\",\n      \"state\": \"deleting\",\n      \"createdAt\": \"<dateTime>\",\n      \"labels\": {\n        \"sunt2f6\": \"<string>\"\n      }\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"name\": \"<string>\",\n      \"instanceType\": \"<string>\",\n      \"state\": \"ready\",\n      \"createdAt\": \"<dateTime>\",\n      \"labels\": {\n        \"exercitation_0\": \"<string>\",\n        \"laboris8\": \"<string>\"\n      }\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:17:18.000Z",
+                          "updatedAt": "2026-07-28T01:17:18.000Z",
+                          "uid": "35240-ab3124b2-e63b-412e-a6b7-a7e3334f4349"
+                        },
+                        {
+                          "id": "ee1a5825-310b-4559-9d37-24f19915e534",
+                          "name": "Authentication failed. Invalid or missing API key.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-API-Key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/kubernetes/external-clusters/:clusterId/nodes",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "kubernetes",
+                                "external-clusters",
+                                ":clusterId",
+                                "nodes"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "clusterId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+                          "createdAt": "2026-07-28T01:17:18.000Z",
+                          "updatedAt": "2026-07-28T01:17:18.000Z",
+                          "uid": "35240-ee1a5825-310b-4559-9d37-24f19915e534"
+                        },
+                        {
+                          "id": "0a526417-b4c5-4bc4-a13d-1fbd8b74b96f",
+                          "name": "The requested resource was not found.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-API-Key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/kubernetes/external-clusters/:clusterId/nodes",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "kubernetes",
+                                "external-clusters",
+                                ":clusterId",
+                                "nodes"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "clusterId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+                          "createdAt": "2026-07-28T01:17:18.000Z",
+                          "updatedAt": "2026-07-28T01:17:18.000Z",
+                          "uid": "35240-0a526417-b4c5-4bc4-a13d-1fbd8b74b96f"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:17:18.000Z",
+                      "updatedAt": "2026-07-28T01:17:18.000Z",
+                      "uid": "35240-65e1ae04-ba35-4dc4-b33d-cf2cff834a03"
+                    }
+                  ],
+                  "id": "9969a25c-7975-495d-9b8a-505d0744aef5",
+                  "createdAt": "2026-07-28T01:17:18.000Z",
+                  "updatedAt": "2026-07-28T01:17:18.000Z",
+                  "uid": "35240-9969a25c-7975-495d-9b8a-505d0744aef5"
+                }
+              ],
+              "id": "af5c3a82-34dc-415a-9200-212e78fcac78",
+              "createdAt": "2026-07-28T01:17:18.000Z",
+              "updatedAt": "2026-07-28T01:17:18.000Z",
+              "uid": "35240-af5c3a82-34dc-415a-9200-212e78fcac78"
+            }
+          ],
+          "id": "48ad7685-de5c-48d0-9c0d-0f5198c0e7b8",
+          "createdAt": "2026-07-28T01:17:18.000Z",
+          "updatedAt": "2026-07-28T01:17:18.000Z",
+          "uid": "35240-48ad7685-de5c-48d0-9c0d-0f5198c0e7b8"
+        }
+      ],
+      "id": "6e4c61d3-7cd8-4c0f-8618-d3e28d03e12d",
+      "createdAt": "2026-07-28T01:17:18.000Z",
+      "updatedAt": "2026-07-28T01:17:18.000Z",
+      "uid": "35240-6e4c61d3-7cd8-4c0f-8618-d3e28d03e12d"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-Key",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.cast.ai/v1"
+    }
+  ]
+}

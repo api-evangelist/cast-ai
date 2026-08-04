@@ -1,0 +1,300 @@
+{
+  "info": {
+    "_postman_id": "3639cd38-abcb-4264-a574-5110727c311c",
+    "name": "CAST AI Kubernetes Cost Optimization AI Enabler Autoscaler API",
+    "description": "CAST AI is a Kubernetes cost optimization platform that provides APIs for managing clusters, autoscaling, node configuration, workload optimization, cost reporting, security insights, and more. The platform continuously monitors clusters and optimizes them for cost efficiency using autoscaling, spot instance automation, bin packing, and other techniques.\n\nContact Support:\n Name: CAST AI",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:17:14.000Z",
+    "updatedAt": "2026-07-28T01:17:14.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-3639cd38-abcb-4264-a574-5110727c311c"
+  },
+  "item": [
+    {
+      "name": "kubernetes",
+      "item": [
+        {
+          "name": "clusters",
+          "item": [
+            {
+              "name": "{clusterId}",
+              "item": [
+                {
+                  "name": "rebalancing-plans",
+                  "item": [
+                    {
+                      "name": "{rebalancingPlanId}",
+                      "item": [
+                        {
+                          "name": "execute",
+                          "item": [
+                            {
+                              "name": "CAST AI Trigger rebalancing plan",
+                              "id": "44454a16-b8ed-4515-8eaa-aa6bb84118a1",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/kubernetes/clusters/:clusterId/rebalancing-plans/:rebalancingPlanId/execute",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "kubernetes",
+                                    "clusters",
+                                    ":clusterId",
+                                    "rebalancing-plans",
+                                    ":rebalancingPlanId",
+                                    "execute"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "0633e45f-a46c-41fe-be6b-cf3d906fd8e4",
+                                      "key": "clusterId",
+                                      "value": "<uuid>",
+                                      "description": "(Required) The unique identifier of the cluster."
+                                    },
+                                    {
+                                      "id": "62ea5996-c5b3-4946-b2f5-b84ab55ebdb6",
+                                      "key": "rebalancingPlanId",
+                                      "value": "<string>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "Triggers and executes a rebalancing plan for the cluster."
+                              },
+                              "response": [
+                                {
+                                  "id": "a95de426-5cf6-4b5c-a1f0-cfe9e71e97ac",
+                                  "name": "Rebalancing plan execution triggered successfully.",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "X-API-Key",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/kubernetes/clusters/:clusterId/rebalancing-plans/:rebalancingPlanId/execute",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "kubernetes",
+                                        "clusters",
+                                        ":clusterId",
+                                        "rebalancing-plans",
+                                        ":rebalancingPlanId",
+                                        "execute"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "clusterId"
+                                        },
+                                        {
+                                          "key": "rebalancingPlanId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T01:17:15.000Z",
+                                  "updatedAt": "2026-07-28T01:17:15.000Z",
+                                  "uid": "35240-a95de426-5cf6-4b5c-a1f0-cfe9e71e97ac"
+                                },
+                                {
+                                  "id": "bf901295-3d60-4281-88fc-62b161dd224c",
+                                  "name": "Authentication failed. Invalid or missing API key.",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "X-API-Key",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/kubernetes/clusters/:clusterId/rebalancing-plans/:rebalancingPlanId/execute",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "kubernetes",
+                                        "clusters",
+                                        ":clusterId",
+                                        "rebalancing-plans",
+                                        ":rebalancingPlanId",
+                                        "execute"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "clusterId"
+                                        },
+                                        {
+                                          "key": "rebalancingPlanId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+                                  "createdAt": "2026-07-28T01:17:15.000Z",
+                                  "updatedAt": "2026-07-28T01:17:15.000Z",
+                                  "uid": "35240-bf901295-3d60-4281-88fc-62b161dd224c"
+                                },
+                                {
+                                  "id": "3e24395f-46dd-40b1-93c1-0dae4583f7b4",
+                                  "name": "The requested resource was not found.",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "X-API-Key",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/kubernetes/clusters/:clusterId/rebalancing-plans/:rebalancingPlanId/execute",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "kubernetes",
+                                        "clusters",
+                                        ":clusterId",
+                                        "rebalancing-plans",
+                                        ":rebalancingPlanId",
+                                        "execute"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "clusterId"
+                                        },
+                                        {
+                                          "key": "rebalancingPlanId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Found",
+                                  "code": 404,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+                                  "createdAt": "2026-07-28T01:17:15.000Z",
+                                  "updatedAt": "2026-07-28T01:17:15.000Z",
+                                  "uid": "35240-3e24395f-46dd-40b1-93c1-0dae4583f7b4"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T01:17:15.000Z",
+                              "updatedAt": "2026-07-28T01:17:15.000Z",
+                              "uid": "35240-44454a16-b8ed-4515-8eaa-aa6bb84118a1"
+                            }
+                          ],
+                          "id": "f0971229-f920-4b18-99ac-3a538f4164b1",
+                          "createdAt": "2026-07-28T01:17:15.000Z",
+                          "updatedAt": "2026-07-28T01:17:15.000Z",
+                          "uid": "35240-f0971229-f920-4b18-99ac-3a538f4164b1"
+                        }
+                      ],
+                      "id": "f496bc4b-95a5-4fb5-a665-ed79f692d963",
+                      "createdAt": "2026-07-28T01:17:15.000Z",
+                      "updatedAt": "2026-07-28T01:17:15.000Z",
+                      "uid": "35240-f496bc4b-95a5-4fb5-a665-ed79f692d963"
+                    }
+                  ],
+                  "id": "211bd5e1-0e45-4eef-a2be-a2be8af75ebf",
+                  "createdAt": "2026-07-28T01:17:15.000Z",
+                  "updatedAt": "2026-07-28T01:17:15.000Z",
+                  "uid": "35240-211bd5e1-0e45-4eef-a2be-a2be8af75ebf"
+                }
+              ],
+              "id": "e3f599ad-a088-4b14-9e76-1887d580045a",
+              "createdAt": "2026-07-28T01:17:15.000Z",
+              "updatedAt": "2026-07-28T01:17:15.000Z",
+              "uid": "35240-e3f599ad-a088-4b14-9e76-1887d580045a"
+            }
+          ],
+          "id": "401c4238-f6f0-4f31-9b13-99bd249c938e",
+          "createdAt": "2026-07-28T01:17:15.000Z",
+          "updatedAt": "2026-07-28T01:17:15.000Z",
+          "uid": "35240-401c4238-f6f0-4f31-9b13-99bd249c938e"
+        }
+      ],
+      "id": "2b0a3b02-ddaa-44a4-b2f2-8065718bdb2c",
+      "createdAt": "2026-07-28T01:17:15.000Z",
+      "updatedAt": "2026-07-28T01:17:15.000Z",
+      "uid": "35240-2b0a3b02-ddaa-44a4-b2f2-8065718bdb2c"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-Key",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.cast.ai/v1"
+    }
+  ]
+}
