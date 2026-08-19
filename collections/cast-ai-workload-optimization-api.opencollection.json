@@ -1,0 +1,80 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CAST AI Kubernetes Cost Optimization AI Enabler Workload Optimization API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Key",
+      "value": "{{X-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Workload Optimization",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "CAST AI List workloads",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cast.ai/v1/workload-autoscaling/clusters/:clusterId/workloads",
+            "params": [
+              {
+                "name": "clusterId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the cluster."
+              }
+            ]
+          },
+          "docs": "Returns a list of workloads for the given cluster."
+        },
+        {
+          "info": {
+            "name": "CAST AI Get workload",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cast.ai/v1/workload-autoscaling/clusters/:clusterId/workloads/:workloadId",
+            "params": [
+              {
+                "name": "clusterId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the cluster."
+              },
+              {
+                "name": "workloadId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns workload details and optimization recommendations."
+        },
+        {
+          "info": {
+            "name": "CAST AI Get agent statuses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cast.ai/v1/workload-autoscaling/agent-statuses"
+          },
+          "docs": "Returns status of workload-autoscaler agents for all clusters in an organization."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

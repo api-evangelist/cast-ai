@@ -1,0 +1,202 @@
+{
+  "item": [
+    {
+      "id": "f2e628ad-bd5f-4e7c-849d-5807741131b3",
+      "name": "Hibernation Schedules",
+      "description": {
+        "content": "Create and manage hibernation schedules for clusters to reduce costs during off-peak hours.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7598daeb-0186-43f6-8291-075d00a70bb8",
+          "name": "CAST AI Create hibernation schedule",
+          "request": {
+            "name": "CAST AI Create hibernation schedule",
+            "description": {
+              "content": "Create a hibernation schedule.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "hibernation",
+                "schedules"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<uuid>\",\n  \"clusterId\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"pauseCron\": \"<string>\",\n  \"resumeCron\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"createdAt\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b710b7dc-eaa5-4851-9cc8-c8c144640eb5",
+              "name": "Hibernation schedule created successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hibernation",
+                    "schedules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<uuid>\",\n  \"clusterId\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"pauseCron\": \"<string>\",\n  \"resumeCron\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"createdAt\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"d64987b8-23f2-70cb-0868-99ab17d4b7c7\",\n  \"clusterId\": \"45d40e26-cfbe-d72b-f9db-18a5e0c561b3\",\n  \"name\": \"string\",\n  \"pauseCron\": \"string\",\n  \"resumeCron\": \"string\",\n  \"enabled\": true,\n  \"createdAt\": \"1988-07-02T10:25:28.224Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "addc95ba-a9df-4749-a87b-1ce8497774b1",
+              "name": "Authentication failed. Invalid or missing API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hibernation",
+                    "schedules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<uuid>\",\n  \"clusterId\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"pauseCron\": \"<string>\",\n  \"resumeCron\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"createdAt\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": 6124\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.cast.ai/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "1b929a8b-8c86-4de8-afb5-54d6e045bfa1",
+    "name": "CAST AI Kubernetes Cost Optimization AI Enabler Hibernation Schedules API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "CAST AI is a Kubernetes cost optimization platform that provides APIs for managing clusters, autoscaling, node configuration, workload optimization, cost reporting, security insights, and more. The platform continuously monitors clusters and optimizes them for cost efficiency using autoscaling, spot instance automation, bin packing, and other techniques.\n\nContact Support:\n Name: CAST AI",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,326 @@
+{
+  "item": [
+    {
+      "id": "e9fd2688-04e9-4328-9b3f-09a54760f708",
+      "name": "AI Enabler",
+      "description": {
+        "content": "Manage LLM provider integrations and AI enabler functionality for intelligent optimization.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "bb496a8c-dcf9-4055-9045-66e04ede38da",
+          "name": "CAST AI Get LLM providers",
+          "request": {
+            "name": "CAST AI Get LLM providers",
+            "description": {
+              "content": "Gets the list of registered LLM providers.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "llm",
+                "providers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b94f17f6-7876-404c-85a0-05d3464487a3",
+              "name": "Successful response with list of providers.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "llm",
+                    "providers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"providers\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"type\": \"string\",\n      \"status\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"type\": \"string\",\n      \"status\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a4996cb4-6d9f-476e-9516-7c042142b0ac",
+              "name": "Authentication failed. Invalid or missing API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "llm",
+                    "providers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": 5811\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2f71254b-c8f5-4651-a9f1-82835e85ac81",
+          "name": "CAST AI Register LLM providers",
+          "request": {
+            "name": "CAST AI Register LLM providers",
+            "description": {
+              "content": "Registers LLM providers.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "llm",
+                "providers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"providers\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"apiKey\": \"<string>\",\n      \"endpoint\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"apiKey\": \"<string>\",\n      \"endpoint\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "35e773b9-a7f4-4d03-95e4-1361e577b073",
+              "name": "Providers registered successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "llm",
+                    "providers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"providers\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"apiKey\": \"<string>\",\n      \"endpoint\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"apiKey\": \"<string>\",\n      \"endpoint\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"providers\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"type\": \"string\",\n      \"status\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"type\": \"string\",\n      \"status\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6ed1a50a-e75a-4096-a982-02526ba6f59b",
+              "name": "Authentication failed. Invalid or missing API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "llm",
+                    "providers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"providers\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"apiKey\": \"<string>\",\n      \"endpoint\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"apiKey\": \"<string>\",\n      \"endpoint\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": 5811\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.cast.ai/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "478bf78f-a06e-4e9d-a784-3540a41316b8",
+    "name": "CAST AI Kubernetes Cost Optimization AI Enabler API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "CAST AI is a Kubernetes cost optimization platform that provides APIs for managing clusters, autoscaling, node configuration, workload optimization, cost reporting, security insights, and more. The platform continuously monitors clusters and optimizes them for cost efficiency using autoscaling, spot instance automation, bin packing, and other techniques.\n\nContact Support:\n Name: CAST AI",
+      "type": "text/plain"
+    }
+  }
+}

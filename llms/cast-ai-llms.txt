@@ -1,0 +1,41 @@
+# Cast AI Documentation
+
+> Cast AI documentation will help you get started and get the most out of the platform.
+
+Each section below links to its own llms.txt, which indexes every page in that section. Category links narrow to a single category.
+
+## Guides
+
+- [Guides index](https://docs.cast.ai/docs/llms.txt): full section index
+- [Introducing Cast AI](https://docs.cast.ai/docs/introducing-cast-ai/llms.txt)
+- [Karpenter Enterprise suite](https://docs.cast.ai/docs/karpenter-enterprise-suite/llms.txt)
+- [Application Performance Automation (APA)](https://docs.cast.ai/docs/application-performance-automation-apa/llms.txt)
+- [Node Autoscaling](https://docs.cast.ai/docs/node-autoscaling/llms.txt)
+- [OMNI Edge Provisioning](https://docs.cast.ai/docs/omni-edge-provisioning/llms.txt)
+- [Workload Autoscaling](https://docs.cast.ai/docs/workload-autoscaling/llms.txt)
+- [Monitoring & Reporting](https://docs.cast.ai/docs/monitoring-reporting/llms.txt)
+- [Storage Autoscaling](https://docs.cast.ai/docs/storage-autoscaling/llms.txt)
+- [Database Optimizer](https://docs.cast.ai/docs/database-optimizer/llms.txt)
+- [Kubernetes Security](https://docs.cast.ai/docs/kubernetes-security/llms.txt)
+- [Administration](https://docs.cast.ai/docs/administration/llms.txt)
+- [FAQ](https://docs.cast.ai/docs/faq/llms.txt)
+
+## API Reference
+
+- [API Reference index](https://docs.cast.ai/reference/llms.txt): full section index
+- [MCP Server](https://docs.cast.ai/reference/mcp-server/llms.txt)
+- [CAST.AI API documentation](https://docs.cast.ai/reference/castai-api-documentation/llms.txt)
+- [AI Enabler](https://docs.cast.ai/reference/ai-enabler/llms.txt)
+- [Patching Engine](https://docs.cast.ai/reference/patching-engine/llms.txt)
+- [Inventory](https://docs.cast.ai/reference/inventory/llms.txt)
+- [Cluster Autoscaler](https://docs.cast.ai/reference/cluster-autoscaler/llms.txt)
+- [Pricing](https://docs.cast.ai/reference/pricing/llms.txt)
+- [Omni provisioner](https://docs.cast.ai/reference/omni-provisioner/llms.txt)
+- [Organization Management](https://docs.cast.ai/reference/organization-management/llms.txt)
+- [Workload Eviction](https://docs.cast.ai/reference/workload-eviction/llms.txt)
+- [Reporting](https://docs.cast.ai/reference/reporting/llms.txt)
+- [Kent](https://docs.cast.ai/reference/kent/llms.txt)
+
+## Changelog
+
+- [Changelog index](https://docs.cast.ai/changelog/llms.txt): full section index

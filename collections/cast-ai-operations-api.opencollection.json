@@ -1,0 +1,44 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CAST AI Kubernetes Cost Optimization AI Enabler Operations API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Key",
+      "value": "{{X-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Operations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "CAST AI Get operation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cast.ai/v1/operations/:operationId",
+            "params": [
+              {
+                "name": "operationId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "GetOperation returns the operation object by ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

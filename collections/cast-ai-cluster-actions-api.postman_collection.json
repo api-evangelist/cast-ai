@@ -1,0 +1,534 @@
+{
+  "item": [
+    {
+      "id": "3a4777bf-0780-415b-82ad-cf092f1c8ada",
+      "name": "Cluster Actions",
+      "description": {
+        "content": "Manage cluster controller actions including acknowledging completed actions and ingesting logs.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8559cab2-a58a-4cd4-ba3f-4aa37d492a25",
+          "name": "CAST AI Acknowledge cluster action",
+          "request": {
+            "name": "CAST AI Acknowledge cluster action",
+            "description": {
+              "content": "Ack completed cluster action.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "kubernetes",
+                "clusters",
+                ":clusterId",
+                "actions",
+                ":actionId",
+                "ack"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "clusterId",
+                  "description": "(Required) The unique identifier of the cluster."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "actionId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3daaa87b-4b99-46e2-ab01-24aeb9155f73",
+              "name": "Action acknowledged successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "kubernetes",
+                    "clusters",
+                    ":clusterId",
+                    "actions",
+                    ":actionId",
+                    "ack"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "clusterId",
+                      "description": "(Required) The unique identifier of the cluster."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "actionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4d488bdc-a245-432e-bc98-8f0403bc5c19",
+              "name": "Authentication failed. Invalid or missing API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "kubernetes",
+                    "clusters",
+                    ":clusterId",
+                    "actions",
+                    ":actionId",
+                    "ack"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "clusterId",
+                      "description": "(Required) The unique identifier of the cluster."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "actionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": 7348\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f359bad7-3e24-4e1d-9123-668df8615aed",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "kubernetes",
+                    "clusters",
+                    ":clusterId",
+                    "actions",
+                    ":actionId",
+                    "ack"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "clusterId",
+                      "description": "(Required) The unique identifier of the cluster."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "actionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": 7348\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "56cedbe5-a4c6-45e1-bf5d-1613d617ebd0",
+          "name": "CAST AI Ingest cluster controller logs",
+          "request": {
+            "name": "CAST AI Ingest cluster controller logs",
+            "description": {
+              "content": "Ingest cluster controller logs.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "kubernetes",
+                "clusters",
+                ":clusterId",
+                "actions",
+                "logs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "clusterId",
+                  "description": "(Required) The unique identifier of the cluster."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"logs\": [\n    {\n      \"level\": \"<string>\",\n      \"message\": \"<string>\",\n      \"timestamp\": \"<dateTime>\"\n    },\n    {\n      \"level\": \"<string>\",\n      \"message\": \"<string>\",\n      \"timestamp\": \"<dateTime>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b5692d89-9cc1-4d18-8479-9a3f8ad0c70d",
+              "name": "Logs ingested successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "kubernetes",
+                    "clusters",
+                    ":clusterId",
+                    "actions",
+                    "logs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "clusterId",
+                      "description": "(Required) The unique identifier of the cluster."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"logs\": [\n    {\n      \"level\": \"<string>\",\n      \"message\": \"<string>\",\n      \"timestamp\": \"<dateTime>\"\n    },\n    {\n      \"level\": \"<string>\",\n      \"message\": \"<string>\",\n      \"timestamp\": \"<dateTime>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "096137da-5abd-460b-b9ae-97b5ee6fc243",
+              "name": "Authentication failed. Invalid or missing API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "kubernetes",
+                    "clusters",
+                    ":clusterId",
+                    "actions",
+                    "logs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "clusterId",
+                      "description": "(Required) The unique identifier of the cluster."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"logs\": [\n    {\n      \"level\": \"<string>\",\n      \"message\": \"<string>\",\n      \"timestamp\": \"<dateTime>\"\n    },\n    {\n      \"level\": \"<string>\",\n      \"message\": \"<string>\",\n      \"timestamp\": \"<dateTime>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": 7348\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c2095e17-e96e-4a1c-a792-aed19f84e2f1",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "kubernetes",
+                    "clusters",
+                    ":clusterId",
+                    "actions",
+                    "logs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "clusterId",
+                      "description": "(Required) The unique identifier of the cluster."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"logs\": [\n    {\n      \"level\": \"<string>\",\n      \"message\": \"<string>\",\n      \"timestamp\": \"<dateTime>\"\n    },\n    {\n      \"level\": \"<string>\",\n      \"message\": \"<string>\",\n      \"timestamp\": \"<dateTime>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": 7348\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.cast.ai/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "ad6a8c0d-b5cc-4517-8b6d-ef4fd5db6b76",
+    "name": "CAST AI Kubernetes Cost Optimization AI Enabler Cluster Actions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "CAST AI is a Kubernetes cost optimization platform that provides APIs for managing clusters, autoscaling, node configuration, workload optimization, cost reporting, security insights, and more. The platform continuously monitors clusters and optimizes them for cost efficiency using autoscaling, spot instance automation, bin packing, and other techniques.\n\nContact Support:\n Name: CAST AI",
+      "type": "text/plain"
+    }
+  }
+}

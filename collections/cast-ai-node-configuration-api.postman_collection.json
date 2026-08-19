@@ -1,0 +1,738 @@
+{
+  "item": [
+    {
+      "id": "da5b1716-865c-4a63-821a-a8866594f264",
+      "name": "Node Configuration",
+      "description": {
+        "content": "Manage node configurations for clusters, which define how nodes are provisioned and configured.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e64452c8-e741-4775-961d-417d1ec1760d",
+          "name": "CAST AI List node configurations",
+          "request": {
+            "name": "CAST AI List node configurations",
+            "description": {
+              "content": "Lists node configurations for the specified cluster.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "kubernetes",
+                "clusters",
+                ":clusterId",
+                "node-configurations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "clusterId",
+                  "description": "(Required) The unique identifier of the cluster."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f7598613-1f36-43ef-b1bf-cac30dcb61d8",
+              "name": "Successful response with list of node configurations.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "kubernetes",
+                    "clusters",
+                    ":clusterId",
+                    "node-configurations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "clusterId",
+                      "description": "(Required) The unique identifier of the cluster."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"e71fb858-3944-1fc8-b819-dbd8536e5dda\",\n      \"name\": \"string\",\n      \"diskCpuRatio\": 5498,\n      \"minDiskSize\": 2185,\n      \"subnets\": [\n        \"string\",\n        \"string\"\n      ],\n      \"tags\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"createdAt\": \"1972-08-14T06:41:46.812Z\"\n    },\n    {\n      \"id\": \"95280938-f112-20d3-52af-f5660eaa1548\",\n      \"name\": \"string\",\n      \"diskCpuRatio\": 6761,\n      \"minDiskSize\": 3453,\n      \"subnets\": [\n        \"string\",\n        \"string\"\n      ],\n      \"tags\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"createdAt\": \"1998-06-06T15:21:41.183Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "da6a5d65-01b0-491e-a8d8-3bd2501a5f79",
+              "name": "Authentication failed. Invalid or missing API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "kubernetes",
+                    "clusters",
+                    ":clusterId",
+                    "node-configurations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "clusterId",
+                      "description": "(Required) The unique identifier of the cluster."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": 19\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6ae95d85-ac2b-4414-b64e-ec02e2d890fa",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "kubernetes",
+                    "clusters",
+                    ":clusterId",
+                    "node-configurations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "clusterId",
+                      "description": "(Required) The unique identifier of the cluster."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": 19\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "38196b93-0144-4c20-bf24-e7cad72fdc09",
+          "name": "CAST AI Create node configuration",
+          "request": {
+            "name": "CAST AI Create node configuration",
+            "description": {
+              "content": "Creates a new node configuration for the specified cluster.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "kubernetes",
+                "clusters",
+                ":clusterId",
+                "node-configurations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "clusterId",
+                  "description": "(Required) The unique identifier of the cluster."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"diskCpuRatio\": \"<integer>\",\n  \"minDiskSize\": \"<integer>\",\n  \"subnets\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"tags\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"createdAt\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "30dc8ebe-f8c2-4bf9-b65b-a5c2a470c1ae",
+              "name": "Node configuration created successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "kubernetes",
+                    "clusters",
+                    ":clusterId",
+                    "node-configurations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "clusterId",
+                      "description": "(Required) The unique identifier of the cluster."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"diskCpuRatio\": \"<integer>\",\n  \"minDiskSize\": \"<integer>\",\n  \"subnets\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"tags\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"createdAt\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"1ce9f166-4434-3e4b-ec10-216b3ff2edb0\",\n  \"name\": \"string\",\n  \"diskCpuRatio\": 1206,\n  \"minDiskSize\": 4218,\n  \"subnets\": [\n    \"string\",\n    \"string\"\n  ],\n  \"tags\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"createdAt\": \"1960-01-06T13:50:21.673Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "727acfd7-0bc5-426c-845a-798c9461f762",
+              "name": "Authentication failed. Invalid or missing API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "kubernetes",
+                    "clusters",
+                    ":clusterId",
+                    "node-configurations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "clusterId",
+                      "description": "(Required) The unique identifier of the cluster."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"diskCpuRatio\": \"<integer>\",\n  \"minDiskSize\": \"<integer>\",\n  \"subnets\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"tags\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"createdAt\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": 19\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9709bd16-9fca-4ae9-ac0e-7bbe4b27ba21",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "kubernetes",
+                    "clusters",
+                    ":clusterId",
+                    "node-configurations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "clusterId",
+                      "description": "(Required) The unique identifier of the cluster."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"diskCpuRatio\": \"<integer>\",\n  \"minDiskSize\": \"<integer>\",\n  \"subnets\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"tags\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"createdAt\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": 19\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f34d2eea-eac0-4e09-88bd-937c558cdf38",
+          "name": "CAST AI Delete node configuration",
+          "request": {
+            "name": "CAST AI Delete node configuration",
+            "description": {
+              "content": "Deletes node configuration of a specific cluster.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "kubernetes",
+                "clusters",
+                ":clusterId",
+                "node-configurations",
+                ":configurationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "clusterId",
+                  "description": "(Required) The unique identifier of the cluster."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "configurationId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "00436203-4d64-4462-bd09-d61fb0827604",
+              "name": "Node configuration deleted successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "kubernetes",
+                    "clusters",
+                    ":clusterId",
+                    "node-configurations",
+                    ":configurationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "clusterId",
+                      "description": "(Required) The unique identifier of the cluster."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "configurationId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b234865c-723b-46d4-85ee-104d76fd7c6a",
+              "name": "Authentication failed. Invalid or missing API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "kubernetes",
+                    "clusters",
+                    ":clusterId",
+                    "node-configurations",
+                    ":configurationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "clusterId",
+                      "description": "(Required) The unique identifier of the cluster."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "configurationId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": 19\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "57b901fb-6820-4ab8-bf71-467df94e3057",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "kubernetes",
+                    "clusters",
+                    ":clusterId",
+                    "node-configurations",
+                    ":configurationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "clusterId",
+                      "description": "(Required) The unique identifier of the cluster."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "configurationId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": 19\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.cast.ai/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "06008502-2aea-422b-96a0-b7e965f58d05",
+    "name": "CAST AI Kubernetes Cost Optimization AI Enabler Node Configuration API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "CAST AI is a Kubernetes cost optimization platform that provides APIs for managing clusters, autoscaling, node configuration, workload optimization, cost reporting, security insights, and more. The platform continuously monitors clusters and optimizes them for cost efficiency using autoscaling, spot instance automation, bin packing, and other techniques.\n\nContact Support:\n Name: CAST AI",
+      "type": "text/plain"
+    }
+  }
+}

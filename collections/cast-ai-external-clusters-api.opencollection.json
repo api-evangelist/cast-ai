@@ -1,0 +1,99 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CAST AI Kubernetes Cost Optimization AI Enabler External Clusters API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Key",
+      "value": "{{X-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "External Clusters",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "CAST AI List cluster nodes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cast.ai/v1/kubernetes/external-clusters/:clusterId/nodes",
+            "params": [
+              {
+                "name": "clusterId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the cluster."
+              }
+            ]
+          },
+          "docs": "Lists the nodes for a cluster."
+        },
+        {
+          "info": {
+            "name": "CAST AI Drain cluster node",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cast.ai/v1/kubernetes/external-clusters/:clusterId/nodes/:nodeId/drain",
+            "params": [
+              {
+                "name": "clusterId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the cluster."
+              },
+              {
+                "name": "nodeId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the node."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Drains the specified cluster node."
+        },
+        {
+          "info": {
+            "name": "CAST AI Delete cluster node",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.cast.ai/v1/kubernetes/external-clusters/:clusterId/nodes/:nodeId",
+            "params": [
+              {
+                "name": "clusterId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the cluster."
+              },
+              {
+                "name": "nodeId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the node."
+              }
+            ]
+          },
+          "docs": "Deletes the specified cluster node."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

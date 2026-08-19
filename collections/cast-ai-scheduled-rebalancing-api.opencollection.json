@@ -1,0 +1,77 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CAST AI Kubernetes Cost Optimization AI Enabler Scheduled Rebalancing API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Key",
+      "value": "{{X-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Scheduled Rebalancing",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "CAST AI Create rebalancing schedule",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cast.ai/v1/scheduled-rebalancing/schedules",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new scheduled rebalancing job."
+        },
+        {
+          "info": {
+            "name": "CAST AI Get rebalancing schedule",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cast.ai/v1/scheduled-rebalancing/schedules/:scheduleId",
+            "params": [
+              {
+                "name": "scheduleId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Gets a specific rebalancing schedule by ID."
+        },
+        {
+          "info": {
+            "name": "CAST AI Delete rebalancing schedule",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.cast.ai/v1/scheduled-rebalancing/schedules/:scheduleId",
+            "params": [
+              {
+                "name": "scheduleId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deletes the specified rebalancing schedule."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

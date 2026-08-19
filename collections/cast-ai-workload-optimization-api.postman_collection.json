@@ -1,0 +1,621 @@
+{
+  "item": [
+    {
+      "id": "f981bd42-bf69-4246-84cf-98c4d5ba39ac",
+      "name": "Workload Optimization",
+      "description": {
+        "content": "Manage workload optimization settings, view workload recommendations, and configure workload autoscaling.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6605d26d-e3b9-4fac-929b-a2f6332c7bb6",
+          "name": "CAST AI List workloads",
+          "request": {
+            "name": "CAST AI List workloads",
+            "description": {
+              "content": "Returns a list of workloads for the given cluster.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "workload-autoscaling",
+                "clusters",
+                ":clusterId",
+                "workloads"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "clusterId",
+                  "description": "(Required) The unique identifier of the cluster."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1d5ff217-a5dc-4505-91bc-bb19da48db91",
+              "name": "Successful response with list of workloads.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workload-autoscaling",
+                    "clusters",
+                    ":clusterId",
+                    "workloads"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "clusterId",
+                      "description": "(Required) The unique identifier of the cluster."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"707a9ec7-b819-9212-1038-8fc904134842\",\n      \"clusterId\": \"d995d4ab-0af7-295a-85fa-887aca6d5178\",\n      \"namespace\": \"string\",\n      \"name\": \"string\",\n      \"type\": \"StatefulSet\",\n      \"containers\": [\n        {\n          \"name\": \"string\",\n          \"requests\": {\n            \"cpu\": \"string\",\n            \"memory\": \"string\"\n          },\n          \"recommendations\": {\n            \"cpu\": \"string\",\n            \"memory\": \"string\"\n          }\n        },\n        {\n          \"name\": \"string\",\n          \"requests\": {\n            \"cpu\": \"string\",\n            \"memory\": \"string\"\n          },\n          \"recommendations\": {\n            \"cpu\": \"string\",\n            \"memory\": \"string\"\n          }\n        }\n      ]\n    },\n    {\n      \"id\": \"99efe071-325a-c298-9402-f90f57336c39\",\n      \"clusterId\": \"c115f895-ef48-7ac7-eb44-18bb18af047b\",\n      \"namespace\": \"string\",\n      \"name\": \"string\",\n      \"type\": \"Job\",\n      \"containers\": [\n        {\n          \"name\": \"string\",\n          \"requests\": {\n            \"cpu\": \"string\",\n            \"memory\": \"string\"\n          },\n          \"recommendations\": {\n            \"cpu\": \"string\",\n            \"memory\": \"string\"\n          }\n        },\n        {\n          \"name\": \"string\",\n          \"requests\": {\n            \"cpu\": \"string\",\n            \"memory\": \"string\"\n          },\n          \"recommendations\": {\n            \"cpu\": \"string\",\n            \"memory\": \"string\"\n          }\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4530ea11-6ece-4cc8-bf5c-4a06765f245b",
+              "name": "Authentication failed. Invalid or missing API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workload-autoscaling",
+                    "clusters",
+                    ":clusterId",
+                    "workloads"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "clusterId",
+                      "description": "(Required) The unique identifier of the cluster."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": 69\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6873a4ee-e275-47ac-b425-230e5790f772",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workload-autoscaling",
+                    "clusters",
+                    ":clusterId",
+                    "workloads"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "clusterId",
+                      "description": "(Required) The unique identifier of the cluster."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": 69\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d22bcfa8-52ac-4247-901d-dad3fa733f9a",
+          "name": "CAST AI Get workload",
+          "request": {
+            "name": "CAST AI Get workload",
+            "description": {
+              "content": "Returns workload details and optimization recommendations.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "workload-autoscaling",
+                "clusters",
+                ":clusterId",
+                "workloads",
+                ":workloadId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "clusterId",
+                  "description": "(Required) The unique identifier of the cluster."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workloadId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e005436d-ea5c-4655-8621-4323925738c4",
+              "name": "Successful response with workload details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workload-autoscaling",
+                    "clusters",
+                    ":clusterId",
+                    "workloads",
+                    ":workloadId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "clusterId",
+                      "description": "(Required) The unique identifier of the cluster."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workloadId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"95b7919e-32a3-e124-99ad-69da3dffaf48\",\n  \"clusterId\": \"4dc9615c-ff3f-ed3b-8d66-44c2fd512781\",\n  \"namespace\": \"string\",\n  \"name\": \"string\",\n  \"type\": \"Deployment\",\n  \"containers\": [\n    {\n      \"name\": \"string\",\n      \"requests\": {\n        \"cpu\": \"string\",\n        \"memory\": \"string\"\n      },\n      \"recommendations\": {\n        \"cpu\": \"string\",\n        \"memory\": \"string\"\n      }\n    },\n    {\n      \"name\": \"string\",\n      \"requests\": {\n        \"cpu\": \"string\",\n        \"memory\": \"string\"\n      },\n      \"recommendations\": {\n        \"cpu\": \"string\",\n        \"memory\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b12a6175-fe69-48e5-a684-161662bcc447",
+              "name": "Authentication failed. Invalid or missing API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workload-autoscaling",
+                    "clusters",
+                    ":clusterId",
+                    "workloads",
+                    ":workloadId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "clusterId",
+                      "description": "(Required) The unique identifier of the cluster."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workloadId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": 69\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4bdbf03f-45c9-4c30-bf5a-c4ac27d7041a",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workload-autoscaling",
+                    "clusters",
+                    ":clusterId",
+                    "workloads",
+                    ":workloadId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "clusterId",
+                      "description": "(Required) The unique identifier of the cluster."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workloadId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": 69\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6f00f772-eee9-418a-97a1-8d700c7400f6",
+          "name": "CAST AI Get agent statuses",
+          "request": {
+            "name": "CAST AI Get agent statuses",
+            "description": {
+              "content": "Returns status of workload-autoscaler agents for all clusters in an organization.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "workload-autoscaling",
+                "agent-statuses"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "dffee7ca-75ae-4ddc-9367-c8840076d4ab",
+              "name": "Successful response with agent statuses.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workload-autoscaling",
+                    "agent-statuses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"clusterId\": \"9cec3b4d-4f33-c7fb-5712-998482efe459\",\n      \"status\": \"string\",\n      \"lastSeenAt\": \"2019-11-12T04:03:01.817Z\"\n    },\n    {\n      \"clusterId\": \"f3cc2ba5-f6d0-8325-1ac8-8e49e964e0c0\",\n      \"status\": \"string\",\n      \"lastSeenAt\": \"2016-03-21T07:43:02.118Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e118f2f9-8f98-41e8-9d32-64d78a4d9e31",
+              "name": "Authentication failed. Invalid or missing API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workload-autoscaling",
+                    "agent-statuses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": 69\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.cast.ai/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "7c5117a3-af0e-4ec0-8988-dc1d794ed678",
+    "name": "CAST AI Kubernetes Cost Optimization AI Enabler Workload Optimization API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "CAST AI is a Kubernetes cost optimization platform that provides APIs for managing clusters, autoscaling, node configuration, workload optimization, cost reporting, security insights, and more. The platform continuously monitors clusters and optimizes them for cost efficiency using autoscaling, spot instance automation, bin packing, and other techniques.\n\nContact Support:\n Name: CAST AI",
+      "type": "text/plain"
+    }
+  }
+}

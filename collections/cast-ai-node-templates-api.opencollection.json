@@ -1,0 +1,147 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CAST AI Kubernetes Cost Optimization AI Enabler Node Templates API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Key",
+      "value": "{{X-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Node Templates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "CAST AI List node templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cast.ai/v1/kubernetes/clusters/:clusterId/node-templates",
+            "params": [
+              {
+                "name": "clusterId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the cluster."
+              }
+            ]
+          },
+          "docs": "Lists node templates for the specified cluster."
+        },
+        {
+          "info": {
+            "name": "CAST AI Create node template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cast.ai/v1/kubernetes/clusters/:clusterId/node-templates",
+            "params": [
+              {
+                "name": "clusterId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the cluster."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new node template for the specified cluster."
+        },
+        {
+          "info": {
+            "name": "CAST AI Get node template",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cast.ai/v1/kubernetes/clusters/:clusterId/node-templates/:nodeTemplateId",
+            "params": [
+              {
+                "name": "clusterId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the cluster."
+              },
+              {
+                "name": "nodeTemplateId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the node template."
+              }
+            ]
+          },
+          "docs": "Gets a specific node template by ID."
+        },
+        {
+          "info": {
+            "name": "CAST AI Update node template",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.cast.ai/v1/kubernetes/clusters/:clusterId/node-templates/:nodeTemplateId",
+            "params": [
+              {
+                "name": "clusterId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the cluster."
+              },
+              {
+                "name": "nodeTemplateId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the node template."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing node template."
+        },
+        {
+          "info": {
+            "name": "CAST AI Delete node template",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.cast.ai/v1/kubernetes/clusters/:clusterId/node-templates/:nodeTemplateId",
+            "params": [
+              {
+                "name": "clusterId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the cluster."
+              },
+              {
+                "name": "nodeTemplateId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the node template."
+              }
+            ]
+          },
+          "docs": "Deletes the specified node template."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

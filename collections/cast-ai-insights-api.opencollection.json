@@ -1,0 +1,55 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CAST AI Kubernetes Cost Optimization AI Enabler Insights API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Key",
+      "value": "{{X-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Insights",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "CAST AI Get best practices report filters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cast.ai/v1/security/insights/best-practices/filters"
+          },
+          "docs": "Retrieve a list of possible filters for best practices report."
+        },
+        {
+          "info": {
+            "name": "CAST AI Get container image digests",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cast.ai/v1/security/insights/images/:tagId/digests",
+            "params": [
+              {
+                "name": "tagId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get container image digests for organization by tag ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

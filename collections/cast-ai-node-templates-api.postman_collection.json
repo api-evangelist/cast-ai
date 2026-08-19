@@ -1,0 +1,1255 @@
+{
+  "item": [
+    {
+      "id": "ac40df4e-c1a6-4641-9c29-12d6d7af187d",
+      "name": "Node Templates",
+      "description": {
+        "content": "Manage node templates that define instance types, constraints, and configuration for autoscaled nodes.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "94b237d5-2675-4014-8f02-c916c8d2efe3",
+          "name": "CAST AI List node templates",
+          "request": {
+            "name": "CAST AI List node templates",
+            "description": {
+              "content": "Lists node templates for the specified cluster.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "kubernetes",
+                "clusters",
+                ":clusterId",
+                "node-templates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "clusterId",
+                  "description": "(Required) The unique identifier of the cluster."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ce8cb02a-ba37-4247-8043-84ac32edf138",
+              "name": "Successful response with list of node templates.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "kubernetes",
+                    "clusters",
+                    ":clusterId",
+                    "node-templates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "clusterId",
+                      "description": "(Required) The unique identifier of the cluster."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"ef726fdc-20cd-06b2-db28-30e1fa419065\",\n      \"name\": \"string\",\n      \"configurationId\": \"3782d69d-6c5a-661c-48bc-92f5714980c9\",\n      \"constraints\": {\n        \"minCpu\": 5961,\n        \"maxCpu\": 6303,\n        \"minMemory\": 9053,\n        \"maxMemory\": 7152,\n        \"useSpotInstances\": false,\n        \"architectures\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      \"createdAt\": \"1994-12-03T07:37:53.974Z\",\n      \"updatedAt\": \"1981-02-27T22:30:45.072Z\"\n    },\n    {\n      \"id\": \"3a2bea23-38a1-98fa-eb2f-48a73497ccba\",\n      \"name\": \"string\",\n      \"configurationId\": \"846aa1ee-b397-bc4a-0f9f-3ad98ed1f1cc\",\n      \"constraints\": {\n        \"minCpu\": 6953,\n        \"maxCpu\": 8420,\n        \"minMemory\": 3200,\n        \"maxMemory\": 6672,\n        \"useSpotInstances\": true,\n        \"architectures\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      \"createdAt\": \"1989-08-05T20:58:45.341Z\",\n      \"updatedAt\": \"1989-02-07T08:19:42.172Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "da1803d0-69d2-4a0a-9ace-49fd591476de",
+              "name": "Authentication failed. Invalid or missing API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "kubernetes",
+                    "clusters",
+                    ":clusterId",
+                    "node-templates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "clusterId",
+                      "description": "(Required) The unique identifier of the cluster."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": 7824\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "276a9707-2734-4c38-b7fd-fbca6cb8e2cf",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "kubernetes",
+                    "clusters",
+                    ":clusterId",
+                    "node-templates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "clusterId",
+                      "description": "(Required) The unique identifier of the cluster."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": 7824\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ac9cabf4-fe22-4f42-b9c5-5337581e8026",
+          "name": "CAST AI Create node template",
+          "request": {
+            "name": "CAST AI Create node template",
+            "description": {
+              "content": "Creates a new node template for the specified cluster.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "kubernetes",
+                "clusters",
+                ":clusterId",
+                "node-templates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "clusterId",
+                  "description": "(Required) The unique identifier of the cluster."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"configurationId\": \"<uuid>\",\n  \"constraints\": {\n    \"minCpu\": \"<integer>\",\n    \"maxCpu\": \"<integer>\",\n    \"minMemory\": \"<integer>\",\n    \"maxMemory\": \"<integer>\",\n    \"useSpotInstances\": \"<boolean>\",\n    \"architectures\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "87c3e282-b9fc-4000-8804-6ee7b0e05060",
+              "name": "Node template created successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "kubernetes",
+                    "clusters",
+                    ":clusterId",
+                    "node-templates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "clusterId",
+                      "description": "(Required) The unique identifier of the cluster."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"configurationId\": \"<uuid>\",\n  \"constraints\": {\n    \"minCpu\": \"<integer>\",\n    \"maxCpu\": \"<integer>\",\n    \"minMemory\": \"<integer>\",\n    \"maxMemory\": \"<integer>\",\n    \"useSpotInstances\": \"<boolean>\",\n    \"architectures\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"b1719b02-5b47-a8c7-caa9-3d59aad38997\",\n  \"name\": \"string\",\n  \"configurationId\": \"a14ffcbb-0961-f6c2-010f-ec4cd2e4875c\",\n  \"constraints\": {\n    \"minCpu\": 4395,\n    \"maxCpu\": 5660,\n    \"minMemory\": 2103,\n    \"maxMemory\": 80,\n    \"useSpotInstances\": true,\n    \"architectures\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"createdAt\": \"1982-02-08T19:42:46.130Z\",\n  \"updatedAt\": \"2022-09-25T23:46:00.242Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8475301b-cd27-43e5-9c64-f5c6237a13ea",
+              "name": "Authentication failed. Invalid or missing API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "kubernetes",
+                    "clusters",
+                    ":clusterId",
+                    "node-templates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "clusterId",
+                      "description": "(Required) The unique identifier of the cluster."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"configurationId\": \"<uuid>\",\n  \"constraints\": {\n    \"minCpu\": \"<integer>\",\n    \"maxCpu\": \"<integer>\",\n    \"minMemory\": \"<integer>\",\n    \"maxMemory\": \"<integer>\",\n    \"useSpotInstances\": \"<boolean>\",\n    \"architectures\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": 7824\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8ac738fc-fd7f-4d41-937b-1f2c3fe0a425",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "kubernetes",
+                    "clusters",
+                    ":clusterId",
+                    "node-templates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "clusterId",
+                      "description": "(Required) The unique identifier of the cluster."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"configurationId\": \"<uuid>\",\n  \"constraints\": {\n    \"minCpu\": \"<integer>\",\n    \"maxCpu\": \"<integer>\",\n    \"minMemory\": \"<integer>\",\n    \"maxMemory\": \"<integer>\",\n    \"useSpotInstances\": \"<boolean>\",\n    \"architectures\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": 7824\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a41be720-7add-4804-a676-b5475433e545",
+          "name": "CAST AI Get node template",
+          "request": {
+            "name": "CAST AI Get node template",
+            "description": {
+              "content": "Gets a specific node template by ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "kubernetes",
+                "clusters",
+                ":clusterId",
+                "node-templates",
+                ":nodeTemplateId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "clusterId",
+                  "description": "(Required) The unique identifier of the cluster."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "nodeTemplateId",
+                  "description": "(Required) The unique identifier of the node template."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4025296b-5733-499d-b047-8d1a6889ebb8",
+              "name": "Successful response with node template.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "kubernetes",
+                    "clusters",
+                    ":clusterId",
+                    "node-templates",
+                    ":nodeTemplateId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "clusterId",
+                      "description": "(Required) The unique identifier of the cluster."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "nodeTemplateId",
+                      "description": "(Required) The unique identifier of the node template."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"b1719b02-5b47-a8c7-caa9-3d59aad38997\",\n  \"name\": \"string\",\n  \"configurationId\": \"a14ffcbb-0961-f6c2-010f-ec4cd2e4875c\",\n  \"constraints\": {\n    \"minCpu\": 4395,\n    \"maxCpu\": 5660,\n    \"minMemory\": 2103,\n    \"maxMemory\": 80,\n    \"useSpotInstances\": true,\n    \"architectures\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"createdAt\": \"1982-02-08T19:42:46.130Z\",\n  \"updatedAt\": \"2022-09-25T23:46:00.242Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4897763c-7af3-4a88-8a33-38d3c94063ef",
+              "name": "Authentication failed. Invalid or missing API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "kubernetes",
+                    "clusters",
+                    ":clusterId",
+                    "node-templates",
+                    ":nodeTemplateId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "clusterId",
+                      "description": "(Required) The unique identifier of the cluster."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "nodeTemplateId",
+                      "description": "(Required) The unique identifier of the node template."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": 7824\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fa57e596-7089-4e94-95e5-6c48d1ebc8d5",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "kubernetes",
+                    "clusters",
+                    ":clusterId",
+                    "node-templates",
+                    ":nodeTemplateId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "clusterId",
+                      "description": "(Required) The unique identifier of the cluster."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "nodeTemplateId",
+                      "description": "(Required) The unique identifier of the node template."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": 7824\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3a4c513b-a5af-4ec9-a8fd-ba3afff415d3",
+          "name": "CAST AI Update node template",
+          "request": {
+            "name": "CAST AI Update node template",
+            "description": {
+              "content": "Updates an existing node template.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "kubernetes",
+                "clusters",
+                ":clusterId",
+                "node-templates",
+                ":nodeTemplateId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "clusterId",
+                  "description": "(Required) The unique identifier of the cluster."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "nodeTemplateId",
+                  "description": "(Required) The unique identifier of the node template."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"configurationId\": \"<uuid>\",\n  \"constraints\": {\n    \"minCpu\": \"<integer>\",\n    \"maxCpu\": \"<integer>\",\n    \"minMemory\": \"<integer>\",\n    \"maxMemory\": \"<integer>\",\n    \"useSpotInstances\": \"<boolean>\",\n    \"architectures\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "849e0680-c7b1-4918-9ffe-5220329256fe",
+              "name": "Node template updated successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "kubernetes",
+                    "clusters",
+                    ":clusterId",
+                    "node-templates",
+                    ":nodeTemplateId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "clusterId",
+                      "description": "(Required) The unique identifier of the cluster."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "nodeTemplateId",
+                      "description": "(Required) The unique identifier of the node template."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"configurationId\": \"<uuid>\",\n  \"constraints\": {\n    \"minCpu\": \"<integer>\",\n    \"maxCpu\": \"<integer>\",\n    \"minMemory\": \"<integer>\",\n    \"maxMemory\": \"<integer>\",\n    \"useSpotInstances\": \"<boolean>\",\n    \"architectures\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"b1719b02-5b47-a8c7-caa9-3d59aad38997\",\n  \"name\": \"string\",\n  \"configurationId\": \"a14ffcbb-0961-f6c2-010f-ec4cd2e4875c\",\n  \"constraints\": {\n    \"minCpu\": 4395,\n    \"maxCpu\": 5660,\n    \"minMemory\": 2103,\n    \"maxMemory\": 80,\n    \"useSpotInstances\": true,\n    \"architectures\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"createdAt\": \"1982-02-08T19:42:46.130Z\",\n  \"updatedAt\": \"2022-09-25T23:46:00.242Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1e05915b-7551-4f2b-b8f2-46db24f7f8f6",
+              "name": "Authentication failed. Invalid or missing API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "kubernetes",
+                    "clusters",
+                    ":clusterId",
+                    "node-templates",
+                    ":nodeTemplateId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "clusterId",
+                      "description": "(Required) The unique identifier of the cluster."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "nodeTemplateId",
+                      "description": "(Required) The unique identifier of the node template."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"configurationId\": \"<uuid>\",\n  \"constraints\": {\n    \"minCpu\": \"<integer>\",\n    \"maxCpu\": \"<integer>\",\n    \"minMemory\": \"<integer>\",\n    \"maxMemory\": \"<integer>\",\n    \"useSpotInstances\": \"<boolean>\",\n    \"architectures\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": 7824\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9558a67e-b5dd-49ae-9af5-009d5f4ea85d",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "kubernetes",
+                    "clusters",
+                    ":clusterId",
+                    "node-templates",
+                    ":nodeTemplateId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "clusterId",
+                      "description": "(Required) The unique identifier of the cluster."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "nodeTemplateId",
+                      "description": "(Required) The unique identifier of the node template."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"configurationId\": \"<uuid>\",\n  \"constraints\": {\n    \"minCpu\": \"<integer>\",\n    \"maxCpu\": \"<integer>\",\n    \"minMemory\": \"<integer>\",\n    \"maxMemory\": \"<integer>\",\n    \"useSpotInstances\": \"<boolean>\",\n    \"architectures\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": 7824\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "040525d8-7f3e-497a-bf1f-21c8476661a1",
+          "name": "CAST AI Delete node template",
+          "request": {
+            "name": "CAST AI Delete node template",
+            "description": {
+              "content": "Deletes the specified node template.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "kubernetes",
+                "clusters",
+                ":clusterId",
+                "node-templates",
+                ":nodeTemplateId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "clusterId",
+                  "description": "(Required) The unique identifier of the cluster."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "nodeTemplateId",
+                  "description": "(Required) The unique identifier of the node template."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "99a09380-6e22-4a0d-8349-711b2b5e76fd",
+              "name": "Node template deleted successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "kubernetes",
+                    "clusters",
+                    ":clusterId",
+                    "node-templates",
+                    ":nodeTemplateId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "clusterId",
+                      "description": "(Required) The unique identifier of the cluster."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "nodeTemplateId",
+                      "description": "(Required) The unique identifier of the node template."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "381acca9-2561-44cd-aa55-97392b7edcfa",
+              "name": "Authentication failed. Invalid or missing API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "kubernetes",
+                    "clusters",
+                    ":clusterId",
+                    "node-templates",
+                    ":nodeTemplateId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "clusterId",
+                      "description": "(Required) The unique identifier of the cluster."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "nodeTemplateId",
+                      "description": "(Required) The unique identifier of the node template."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": 7824\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9115c8db-8da7-42de-be3f-3adf28a37a7e",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "kubernetes",
+                    "clusters",
+                    ":clusterId",
+                    "node-templates",
+                    ":nodeTemplateId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "clusterId",
+                      "description": "(Required) The unique identifier of the cluster."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "nodeTemplateId",
+                      "description": "(Required) The unique identifier of the node template."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": 7824\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.cast.ai/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "99438cd3-7436-4bbf-b35a-46b1f9ada3c6",
+    "name": "CAST AI Kubernetes Cost Optimization AI Enabler Node Templates API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "CAST AI is a Kubernetes cost optimization platform that provides APIs for managing clusters, autoscaling, node configuration, workload optimization, cost reporting, security insights, and more. The platform continuously monitors clusters and optimizes them for cost efficiency using autoscaling, spot instance automation, bin packing, and other techniques.\n\nContact Support:\n Name: CAST AI",
+      "type": "text/plain"
+    }
+  }
+}

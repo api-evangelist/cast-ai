@@ -1,0 +1,502 @@
+{
+  "item": [
+    {
+      "id": "2f680711-b101-43be-8e6c-933a21663511",
+      "name": "Policies",
+      "description": {
+        "content": "Manage autoscaler policies configuration for clusters, including unscheduled pods, node downscaler, and spot instance policies.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2c40808b-1967-4dc4-9d82-facc704d7b1c",
+          "name": "CAST AI Get cluster policies",
+          "request": {
+            "name": "CAST AI Get cluster policies",
+            "description": {
+              "content": "Gets policies configuration for the target cluster.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "kubernetes",
+                "clusters",
+                ":clusterId",
+                "policies"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "clusterId",
+                  "description": "(Required) The unique identifier of the cluster."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ca229950-33d3-4892-be50-4cf118b175fb",
+              "name": "Successful response with cluster policies.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "kubernetes",
+                    "clusters",
+                    ":clusterId",
+                    "policies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "clusterId",
+                      "description": "(Required) The unique identifier of the cluster."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"enabled\": true,\n  \"unschedulablePods\": {\n    \"enabled\": true\n  },\n  \"nodeDownscaler\": {\n    \"enabled\": true,\n    \"emptyNodes\": {\n      \"enabled\": false,\n      \"delaySeconds\": 3820\n    }\n  },\n  \"spotInstances\": {\n    \"enabled\": true,\n    \"maxReclaimRate\": 5923.417359288374\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5785d73c-d5aa-4ff7-8c41-e86aab8591c8",
+              "name": "Authentication failed. Invalid or missing API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "kubernetes",
+                    "clusters",
+                    ":clusterId",
+                    "policies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "clusterId",
+                      "description": "(Required) The unique identifier of the cluster."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": 8584\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c7e68655-3520-4cac-8d1d-a69b0dd813b6",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "kubernetes",
+                    "clusters",
+                    ":clusterId",
+                    "policies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "clusterId",
+                      "description": "(Required) The unique identifier of the cluster."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": 8584\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1ab17cf1-52cd-433d-860e-94ddfb112477",
+          "name": "CAST AI Upsert cluster policies",
+          "request": {
+            "name": "CAST AI Upsert cluster policies",
+            "description": {
+              "content": "Upsert cluster's policies configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "kubernetes",
+                "clusters",
+                ":clusterId",
+                "policies"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "clusterId",
+                  "description": "(Required) The unique identifier of the cluster."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"enabled\": \"<boolean>\",\n  \"unschedulablePods\": {\n    \"enabled\": \"<boolean>\"\n  },\n  \"nodeDownscaler\": {\n    \"enabled\": \"<boolean>\",\n    \"emptyNodes\": {\n      \"enabled\": \"<boolean>\",\n      \"delaySeconds\": \"<integer>\"\n    }\n  },\n  \"spotInstances\": {\n    \"enabled\": \"<boolean>\",\n    \"maxReclaimRate\": \"<number>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4d37a29f-f7a9-4da3-a797-1fc2977720f6",
+              "name": "Policies updated successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "kubernetes",
+                    "clusters",
+                    ":clusterId",
+                    "policies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "clusterId",
+                      "description": "(Required) The unique identifier of the cluster."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"enabled\": \"<boolean>\",\n  \"unschedulablePods\": {\n    \"enabled\": \"<boolean>\"\n  },\n  \"nodeDownscaler\": {\n    \"enabled\": \"<boolean>\",\n    \"emptyNodes\": {\n      \"enabled\": \"<boolean>\",\n      \"delaySeconds\": \"<integer>\"\n    }\n  },\n  \"spotInstances\": {\n    \"enabled\": \"<boolean>\",\n    \"maxReclaimRate\": \"<number>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"enabled\": true,\n  \"unschedulablePods\": {\n    \"enabled\": true\n  },\n  \"nodeDownscaler\": {\n    \"enabled\": true,\n    \"emptyNodes\": {\n      \"enabled\": false,\n      \"delaySeconds\": 3820\n    }\n  },\n  \"spotInstances\": {\n    \"enabled\": true,\n    \"maxReclaimRate\": 5923.417359288374\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9a634454-5f40-417d-b3ad-130f55e0ce32",
+              "name": "Authentication failed. Invalid or missing API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "kubernetes",
+                    "clusters",
+                    ":clusterId",
+                    "policies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "clusterId",
+                      "description": "(Required) The unique identifier of the cluster."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"enabled\": \"<boolean>\",\n  \"unschedulablePods\": {\n    \"enabled\": \"<boolean>\"\n  },\n  \"nodeDownscaler\": {\n    \"enabled\": \"<boolean>\",\n    \"emptyNodes\": {\n      \"enabled\": \"<boolean>\",\n      \"delaySeconds\": \"<integer>\"\n    }\n  },\n  \"spotInstances\": {\n    \"enabled\": \"<boolean>\",\n    \"maxReclaimRate\": \"<number>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": 8584\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4e4a0c20-8142-4040-b1a9-6c7b1b52ecc3",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "kubernetes",
+                    "clusters",
+                    ":clusterId",
+                    "policies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "clusterId",
+                      "description": "(Required) The unique identifier of the cluster."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"enabled\": \"<boolean>\",\n  \"unschedulablePods\": {\n    \"enabled\": \"<boolean>\"\n  },\n  \"nodeDownscaler\": {\n    \"enabled\": \"<boolean>\",\n    \"emptyNodes\": {\n      \"enabled\": \"<boolean>\",\n      \"delaySeconds\": \"<integer>\"\n    }\n  },\n  \"spotInstances\": {\n    \"enabled\": \"<boolean>\",\n    \"maxReclaimRate\": \"<number>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": 8584\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.cast.ai/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "02efc029-5b5f-4bda-a49a-3fa7bb5b43e9",
+    "name": "CAST AI Kubernetes Cost Optimization AI Enabler Policies API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "CAST AI is a Kubernetes cost optimization platform that provides APIs for managing clusters, autoscaling, node configuration, workload optimization, cost reporting, security insights, and more. The platform continuously monitors clusters and optimizes them for cost efficiency using autoscaling, spot instance automation, bin packing, and other techniques.\n\nContact Support:\n Name: CAST AI",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CAST AI Kubernetes Cost Optimization AI Enabler Autoscaler API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Key",
+      "value": "{{X-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Autoscaler",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "CAST AI Trigger rebalancing plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cast.ai/v1/kubernetes/clusters/:clusterId/rebalancing-plans/:rebalancingPlanId/execute",
+            "params": [
+              {
+                "name": "clusterId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the cluster."
+              },
+              {
+                "name": "rebalancingPlanId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Triggers and executes a rebalancing plan for the cluster."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

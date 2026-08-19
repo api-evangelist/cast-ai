@@ -1,0 +1,89 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CAST AI Kubernetes Cost Optimization AI Enabler Cost Reports API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Key",
+      "value": "{{X-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Cost Reports",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "CAST AI Get cluster efficiency",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cast.ai/v1/cost-reports/clusters/:clusterId/efficiency",
+            "params": [
+              {
+                "name": "clusterId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the cluster."
+              }
+            ]
+          },
+          "docs": "Returns efficiency report data for the specified cluster."
+        },
+        {
+          "info": {
+            "name": "CAST AI Get cluster metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cast.ai/v1/metrics/prom"
+          },
+          "docs": "Returns Prometheus-compatible cluster metrics."
+        },
+        {
+          "info": {
+            "name": "CAST AI Get node metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cast.ai/v1/metrics/nodes"
+          },
+          "docs": "Returns node-level metrics data."
+        },
+        {
+          "info": {
+            "name": "CAST AI Get workload metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cast.ai/v1/metrics/workloads"
+          },
+          "docs": "Returns workload-level metrics including cluster_id, namespace, workload_name, and workload_type."
+        },
+        {
+          "info": {
+            "name": "CAST AI Get allocation group metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cast.ai/v1/metrics/allocation-groups"
+          },
+          "docs": "Returns allocation group-level metrics data."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
