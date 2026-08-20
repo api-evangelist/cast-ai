@@ -2,6 +2,14 @@ aid: cast-ai
 url: https://raw.githubusercontent.com/api-evangelist/cast-ai/refs/heads/main/apis.yml
 name: CAST AI
 tags:
+  - Auto-Scaling
+  - Cloud Infrastructure
+  - Cost Optimization
+  - DevOps
+  - FinOps
+  - Kubernetes
+  - Observability
+tags_raw:
   - Autoscaling
   - Cloud Infrastructure
   - Cost Optimization
@@ -337,7 +345,8 @@ apis:
     Manage node configurations for clusters, which define how nodes are provisioned and configured.
   humanURL: https://docs.cast.ai/docs/api
   baseURL: https://api.cast.ai
-  tags:
+  tags: []
+  tags_raw:
   - Node Configuration
   properties:
   - type: OpenAPI
@@ -402,7 +411,8 @@ apis:
   description: Track and manage long-running operations within CAST AI.
   humanURL: https://docs.cast.ai/docs/api
   baseURL: https://api.cast.ai
-  tags:
+  tags: []
+  tags_raw:
   - Operations
   properties:
   - type: OpenAPI
