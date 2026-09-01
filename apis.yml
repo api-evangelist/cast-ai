@@ -357,8 +357,7 @@ apis:
     Manage node configurations for clusters, which define how nodes are provisioned and configured.
   humanURL: https://docs.cast.ai/docs/api
   baseURL: https://api.cast.ai
-  tags:
-  - Node Configuration
+  tags: []
   tags_raw:
   - Node Configuration
   properties:
