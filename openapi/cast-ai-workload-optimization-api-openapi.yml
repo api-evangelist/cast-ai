@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: CAST AI Kubernetes Cost Optimization AI Enabler Workload Optimization API
+  title: CAST AI Kubernetes Cost Optimization Workload Optimization…
   description: CAST AI is a Kubernetes cost optimization platform that provides APIs for managing clusters, autoscaling, node configuration, workload optimization, cost reporting, security insights, and more. The platform continuously monitors clusters and optimizes them for cost efficiency using autoscaling, spot instance automation, bin packing, and other techniques.
   version: 1.0.0
   contact:
@@ -92,29 +92,6 @@ components:
           schema:
             $ref: '#/components/schemas/Error'
   schemas:
-    ListWorkloadsResponse:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Workload'
-    AgentStatusesResponse:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            type: object
-            properties:
-              clusterId:
-                type: string
-                format: uuid
-              status:
-                type: string
-              lastSeenAt:
-                type: string
-                format: date-time
     Error:
       type: object
       properties:
@@ -166,6 +143,29 @@ components:
                     type: string
                   memory:
                     type: string
+    AgentStatusesResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              clusterId:
+                type: string
+                format: uuid
+              status:
+                type: string
+              lastSeenAt:
+                type: string
+                format: date-time
+    ListWorkloadsResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Workload'
   parameters:
     ClusterId:
       name: clusterId
