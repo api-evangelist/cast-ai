@@ -101,20 +101,16 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  responses:
-    Unauthorized:
-      description: Authentication failed. Invalid or missing API key.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        code:
+          type: integer
+          description: Error code.
     ClusterEfficiency:
       type: object
       properties:
@@ -133,15 +129,19 @@ components:
           type: number
         savingsPercentage:
           type: number
-    Error:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Human-readable error message.
-        code:
-          type: integer
-          description: Error code.
+  responses:
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication failed. Invalid or missing API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   parameters:
     ClusterId:
       name: clusterId

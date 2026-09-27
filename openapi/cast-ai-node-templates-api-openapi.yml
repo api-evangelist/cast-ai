@@ -125,20 +125,16 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  responses:
-    Unauthorized:
-      description: Authentication failed. Invalid or missing API key.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        code:
+          type: integer
+          description: Error code.
     NodeTemplate:
       type: object
       properties:
@@ -173,15 +169,6 @@ components:
         updatedAt:
           type: string
           format: date-time
-    Error:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Human-readable error message.
-        code:
-          type: integer
-          description: Error code.
     ListNodeTemplatesResponse:
       type: object
       properties:
@@ -189,20 +176,33 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/NodeTemplate'
+  responses:
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication failed. Invalid or missing API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   parameters:
-    NodeTemplateId:
-      name: nodeTemplateId
-      in: path
-      required: true
-      description: The unique identifier of the node template.
-      schema:
-        type: string
-        format: uuid
     ClusterId:
       name: clusterId
       in: path
       required: true
       description: The unique identifier of the cluster.
+      schema:
+        type: string
+        format: uuid
+    NodeTemplateId:
+      name: nodeTemplateId
+      in: path
+      required: true
+      description: The unique identifier of the node template.
       schema:
         type: string
         format: uuid

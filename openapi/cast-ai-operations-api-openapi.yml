@@ -42,15 +42,6 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    Error:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Human-readable error message.
-        code:
-          type: integer
-          description: Error code.
     Operation:
       type: object
       properties:
@@ -72,6 +63,15 @@ components:
         completedAt:
           type: string
           format: date-time
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        code:
+          type: integer
+          description: Error code.
   responses:
     Unauthorized:
       description: Authentication failed. Invalid or missing API key.

@@ -42,6 +42,15 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        code:
+          type: integer
+          description: Error code.
     AllocationGroupEfficiency:
       type: object
       properties:
@@ -60,15 +69,6 @@ components:
                 type: number
               memoryEfficiency:
                 type: number
-    Error:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Human-readable error message.
-        code:
-          type: integer
-          description: Error code.
   responses:
     Unauthorized:
       description: Authentication failed. Invalid or missing API key.

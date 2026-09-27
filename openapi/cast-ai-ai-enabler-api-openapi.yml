@@ -54,37 +54,7 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  responses:
-    Unauthorized:
-      description: Authentication failed. Invalid or missing API key.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
-    LLMProvidersResponse:
-      type: object
-      properties:
-        providers:
-          type: array
-          items:
-            $ref: '#/components/schemas/LLMProvider'
-    RegisterProvidersRequest:
-      type: object
-      properties:
-        providers:
-          type: array
-          items:
-            type: object
-            properties:
-              name:
-                type: string
-              type:
-                type: string
-              apiKey:
-                type: string
-              endpoint:
-                type: string
     Error:
       type: object
       properties:
@@ -105,6 +75,36 @@ components:
           type: string
         status:
           type: string
+    RegisterProvidersRequest:
+      type: object
+      properties:
+        providers:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              type:
+                type: string
+              apiKey:
+                type: string
+              endpoint:
+                type: string
+    LLMProvidersResponse:
+      type: object
+      properties:
+        providers:
+          type: array
+          items:
+            $ref: '#/components/schemas/LLMProvider'
+  responses:
+    Unauthorized:
+      description: Authentication failed. Invalid or missing API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

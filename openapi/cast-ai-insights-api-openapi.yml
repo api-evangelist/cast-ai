@@ -57,33 +57,7 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  responses:
-    Unauthorized:
-      description: Authentication failed. Invalid or missing API key.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
-    ContainerImageDigests:
-      type: object
-      properties:
-        digests:
-          type: array
-          items:
-            type: object
-            properties:
-              digest:
-                type: string
-              createdAt:
-                type: string
-                format: date-time
     Error:
       type: object
       properties:
@@ -107,6 +81,32 @@ components:
                 type: array
                 items:
                   type: string
+    ContainerImageDigests:
+      type: object
+      properties:
+        digests:
+          type: array
+          items:
+            type: object
+            properties:
+              digest:
+                type: string
+              createdAt:
+                type: string
+                format: date-time
+  responses:
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication failed. Invalid or missing API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

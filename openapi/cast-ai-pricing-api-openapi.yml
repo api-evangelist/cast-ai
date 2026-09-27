@@ -73,28 +73,7 @@ components:
         code:
           type: integer
           description: Error code.
-  responses:
-    Unauthorized:
-      description: Authentication failed. Invalid or missing API key.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   parameters:
-    ClusterId:
-      name: clusterId
-      in: path
-      required: true
-      description: The unique identifier of the cluster.
-      schema:
-        type: string
-        format: uuid
     NodeId:
       name: nodeId
       in: path
@@ -103,6 +82,27 @@ components:
       schema:
         type: string
         format: uuid
+    ClusterId:
+      name: clusterId
+      in: path
+      required: true
+      description: The unique identifier of the cluster.
+      schema:
+        type: string
+        format: uuid
+  responses:
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication failed. Invalid or missing API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
