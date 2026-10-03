@@ -43,15 +43,6 @@ components:
           schema:
             $ref: '#/components/schemas/Error'
   schemas:
-    Error:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Human-readable error message.
-        code:
-          type: integer
-          description: Error code.
     BlacklistRequest:
       type: object
       properties:
@@ -63,6 +54,15 @@ components:
           type: array
           items:
             type: string
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        code:
+          type: integer
+          description: Error code.
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

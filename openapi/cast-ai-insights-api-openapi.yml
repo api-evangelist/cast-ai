@@ -58,15 +58,6 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    Error:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Human-readable error message.
-        code:
-          type: integer
-          description: Error code.
     BestPracticesFilters:
       type: object
       properties:
@@ -94,15 +85,24 @@ components:
               createdAt:
                 type: string
                 format: date-time
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        code:
+          type: integer
+          description: Error code.
   responses:
-    NotFound:
-      description: The requested resource was not found.
+    Unauthorized:
+      description: Authentication failed. Invalid or missing API key.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication failed. Invalid or missing API key.
+    NotFound:
+      description: The requested resource was not found.
       content:
         application/json:
           schema:

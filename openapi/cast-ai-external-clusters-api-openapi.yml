@@ -80,6 +80,23 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  parameters:
+    ClusterId:
+      name: clusterId
+      in: path
+      required: true
+      description: The unique identifier of the cluster.
+      schema:
+        type: string
+        format: uuid
+    NodeId:
+      name: nodeId
+      in: path
+      required: true
+      description: The unique identifier of the node.
+      schema:
+        type: string
+        format: uuid
   schemas:
     Node:
       type: object
@@ -105,15 +122,6 @@ components:
           type: object
           additionalProperties:
             type: string
-    Error:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Human-readable error message.
-        code:
-          type: integer
-          description: Error code.
     DrainNodeResponse:
       type: object
       properties:
@@ -131,6 +139,15 @@ components:
         timeout:
           type: integer
           description: Drain timeout in seconds.
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        code:
+          type: integer
+          description: Error code.
     ListNodesResponse:
       type: object
       properties:
@@ -138,32 +155,15 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Node'
-  parameters:
-    NodeId:
-      name: nodeId
-      in: path
-      required: true
-      description: The unique identifier of the node.
-      schema:
-        type: string
-        format: uuid
-    ClusterId:
-      name: clusterId
-      in: path
-      required: true
-      description: The unique identifier of the cluster.
-      schema:
-        type: string
-        format: uuid
   responses:
-    NotFound:
-      description: The requested resource was not found.
+    Unauthorized:
+      description: Authentication failed. Invalid or missing API key.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication failed. Invalid or missing API key.
+    NotFound:
+      description: The requested resource was not found.
       content:
         application/json:
           schema:
