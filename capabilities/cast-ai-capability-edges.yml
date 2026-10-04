@@ -1,0 +1,54 @@
+slug: cast-ai
+provider: CAST AI
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 4
+edges:
+- tag: Node Configuration
+  spec_file: cast-ai-node-configuration-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.75
+  evidence: GET /kubernetes/clusters/{clusterId}/node-configurations  NodeConfigurationAPI_ListConfigurations
+  reason: CRUD over Kubernetes cluster node configurations — defining how compute nodes are provisioned.
+    This is cloud/compute infrastructure management.
+- tag: Node Templates
+  spec_file: cast-ai-node-templates-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.75
+  evidence: POST /kubernetes/clusters/{clusterId}/node-templates  NodeTemplatesAPI_CreateNodeTemplate  CAST
+    AI Create node template
+  reason: Lifecycle of node templates that govern which compute instance types a cluster provisions —
+    compute/cloud infrastructure management.
+- tag: External Clusters
+  spec_file: cast-ai-external-clusters-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.7
+  evidence: POST /kubernetes/external-clusters/{clusterId}/nodes/{nodeId}/drain  DrainNode  Drain cluster
+    node
+  reason: Listing, draining and deleting Kubernetes cluster nodes (schemas Node, ListNodesResponse) is
+    direct management of compute/cloud infrastructure, i.e. IT Infrastructure Management.
+- tag: Pricing
+  spec_file: cast-ai-pricing-api-openapi.yml
+  capability_id: BC-600.80
+  capability_id_l1: BC-600
+  capability_name: IT Financial Management
+  confidence: 0.7
+  evidence: GET /pricing/clusters/{clusterId}/nodes/{nodeId}  PricingAPI_GetNodePricing ... POST /pricing/sync-gcp-billing  PricingAPI_SyncGCPBillingAPIData
+  reason: 'Homograph check: this is not commercial price-list management but retrieval of cloud node costs
+    and ingestion of GCP billing data — IT spend visibility and cloud cost optimisation (IT Financial
+    Management).'

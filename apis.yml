@@ -620,6 +620,9 @@ apis:
   - type: JSONLD
     url: json-ld/cast-ai-context.jsonld
 common:
+  - type: CapabilityMap
+    url: capabilities/cast-ai-capability-edges.yml
+    name: CAST AI Business Capability Map
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/cast-ai/overview
   - type: AgenticAccess
