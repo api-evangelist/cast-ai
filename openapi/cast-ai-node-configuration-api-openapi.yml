@@ -83,15 +83,6 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  parameters:
-    ClusterId:
-      name: clusterId
-      in: path
-      required: true
-      description: The unique identifier of the cluster.
-      schema:
-        type: string
-        format: uuid
   schemas:
     NodeConfiguration:
       type: object
@@ -132,6 +123,15 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/NodeConfiguration'
+  parameters:
+    ClusterId:
+      name: clusterId
+      in: path
+      required: true
+      description: The unique identifier of the cluster.
+      schema:
+        type: string
+        format: uuid
   responses:
     Unauthorized:
       description: Authentication failed. Invalid or missing API key.

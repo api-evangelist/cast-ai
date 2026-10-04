@@ -78,28 +78,6 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  parameters:
-    ClusterId:
-      name: clusterId
-      in: path
-      required: true
-      description: The unique identifier of the cluster.
-      schema:
-        type: string
-        format: uuid
-  responses:
-    Unauthorized:
-      description: Authentication failed. Invalid or missing API key.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
     ListWorkloadsResponse:
       type: object
@@ -150,6 +128,15 @@ components:
                     type: string
                   memory:
                     type: string
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        code:
+          type: integer
+          description: Error code.
     AgentStatusesResponse:
       type: object
       properties:
@@ -166,15 +153,28 @@ components:
               lastSeenAt:
                 type: string
                 format: date-time
-    Error:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Human-readable error message.
-        code:
-          type: integer
-          description: Error code.
+  parameters:
+    ClusterId:
+      name: clusterId
+      in: path
+      required: true
+      description: The unique identifier of the cluster.
+      schema:
+        type: string
+        format: uuid
+  responses:
+    Unauthorized:
+      description: Authentication failed. Invalid or missing API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

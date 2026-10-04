@@ -60,15 +60,6 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  parameters:
-    ClusterId:
-      name: clusterId
-      in: path
-      required: true
-      description: The unique identifier of the cluster.
-      schema:
-        type: string
-        format: uuid
   schemas:
     IngestLogsRequest:
       type: object
@@ -94,6 +85,15 @@ components:
         code:
           type: integer
           description: Error code.
+  parameters:
+    ClusterId:
+      name: clusterId
+      in: path
+      required: true
+      description: The unique identifier of the cluster.
+      schema:
+        type: string
+        format: uuid
   responses:
     Unauthorized:
       description: Authentication failed. Invalid or missing API key.

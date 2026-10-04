@@ -58,20 +58,6 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    BestPracticesFilters:
-      type: object
-      properties:
-        filters:
-          type: array
-          items:
-            type: object
-            properties:
-              name:
-                type: string
-              values:
-                type: array
-                items:
-                  type: string
     ContainerImageDigests:
       type: object
       properties:
@@ -94,6 +80,20 @@ components:
         code:
           type: integer
           description: Error code.
+    BestPracticesFilters:
+      type: object
+      properties:
+        filters:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              values:
+                type: array
+                items:
+                  type: string
   responses:
     Unauthorized:
       description: Authentication failed. Invalid or missing API key.

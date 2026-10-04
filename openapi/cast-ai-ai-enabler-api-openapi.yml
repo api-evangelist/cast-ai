@@ -55,6 +55,26 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
+    LLMProvider:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+        status:
+          type: string
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        code:
+          type: integer
+          description: Error code.
     RegisterProvidersRequest:
       type: object
       properties:
@@ -78,26 +98,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/LLMProvider'
-    Error:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Human-readable error message.
-        code:
-          type: integer
-          description: Error code.
-    LLMProvider:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        type:
-          type: string
-        status:
-          type: string
   responses:
     Unauthorized:
       description: Authentication failed. Invalid or missing API key.

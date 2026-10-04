@@ -98,6 +98,15 @@ components:
         type: string
         format: uuid
   schemas:
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        code:
+          type: integer
+          description: Error code.
     Node:
       type: object
       properties:
@@ -130,6 +139,13 @@ components:
           format: uuid
         status:
           type: string
+    ListNodesResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Node'
     DrainNodeRequest:
       type: object
       properties:
@@ -139,22 +155,6 @@ components:
         timeout:
           type: integer
           description: Drain timeout in seconds.
-    Error:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Human-readable error message.
-        code:
-          type: integer
-          description: Error code.
-    ListNodesResponse:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Node'
   responses:
     Unauthorized:
       description: Authentication failed. Invalid or missing API key.

@@ -125,37 +125,14 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  parameters:
-    ClusterId:
-      name: clusterId
-      in: path
-      required: true
-      description: The unique identifier of the cluster.
-      schema:
-        type: string
-        format: uuid
-    NodeTemplateId:
-      name: nodeTemplateId
-      in: path
-      required: true
-      description: The unique identifier of the node template.
-      schema:
-        type: string
-        format: uuid
-  responses:
-    Unauthorized:
-      description: Authentication failed. Invalid or missing API key.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
+    ListNodeTemplatesResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/NodeTemplate'
     Error:
       type: object
       properties:
@@ -165,13 +142,6 @@ components:
         code:
           type: integer
           description: Error code.
-    ListNodeTemplatesResponse:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/NodeTemplate'
     NodeTemplate:
       type: object
       properties:
@@ -206,6 +176,36 @@ components:
         updatedAt:
           type: string
           format: date-time
+  parameters:
+    ClusterId:
+      name: clusterId
+      in: path
+      required: true
+      description: The unique identifier of the cluster.
+      schema:
+        type: string
+        format: uuid
+    NodeTemplateId:
+      name: nodeTemplateId
+      in: path
+      required: true
+      description: The unique identifier of the node template.
+      schema:
+        type: string
+        format: uuid
+  responses:
+    Unauthorized:
+      description: Authentication failed. Invalid or missing API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
