@@ -620,6 +620,12 @@ apis:
   - type: JSONLD
     url: json-ld/cast-ai-context.jsonld
 common:
+  - type: Plans
+    url: plans/cast-ai-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/cast-ai-rate-limits.yml
+  - type: FinOps
+    url: finops/cast-ai-finops.yml
   - type: CapabilityMap
     url: capabilities/cast-ai-capability-edges.yml
     name: CAST AI Business Capability Map
