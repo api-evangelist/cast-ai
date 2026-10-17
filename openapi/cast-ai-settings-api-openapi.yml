@@ -61,15 +61,6 @@ components:
           schema:
             $ref: '#/components/schemas/Error'
   schemas:
-    Error:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Human-readable error message.
-        code:
-          type: integer
-          description: Error code.
     APIKeySettings:
       type: object
       properties:
@@ -84,6 +75,15 @@ components:
         createdAt:
           type: string
           format: date-time
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        code:
+          type: integer
+          description: Error code.
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

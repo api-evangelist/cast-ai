@@ -78,6 +78,19 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  responses:
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication failed. Invalid or missing API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
     ListWorkloadsResponse:
       type: object
@@ -86,6 +99,31 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Workload'
+    AgentStatusesResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              clusterId:
+                type: string
+                format: uuid
+              status:
+                type: string
+              lastSeenAt:
+                type: string
+                format: date-time
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        code:
+          type: integer
+          description: Error code.
     Workload:
       type: object
       properties:
@@ -128,31 +166,6 @@ components:
                     type: string
                   memory:
                     type: string
-    Error:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Human-readable error message.
-        code:
-          type: integer
-          description: Error code.
-    AgentStatusesResponse:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            type: object
-            properties:
-              clusterId:
-                type: string
-                format: uuid
-              status:
-                type: string
-              lastSeenAt:
-                type: string
-                format: date-time
   parameters:
     ClusterId:
       name: clusterId
@@ -162,19 +175,6 @@ components:
       schema:
         type: string
         format: uuid
-  responses:
-    Unauthorized:
-      description: Authentication failed. Invalid or missing API key.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

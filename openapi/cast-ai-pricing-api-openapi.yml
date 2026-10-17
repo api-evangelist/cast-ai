@@ -50,6 +50,42 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  responses:
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication failed. Invalid or missing API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    NodePricing:
+      type: object
+      properties:
+        nodeId:
+          type: string
+        instanceType:
+          type: string
+        onDemandPrice:
+          type: number
+        spotPrice:
+          type: number
+        currency:
+          type: string
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        code:
+          type: integer
+          description: Error code.
   parameters:
     ClusterId:
       name: clusterId
@@ -67,42 +103,6 @@ components:
       schema:
         type: string
         format: uuid
-  schemas:
-    Error:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Human-readable error message.
-        code:
-          type: integer
-          description: Error code.
-    NodePricing:
-      type: object
-      properties:
-        nodeId:
-          type: string
-        instanceType:
-          type: string
-        onDemandPrice:
-          type: number
-        spotPrice:
-          type: number
-        currency:
-          type: string
-  responses:
-    Unauthorized:
-      description: Authentication failed. Invalid or missing API key.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

@@ -80,24 +80,44 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  parameters:
-    ClusterId:
-      name: clusterId
-      in: path
-      required: true
-      description: The unique identifier of the cluster.
-      schema:
-        type: string
-        format: uuid
-    NodeId:
-      name: nodeId
-      in: path
-      required: true
-      description: The unique identifier of the node.
-      schema:
-        type: string
-        format: uuid
+  responses:
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication failed. Invalid or missing API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
+    ListNodesResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Node'
+    DrainNodeRequest:
+      type: object
+      properties:
+        force:
+          type: boolean
+          description: Whether to force drain the node.
+        timeout:
+          type: integer
+          description: Drain timeout in seconds.
+    DrainNodeResponse:
+      type: object
+      properties:
+        nodeId:
+          type: string
+          format: uuid
+        status:
+          type: string
     Error:
       type: object
       properties:
@@ -131,43 +151,23 @@ components:
           type: object
           additionalProperties:
             type: string
-    DrainNodeResponse:
-      type: object
-      properties:
-        nodeId:
-          type: string
-          format: uuid
-        status:
-          type: string
-    ListNodesResponse:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Node'
-    DrainNodeRequest:
-      type: object
-      properties:
-        force:
-          type: boolean
-          description: Whether to force drain the node.
-        timeout:
-          type: integer
-          description: Drain timeout in seconds.
-  responses:
-    Unauthorized:
-      description: Authentication failed. Invalid or missing API key.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+  parameters:
+    ClusterId:
+      name: clusterId
+      in: path
+      required: true
+      description: The unique identifier of the cluster.
+      schema:
+        type: string
+        format: uuid
+    NodeId:
+      name: nodeId
+      in: path
+      required: true
+      description: The unique identifier of the node.
+      schema:
+        type: string
+        format: uuid
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
