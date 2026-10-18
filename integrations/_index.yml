@@ -89,3 +89,16 @@
     builder: provider (package published from the provider's own domain)
   status: not-a-workflow
   arazzo: null
+- slug: cast-ai-slack-own
+  label: Slack (own)
+  partner: slack
+  partner_name: Slack (own)
+  category: Slack app
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://slack.com/marketplace/A09UNUX73P1-cast-ai
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
