@@ -1,4 +1,4 @@
-# CAST AI (cast-ai)
+# CAST AI
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,104 +66,193 @@
 
 CAST AI is an Application Performance Automation (APA) platform for Kubernetes that automates cost optimization, autoscaling, workload rightsizing, GPU/LLM workload placement, spot instance selection, and security posture analysis. The platform works across AWS, GCP, Azure, Oracle Cloud, IBM Cloud, AliCloud and on-premises distributions (EKS, GKE, AKS, OpenShift, Rancher, kOps). Everything available in the console UI is also accessible via the REST API at api.cast.ai.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/cast-ai/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/cast-ai/refs/heads/main/apis.yml)
+**Areas:** Auto-Scaling · Cloud Infrastructure · Cost Optimization · DevOps · FinOps · Kubernetes · Observability
 
-## Scope
+## CAST AI on APIs.io
 
-- **Type:** Index
-- **Position:** Consumer
-- **Access:** 3rd-Party
+Everything profiled for CAST AI is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/cast-ai/](https://apis.io/providers/cast-ai/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (17)
 
-- Autoscaling
-- Cloud Infrastructure
-- Cost Optimization
-- DevOps
-- FinOps
-- Kubernetes
-- Observability
+- [CAST AI AI Enabler API](https://apis.io/apis/cast-ai/cast-ai-ai-enabler-api/) — Manage LLM provider integrations and AI enabler functionality for intelligent optimization.
+- [CAST AI Allocation Groups API](https://apis.io/apis/cast-ai/cast-ai-allocation-groups-api/) — Manage allocation groups and view efficiency metrics for grouped workloads.
+- [CAST AI Autoscaler API](https://apis.io/apis/cast-ai/cast-ai-autoscaler-api/) — Autoscaler operations including triggering rebalancing plans and managing cluster scaling behavior.
+- [CAST AI Cluster Actions API](https://apis.io/apis/cast-ai/cast-ai-cluster-actions-api/) — Manage cluster controller actions including acknowledging completed actions and ingesting logs.
+- [CAST AI Cost Reports API](https://apis.io/apis/cast-ai/cast-ai-cost-reports-api/) — Access cost reporting and efficiency data at the cluster, namespace, and workload levels.
+- [CAST AI External Clusters API](https://apis.io/apis/cast-ai/cast-ai-external-clusters-api/) — Manage external Kubernetes clusters connected to CAST AI, including listing nodes, draining nodes, and cluster operations.
+- [CAST AI Hibernation Schedules API](https://apis.io/apis/cast-ai/cast-ai-hibernation-schedules-api/) — Create and manage hibernation schedules for clusters to reduce costs during off-peak hours.
+- [CAST AI Insights API](https://apis.io/apis/cast-ai/cast-ai-insights-api/) — Access security insights, best practices reports, and container image scanning information.
+- [CAST AI Inventory API](https://apis.io/apis/cast-ai/cast-ai-inventory-api/) — Manage inventory resources and blacklists for instance types and regions.
+- [CAST AI Node Configuration API](https://apis.io/apis/cast-ai/cast-ai-node-configuration-api/) — Manage node configurations for clusters, which define how nodes are provisioned and configured.
+- [CAST AI Node Templates API](https://apis.io/apis/cast-ai/cast-ai-node-templates-api/) — Manage node templates that define instance types, constraints, and configuration for autoscaled nodes.
+- [CAST AI Operations API](https://apis.io/apis/cast-ai/cast-ai-operations-api/) — Track and manage long-running operations within CAST AI.
+- [CAST AI Policies API](https://apis.io/apis/cast-ai/cast-ai-policies-api/) — Manage autoscaler policies configuration for clusters, including unscheduled pods, node downscaler, and spot instance policies.
+- [CAST AI Pricing API](https://apis.io/apis/cast-ai/cast-ai-pricing-api/) — Access pricing information for cloud provider instances and sync billing data.
+- [CAST AI Scheduled Rebalancing API](https://apis.io/apis/cast-ai/cast-ai-scheduled-rebalancing-api/) — Create and manage scheduled rebalancing jobs that periodically optimize cluster node allocation.
+- [CAST AI Settings API](https://apis.io/apis/cast-ai/cast-ai-settings-api/) — Manage API key settings and organization-level configuration.
+- [CAST AI Workload Optimization API](https://apis.io/apis/cast-ai/cast-ai-workload-optimization-api/) — Manage workload optimization settings, view workload recommendations, and configure workload autoscaling.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2024-07-02
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### MCP servers (1)
 
-### CAST AI Kubernetes Cost Optimization API
+Model Context Protocol servers that expose the API to agents.
 
-The CAST AI REST API provides comprehensive access to the Kubernetes cost optimization platform: cluster management, autoscaling and Karpenter integration, node configuration and templates, workload rightsizing, scheduled rebalancing, cost reporting, security insights, hibernation schedules, AI enabler / LLM workload optimization, and GPU/OMNI compute features. Authentication uses API keys and the API is served at api.cast.ai.
+- [Moved to /providers/cast-ai/](https://apis.io/servers/cast-ai/cast-ai/)
 
-- **Human URL:** [https://docs.cast.ai/docs/api](https://docs.cast.ai/docs/api)
-- **Base URL:** `https://api.cast.ai`
+#### Agentic access (1)
 
-#### Tags
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- Autoscaling
-- Clusters
-- Cost Optimization
-- FinOps
-- Hibernation
-- Karpenter
-- Kubernetes
-- LLM
-- Metrics
-- Node Templates
-- Nodes
-- Policies
-- Pricing
-- Rebalancing
-- Security
-- Spot Instances
-- Workloads
+- [Cast Ai Agentic Access](https://apis.io/agentic-access/cast-ai/cast-ai-agentic-access/)
 
-#### Properties
+#### JSON Schema (6)
 
-- [Documentation](https://docs.cast.ai/docs/api)
-- [OpenAPI](openapi/cast-ai-kubernetes-cost-optimization-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/cast-ai-kubernetes-cost-optimization.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/cast-ai-kubernetes-cost-optimization.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Swagger](https://api.cast.ai/v1/spec/)
-- [Authentication](https://docs.cast.ai/docs/authentication)
-- [Changelog](https://docs.cast.ai/changelog)
-- [JSON Schema](json-schema/cluster.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/node.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/node-template.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/workload.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/rebalancing-schedule.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/cost-report.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON-LD](json-ld/cast-ai-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
+The data models the API reads and writes.
 
-## Common Properties
+- [CAST AI Cluster](https://apis.io/schemas/cast-ai/cluster/)
+- [CAST AI Cost Report](https://apis.io/schemas/cast-ai/cost-report/)
+- [CAST AI Node](https://apis.io/schemas/cast-ai/node/)
+- [CAST AI Node Template](https://apis.io/schemas/cast-ai/node-template/)
+- [CAST AI Rebalancing Schedule](https://apis.io/schemas/cast-ai/rebalancing-schedule/)
+- [CAST AI Workload](https://apis.io/schemas/cast-ai/workload/)
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Cast Ai Context](https://apis.io/jsonld/cast-ai/cast-ai-context/)
+
+#### Collections (35)
+
+Postman and Open Collection request collections.
+
+- [CAST AI Kubernetes Cost Optimization AI Enabler API](https://apis.io/collections/cast-ai/open-cast-ai-ai-enabler-api/)
+- [CAST AI Kubernetes Cost Optimization AI Enabler Allocation Groups API](https://apis.io/collections/cast-ai/open-cast-ai-allocation-groups-api/)
+- [CAST AI Kubernetes Cost Optimization AI Enabler Autoscaler API](https://apis.io/collections/cast-ai/open-cast-ai-autoscaler-api/)
+- [CAST AI Kubernetes Cost Optimization AI Enabler Cluster Actions API](https://apis.io/collections/cast-ai/open-cast-ai-cluster-actions-api/)
+- [CAST AI Kubernetes Cost Optimization AI Enabler Cost Reports API](https://apis.io/collections/cast-ai/open-cast-ai-cost-reports-api/)
+- [CAST AI Kubernetes Cost Optimization AI Enabler External Clusters API](https://apis.io/collections/cast-ai/open-cast-ai-external-clusters-api/)
+- [CAST AI Kubernetes Cost Optimization AI Enabler Hibernation Schedules API](https://apis.io/collections/cast-ai/open-cast-ai-hibernation-schedules-api/)
+- [CAST AI Kubernetes Cost Optimization AI Enabler Insights API](https://apis.io/collections/cast-ai/open-cast-ai-insights-api/)
+- [CAST AI Kubernetes Cost Optimization AI Enabler Inventory API](https://apis.io/collections/cast-ai/open-cast-ai-inventory-api/)
+- [CAST AI Kubernetes Cost Optimization API](https://apis.io/collections/cast-ai/open-cast-ai-kubernetes-cost-optimization/)
+- [CAST AI Kubernetes Cost Optimization AI Enabler Node Configuration API](https://apis.io/collections/cast-ai/open-cast-ai-node-configuration-api/)
+- [CAST AI Kubernetes Cost Optimization AI Enabler Node Templates API](https://apis.io/collections/cast-ai/open-cast-ai-node-templates-api/)
+- [CAST AI Kubernetes Cost Optimization AI Enabler Operations API](https://apis.io/collections/cast-ai/open-cast-ai-operations-api/)
+- [CAST AI Kubernetes Cost Optimization AI Enabler Policies API](https://apis.io/collections/cast-ai/open-cast-ai-policies-api/)
+- [CAST AI Kubernetes Cost Optimization AI Enabler Pricing API](https://apis.io/collections/cast-ai/open-cast-ai-pricing-api/)
+- [CAST AI Kubernetes Cost Optimization AI Enabler Scheduled Rebalancing API](https://apis.io/collections/cast-ai/open-cast-ai-scheduled-rebalancing-api/)
+- [CAST AI Kubernetes Cost Optimization AI Enabler Settings API](https://apis.io/collections/cast-ai/open-cast-ai-settings-api/)
+- [CAST AI Kubernetes Cost Optimization AI Enabler Workload Optimization API](https://apis.io/collections/cast-ai/open-cast-ai-workload-optimization-api/)
+- [CAST AI Kubernetes Cost Optimization AI Enabler API](https://apis.io/collections/cast-ai/postman-cast-ai-ai-enabler-api/)
+- [CAST AI Kubernetes Cost Optimization AI Enabler Allocation Groups API](https://apis.io/collections/cast-ai/postman-cast-ai-allocation-groups-api/)
+- [CAST AI Kubernetes Cost Optimization AI Enabler Autoscaler API](https://apis.io/collections/cast-ai/postman-cast-ai-autoscaler-api/)
+- [CAST AI Kubernetes Cost Optimization AI Enabler Cluster Actions API](https://apis.io/collections/cast-ai/postman-cast-ai-cluster-actions-api/)
+- [CAST AI Kubernetes Cost Optimization AI Enabler Cost Reports API](https://apis.io/collections/cast-ai/postman-cast-ai-cost-reports-api/)
+- [CAST AI Kubernetes Cost Optimization AI Enabler External Clusters API](https://apis.io/collections/cast-ai/postman-cast-ai-external-clusters-api/)
+- [CAST AI Kubernetes Cost Optimization AI Enabler Hibernation Schedules API](https://apis.io/collections/cast-ai/postman-cast-ai-hibernation-schedules-api/)
+- …and 10 more published on APIs.io
+
+#### Governance rules (1)
+
+Spectral rulesets for the provider's contracts.
+
+- [CAST AI — jsonschema rules](https://apis.io/rules/cast-ai/cast-ai-jsonschema-spectral-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Cast Ai Authentication](https://apis.io/security/cast-ai/cast-ai-authentication/)
+- [Cast Ai Domain Security](https://apis.io/security/cast-ai/cast-ai-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Cast Ai Plans Pricing](https://apis.io/plans/cast-ai/cast-ai-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Cast Ai Rate Limits](https://apis.io/rate-limits/cast-ai/cast-ai-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Cast Ai Finops](https://apis.io/finops/cast-ai/cast-ai-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://cast.ai/)
 - [Documentation](https://docs.cast.ai/docs/)
-- [Getting Started](https://docs.cast.ai/docs/getting-started)
-- [Authentication](https://docs.cast.ai/docs/authentication)
-- [Changelog](https://docs.cast.ai/changelog)
+- [Getting started](https://docs.cast.ai/docs/getting-started)
 - [Pricing](https://cast.ai/pricing/)
-- [Blog](https://cast.ai/blog/)
-- [Case Studies](https://cast.ai/case-studies/)
-- [Customers](https://cast.ai/case-studies/)
-- [Partners](https://cast.ai/partners/)
 - [Support](https://cast.ai/support/)
-- [Status Page](https://status.cast.ai/)
-- [Security Policy](https://cast.ai/security/)
-- [Terms of Service](https://cast.ai/terms-of-service/)
-- [Privacy Policy](https://cast.ai/privacy-policy/)
-- [Git Hub](https://github.com/castai/)
-- [Slack](https://castai-community.slack.com/)
-- [X (Twitter)](https://x.com/cast_ai/)
-- [LinkedIn](https://www.linkedin.com/company/cast-ai/)
-- [YouTube](https://www.youtube.com/@CASTAI)
-- [Features](undefined)
-- [Use Cases](undefined)
-- [Integrations](undefined)
-- [Integrations](https://cast.ai/integrations/)
-- [L L Ms Txt](https://docs.cast.ai/llms.txt)
+- [Changelog](https://docs.cast.ai/changelog)
+- [Blog](https://cast.ai/blog/)
+- [Terms of service](https://cast.ai/terms-of-service/)
+- [Privacy policy](https://cast.ai/privacy-policy/)
+- [Status](https://status.cast.ai/)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** info@apievangelist.com
+**Kin Score 45.0** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 75.0 |
+| Contract quality | 61.1 |
+| Contract governance | 9.8 |
+| Operational transparency | 47.4 |
+| Developer ergonomics | 20.2 |
+| Access clarity | 39.5 |
+
+**Agent readiness 30.5** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | verified |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | verified |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | — |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 24.5** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/cast-ai/](https://apis.io/providers/cast-ai/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for CAST AI: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/cast-ai/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
